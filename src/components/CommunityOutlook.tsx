@@ -38,7 +38,7 @@ export function CommunityOutlook({
             Use Add feedback for open-source input.
           </p>
         </div>
-        <button type="button" className="btn" onClick={() => setOpen(true)}>
+        <button type="button" className="btn primary" onClick={() => setOpen(true)}>
           Add feedback
         </button>
       </div>

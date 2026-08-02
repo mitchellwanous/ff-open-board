@@ -18,7 +18,7 @@ export function AppFeedbackButton({
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button type="button" className="btn" onClick={() => setOpen(true)}>
+      <button type="button" className="btn primary" onClick={() => setOpen(true)}>
         {buttonLabel}
       </button>
       {open ? <AppFeedbackModal onClose={() => setOpen(false)} /> : null}

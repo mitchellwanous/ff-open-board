@@ -45,7 +45,7 @@ export function ProposeButton(props: Props) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button type="button" className="btn" onClick={() => setOpen(true)}>
+      <button type="button" className="btn primary" onClick={() => setOpen(true)}>
         {props.buttonLabel ?? "Propose"}
       </button>
       {open ? (
