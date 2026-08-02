@@ -1715,13 +1715,22 @@
         "rank": 54
       },
       {
+        "id": "00-0034383",
+        "label": "Dalton Schultz",
+        "team": "HOU",
+        "position": "TE",
+        "value": 0.16,
+        "href": "/players/00-0034383",
+        "rank": 55
+      },
+      {
         "id": "00-0034753",
         "label": "Mark Andrews",
         "team": "BAL",
         "position": "TE",
         "value": 0.16,
         "href": "/players/00-0034753",
-        "rank": 55
+        "rank": 56
       },
       {
         "id": "00-0040735",
@@ -1730,15 +1739,6 @@
         "position": "WR",
         "value": 0.16,
         "href": "/players/00-0040735",
-        "rank": 56
-      },
-      {
-        "id": "00-0034383",
-        "label": "Dalton Schultz",
-        "team": "HOU",
-        "position": "TE",
-        "value": 0.16,
-        "href": "/players/00-0034383",
         "rank": 57
       },
       {
@@ -2084,21 +2084,21 @@
         "rank": 95
       },
       {
-        "id": "00-0036550",
-        "label": "Rashod Bateman",
-        "team": "BAL",
-        "position": "WR",
-        "value": 0.12,
-        "href": "/players/00-0036550",
-        "rank": 96
-      },
-      {
         "id": "00-0038393",
         "label": "Dontayvion Wicks",
         "team": "PHI",
         "position": "WR",
         "value": 0.12,
         "href": "/players/00-0038393",
+        "rank": 96
+      },
+      {
+        "id": "00-0036550",
+        "label": "Rashod Bateman",
+        "team": "BAL",
+        "position": "WR",
+        "value": 0.12,
+        "href": "/players/00-0036550",
         "rank": 97
       },
       {
@@ -2219,21 +2219,21 @@
         "rank": 110
       },
       {
-        "id": "00-0038977",
-        "label": "Tank Dell",
-        "team": "HOU",
-        "position": "WR",
-        "value": 0.11,
-        "href": "/players/00-0038977",
-        "rank": 111
-      },
-      {
         "id": "00-0041035",
         "label": "De'Zhaun Stribling",
         "team": "SF",
         "position": "WR",
         "value": 0.11,
         "href": "/players/00-0041035",
+        "rank": 111
+      },
+      {
+        "id": "00-0038977",
+        "label": "Tank Dell",
+        "team": "HOU",
+        "position": "WR",
+        "value": 0.11,
+        "href": "/players/00-0038977",
         "rank": 112
       },
       {
@@ -3074,21 +3074,21 @@
         "rank": 205
       },
       {
-        "id": "00-0037837",
-        "label": "Calvin Austin III",
-        "team": "NYG",
-        "position": "WR",
-        "value": 0.0461,
-        "href": "/players/00-0037837",
-        "rank": 206
-      },
-      {
         "id": "00-0041503",
         "label": "Nate Boerkircher",
         "team": "JAX",
         "position": "TE",
         "value": 0.0461,
         "href": "/players/00-0041503",
+        "rank": 206
+      },
+      {
+        "id": "00-0037837",
+        "label": "Calvin Austin III",
+        "team": "NYG",
+        "position": "WR",
+        "value": 0.0461,
+        "href": "/players/00-0037837",
         "rank": 207
       },
       {
@@ -4183,21 +4183,21 @@
         "rank": 47
       },
       {
-        "id": "00-0033526",
-        "label": "Samaje Perine",
-        "team": "CIN",
-        "position": "RB",
-        "value": 0.25,
-        "href": "/players/00-0033526",
-        "rank": 48
-      },
-      {
         "id": "00-0041052",
         "label": "Kaelon Black",
         "team": "SF",
         "position": "RB",
         "value": 0.25,
         "href": "/players/00-0041052",
+        "rank": 48
+      },
+      {
+        "id": "00-0033526",
+        "label": "Samaje Perine",
+        "team": "CIN",
+        "position": "RB",
+        "value": 0.25,
+        "href": "/players/00-0033526",
         "rank": 49
       },
       {
@@ -4489,21 +4489,21 @@
         "rank": 81
       },
       {
-        "id": "00-0033873",
-        "label": "Patrick Mahomes",
-        "team": "KC",
-        "position": "QB",
-        "value": 0.12,
-        "href": "/players/00-0033873",
-        "rank": 82
-      },
-      {
         "id": "00-0034869",
         "label": "Sam Darnold",
         "team": "SEA",
         "position": "QB",
         "value": 0.12,
         "href": "/players/00-0034869",
+        "rank": 82
+      },
+      {
+        "id": "00-0033873",
+        "label": "Patrick Mahomes",
+        "team": "KC",
+        "position": "QB",
+        "value": 0.12,
+        "href": "/players/00-0033873",
         "rank": 83
       },
       {
@@ -7373,21 +7373,21 @@
         "rank": 40
       },
       {
-        "id": "00-0034844",
-        "label": "Saquon Barkley",
-        "team": "PHI",
-        "position": "RB",
-        "value": 227.7,
-        "href": "/players/00-0034844",
-        "rank": 41
-      },
-      {
         "id": "00-0039067",
         "label": "Rashee Rice",
         "team": "KC",
         "position": "WR",
         "value": 227.7,
         "href": "/players/00-0039067",
+        "rank": 41
+      },
+      {
+        "id": "00-0034844",
+        "label": "Saquon Barkley",
+        "team": "PHI",
+        "position": "RB",
+        "value": 227.7,
+        "href": "/players/00-0034844",
         "rank": 42
       },
       {
@@ -9344,21 +9344,21 @@
         "rank": 259
       },
       {
-        "id": "00-0036988",
-        "label": "Josh Palmer",
-        "team": "BUF",
-        "position": "WR",
-        "value": 41.6,
-        "href": "/players/00-0036988",
-        "rank": 260
-      },
-      {
         "id": "00-0038440",
         "label": "Zavier Scott",
         "team": "MIN",
         "position": "RB",
         "value": 41.6,
         "href": "/players/00-0038440",
+        "rank": 260
+      },
+      {
+        "id": "00-0036988",
+        "label": "Josh Palmer",
+        "team": "BUF",
+        "position": "WR",
+        "value": 41.6,
+        "href": "/players/00-0036988",
         "rank": 261
       },
       {
@@ -9407,21 +9407,21 @@
         "rank": 266
       },
       {
-        "id": "00-0039751",
-        "label": "Jordan Whittington",
-        "team": "LA",
-        "position": "WR",
-        "value": 38.4,
-        "href": "/players/00-0039751",
-        "rank": 267
-      },
-      {
         "id": "00-0039405",
         "label": "Jawhar Jordan",
         "team": "HOU",
         "position": "RB",
         "value": 38.4,
         "href": "/players/00-0039405",
+        "rank": 267
+      },
+      {
+        "id": "00-0039751",
+        "label": "Jordan Whittington",
+        "team": "LA",
+        "position": "WR",
+        "value": 38.4,
+        "href": "/players/00-0039751",
         "rank": 268
       },
       {
@@ -9470,21 +9470,21 @@
         "rank": 273
       },
       {
-        "id": "00-0040170",
-        "label": "Elic Ayomanor",
-        "team": "TEN",
-        "position": "WR",
-        "value": 37.1,
-        "href": "/players/00-0040170",
-        "rank": 274
-      },
-      {
         "id": "00-0035644",
         "label": "Noah Fant",
         "team": "NO",
         "position": "TE",
         "value": 37.1,
         "href": "/players/00-0035644",
+        "rank": 274
+      },
+      {
+        "id": "00-0040170",
+        "label": "Elic Ayomanor",
+        "team": "TEN",
+        "position": "WR",
+        "value": 37.1,
+        "href": "/players/00-0040170",
         "rank": 275
       },
       {
@@ -9641,21 +9641,21 @@
         "rank": 292
       },
       {
-        "id": "00-0035208",
-        "label": "Olamide Zaccheaus",
-        "team": "ATL",
-        "position": "WR",
-        "value": 31.6,
-        "href": "/players/00-0035208",
-        "rank": 293
-      },
-      {
         "id": "00-0041395",
         "label": "Eli Raridon",
         "team": "NE",
         "position": "TE",
         "value": 31.6,
         "href": "/players/00-0041395",
+        "rank": 293
+      },
+      {
+        "id": "00-0035208",
+        "label": "Olamide Zaccheaus",
+        "team": "ATL",
+        "position": "WR",
+        "value": 31.6,
+        "href": "/players/00-0035208",
         "rank": 294
       },
       {
@@ -10426,22 +10426,13 @@
         "rank": 66
       },
       {
-        "id": "00-0038606",
-        "label": "Parker Washington",
-        "team": "JAX",
-        "position": "WR",
-        "value": 134.5,
-        "href": "/players/00-0038606",
-        "rank": 67
-      },
-      {
         "id": "00-0039337",
         "label": "Malik Nabers",
         "team": "NYG",
         "position": "WR",
         "value": 133.3,
         "href": "/players/00-0039337",
-        "rank": 68
+        "rank": 67
       },
       {
         "id": "00-0035261",
@@ -10450,7 +10441,7 @@
         "position": "RB",
         "value": 131.6,
         "href": "/players/00-0035261",
-        "rank": 69
+        "rank": 68
       },
       {
         "id": "00-0037744",
@@ -10459,6 +10450,15 @@
         "position": "TE",
         "value": 131.2,
         "href": "/players/00-0037744",
+        "rank": 69
+      },
+      {
+        "id": "00-0038606",
+        "label": "Parker Washington",
+        "team": "JAX",
+        "position": "WR",
+        "value": 131.0,
+        "href": "/players/00-0038606",
         "rank": 70
       },
       {
@@ -13425,22 +13425,13 @@
         "rank": 86
       },
       {
-        "id": "00-0039893",
-        "label": "Brian Thomas Jr.",
-        "team": "JAX",
-        "position": "WR",
-        "value": 228.9,
-        "href": "/players/00-0039893",
-        "rank": 87
-      },
-      {
         "id": "00-0040663",
         "label": "Harold Fannin Jr.",
         "team": "CLE",
         "position": "TE",
         "value": 226.5,
         "href": "/players/00-0040663",
-        "rank": 88
+        "rank": 87
       },
       {
         "id": "00-0036973",
@@ -13449,7 +13440,7 @@
         "position": "RB",
         "value": 226.3,
         "href": "/players/00-0036973",
-        "rank": 89
+        "rank": 88
       },
       {
         "id": "00-0041029",
@@ -13458,7 +13449,7 @@
         "position": "WR",
         "value": 225.2,
         "href": "/players/00-0041029",
-        "rank": 90
+        "rank": 89
       },
       {
         "id": "00-0040784",
@@ -13467,7 +13458,7 @@
         "position": "RB",
         "value": 221.6,
         "href": "/players/00-0040784",
-        "rank": 91
+        "rank": 90
       },
       {
         "id": "00-0039065",
@@ -13476,7 +13467,7 @@
         "position": "TE",
         "value": 221.5,
         "href": "/players/00-0039065",
-        "rank": 92
+        "rank": 91
       },
       {
         "id": "00-0041027",
@@ -13485,7 +13476,7 @@
         "position": "RB",
         "value": 220.9,
         "href": "/players/00-0041027",
-        "rank": 93
+        "rank": 92
       },
       {
         "id": "00-0037740",
@@ -13494,7 +13485,7 @@
         "position": "WR",
         "value": 220.7,
         "href": "/players/00-0037740",
-        "rank": 94
+        "rank": 93
       },
       {
         "id": "00-0036252",
@@ -13503,7 +13494,7 @@
         "position": "WR",
         "value": 219.4,
         "href": "/players/00-0036252",
-        "rank": 95
+        "rank": 94
       },
       {
         "id": "00-0037228",
@@ -13512,7 +13503,7 @@
         "position": "RB",
         "value": 213.8,
         "href": "/players/00-0037228",
-        "rank": 96
+        "rank": 95
       },
       {
         "id": "00-0033288",
@@ -13521,7 +13512,7 @@
         "position": "TE",
         "value": 207.6,
         "href": "/players/00-0033288",
-        "rank": 97
+        "rank": 96
       },
       {
         "id": "00-0035685",
@@ -13530,7 +13521,7 @@
         "position": "RB",
         "value": 206.5,
         "href": "/players/00-0035685",
-        "rank": 98
+        "rank": 97
       },
       {
         "id": "00-0038559",
@@ -13539,7 +13530,7 @@
         "position": "WR",
         "value": 206.1,
         "href": "/players/00-0038559",
-        "rank": 99
+        "rank": 98
       },
       {
         "id": "00-0037261",
@@ -13548,7 +13539,7 @@
         "position": "WR",
         "value": 205.5,
         "href": "/players/00-0037261",
-        "rank": 100
+        "rank": 99
       },
       {
         "id": "00-0033921",
@@ -13557,7 +13548,7 @@
         "position": "WR",
         "value": 205.4,
         "href": "/players/00-0033921",
-        "rank": 101
+        "rank": 100
       },
       {
         "id": "00-0029604",
@@ -13566,7 +13557,7 @@
         "position": "QB",
         "value": 202.0,
         "href": "/players/00-0029604",
-        "rank": 102
+        "rank": 101
       },
       {
         "id": "00-0038997",
@@ -13575,6 +13566,15 @@
         "position": "WR",
         "value": 201.5,
         "href": "/players/00-0038997",
+        "rank": 102
+      },
+      {
+        "id": "00-0038606",
+        "label": "Parker Washington",
+        "team": "JAX",
+        "position": "WR",
+        "value": 201.2,
+        "href": "/players/00-0038606",
         "rank": 103
       },
       {
@@ -13587,13 +13587,22 @@
         "rank": 104
       },
       {
+        "id": "00-0039893",
+        "label": "Brian Thomas Jr.",
+        "team": "JAX",
+        "position": "WR",
+        "value": 197.7,
+        "href": "/players/00-0039893",
+        "rank": 105
+      },
+      {
         "id": "00-0038994",
         "label": "Jordan Addison",
         "team": "MIN",
         "position": "WR",
         "value": 197.2,
         "href": "/players/00-0038994",
-        "rank": 105
+        "rank": 106
       },
       {
         "id": "00-0040719",
@@ -13602,7 +13611,7 @@
         "position": "RB",
         "value": 196.6,
         "href": "/players/00-0040719",
-        "rank": 106
+        "rank": 107
       },
       {
         "id": "00-0040737",
@@ -13611,7 +13620,7 @@
         "position": "TE",
         "value": 194.8,
         "href": "/players/00-0040737",
-        "rank": 107
+        "rank": 108
       },
       {
         "id": "00-0041438",
@@ -13620,7 +13629,7 @@
         "position": "WR",
         "value": 193.8,
         "href": "/players/00-0041438",
-        "rank": 108
+        "rank": 109
       },
       {
         "id": "00-0036919",
@@ -13629,7 +13638,7 @@
         "position": "RB",
         "value": 193.2,
         "href": "/players/00-0036919",
-        "rank": 109
+        "rank": 110
       },
       {
         "id": "00-0034351",
@@ -13638,7 +13647,7 @@
         "position": "TE",
         "value": 191.3,
         "href": "/players/00-0034351",
-        "rank": 110
+        "rank": 111
       },
       {
         "id": "00-0036139",
@@ -13647,7 +13656,7 @@
         "position": "RB",
         "value": 191.0,
         "href": "/players/00-0036139",
-        "rank": 111
+        "rank": 112
       },
       {
         "id": "00-0040242",
@@ -13656,7 +13665,7 @@
         "position": "RB",
         "value": 190.9,
         "href": "/players/00-0040242",
-        "rank": 112
+        "rank": 113
       },
       {
         "id": "00-0038544",
@@ -13665,7 +13674,7 @@
         "position": "WR",
         "value": 189.9,
         "href": "/players/00-0038544",
-        "rank": 113
+        "rank": 114
       },
       {
         "id": "00-0041512",
@@ -13674,7 +13683,7 @@
         "position": "RB",
         "value": 189.8,
         "href": "/players/00-0041512",
-        "rank": 114
+        "rank": 115
       },
       {
         "id": "00-0039165",
@@ -13683,7 +13692,7 @@
         "position": "RB",
         "value": 187.3,
         "href": "/players/00-0039165",
-        "rank": 115
+        "rank": 116
       },
       {
         "id": "00-0035261",
@@ -13692,7 +13701,7 @@
         "position": "RB",
         "value": 187.1,
         "href": "/players/00-0035261",
-        "rank": 116
+        "rank": 117
       },
       {
         "id": "00-0040867",
@@ -13701,7 +13710,7 @@
         "position": "WR",
         "value": 181.9,
         "href": "/players/00-0040867",
-        "rank": 117
+        "rank": 118
       },
       {
         "id": "00-0040189",
@@ -13710,7 +13719,7 @@
         "position": "TE",
         "value": 179.9,
         "href": "/players/00-0040189",
-        "rank": 118
+        "rank": 119
       },
       {
         "id": "00-0036040",
@@ -13719,7 +13728,7 @@
         "position": "TE",
         "value": 177.6,
         "href": "/players/00-0036040",
-        "rank": 119
+        "rank": 120
       },
       {
         "id": "00-0039338",
@@ -13728,7 +13737,7 @@
         "position": "TE",
         "value": 177.4,
         "href": "/players/00-0039338",
-        "rank": 120
+        "rank": 121
       },
       {
         "id": "00-0039146",
@@ -13737,7 +13746,7 @@
         "position": "WR",
         "value": 177.4,
         "href": "/players/00-0039146",
-        "rank": 121
+        "rank": 122
       },
       {
         "id": "00-0036407",
@@ -13746,7 +13755,7 @@
         "position": "WR",
         "value": 176.1,
         "href": "/players/00-0036407",
-        "rank": 122
+        "rank": 123
       },
       {
         "id": "00-0038117",
@@ -13755,7 +13764,7 @@
         "position": "WR",
         "value": 175.7,
         "href": "/players/00-0038117",
-        "rank": 123
+        "rank": 124
       },
       {
         "id": "00-0034348",
@@ -13764,7 +13773,7 @@
         "position": "WR",
         "value": 174.9,
         "href": "/players/00-0034348",
-        "rank": 124
+        "rank": 125
       },
       {
         "id": "00-0039894",
@@ -13773,7 +13782,7 @@
         "position": "WR",
         "value": 174.0,
         "href": "/players/00-0039894",
-        "rank": 125
+        "rank": 126
       },
       {
         "id": "00-0039880",
@@ -13782,7 +13791,7 @@
         "position": "WR",
         "value": 173.8,
         "href": "/players/00-0039880",
-        "rank": 126
+        "rank": 127
       },
       {
         "id": "00-0038041",
@@ -13791,7 +13800,7 @@
         "position": "TE",
         "value": 171.0,
         "href": "/players/00-0038041",
-        "rank": 127
+        "rank": 128
       },
       {
         "id": "00-0041032",
@@ -13800,7 +13809,7 @@
         "position": "TE",
         "value": 169.6,
         "href": "/players/00-0041032",
-        "rank": 128
+        "rank": 129
       },
       {
         "id": "00-0036970",
@@ -13809,7 +13818,7 @@
         "position": "TE",
         "value": 169.5,
         "href": "/players/00-0036970",
-        "rank": 129
+        "rank": 130
       },
       {
         "id": "00-0040730",
@@ -13818,15 +13827,6 @@
         "position": "RB",
         "value": 169.3,
         "href": "/players/00-0040730",
-        "rank": 130
-      },
-      {
-        "id": "00-0038606",
-        "label": "Parker Washington",
-        "team": "JAX",
-        "position": "WR",
-        "value": 168.5,
-        "href": "/players/00-0038606",
         "rank": 131
       },
       {

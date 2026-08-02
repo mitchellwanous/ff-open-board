@@ -3978,9 +3978,9 @@
         "player_id": "00-0038606",
         "name": "Parker Washington",
         "position": "WR",
-        "share_dn": 16.8,
+        "share_dn": 14.5,
         "share": 16.8,
-        "share_ceil": 16.8
+        "share_ceil": 20.0
       },
       {
         "kind": "player",
@@ -3989,7 +3989,7 @@
         "position": "WR",
         "share_dn": 9.7,
         "share": 15.1,
-        "share_ceil": 22.0
+        "share_ceil": 19.0
       },
       {
         "kind": "player",
