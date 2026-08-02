@@ -406,14 +406,32 @@ export default async function PlayerCardPage({
         <div className="stat">
           <div className="label">Downside</div>
           <div className="value num warn">{fmt(p.draft.downside_fp, 1)}</div>
+          {p.draft.pos_downside_rank != null ? (
+            <div className="sub">
+              {p.position}
+              {p.draft.pos_downside_rank}
+            </div>
+          ) : null}
         </div>
         <div className="stat">
           <div className="label">Base</div>
           <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
+          {p.draft.pos_rank != null ? (
+            <div className="sub">
+              {p.position}
+              {p.draft.pos_rank}
+            </div>
+          ) : null}
         </div>
         <div className="stat">
           <div className="label">Upside</div>
           <div className="value num accent">{fmt(p.draft.scenario_fp, 1)}</div>
+          {p.draft.pos_upside_rank != null ? (
+            <div className="sub">
+              {p.position}
+              {p.draft.pos_upside_rank}
+            </div>
+          ) : null}
         </div>
         <div className="stat">
           <div className="label">FP / G · games</div>
@@ -422,6 +440,30 @@ export default async function PlayerCardPage({
           </div>
         </div>
       </div>
+      {(p.draft.downside_blurb ||
+        p.draft.base_blurb ||
+        p.draft.upside_blurb) && (
+        <div className="scenario-blurbs">
+          {p.draft.downside_blurb ? (
+            <p>
+              <span className="scenario-blurbs__tag warn">Dn</span>
+              {p.draft.downside_blurb}
+            </p>
+          ) : null}
+          {p.draft.base_blurb ? (
+            <p>
+              <span className="scenario-blurbs__tag">Base</span>
+              {p.draft.base_blurb}
+            </p>
+          ) : null}
+          {p.draft.upside_blurb ? (
+            <p>
+              <span className="scenario-blurbs__tag accent">Ceil</span>
+              {p.draft.upside_blurb}
+            </p>
+          ) : null}
+        </div>
+      )}
       <p className="faint" style={{ fontSize: "0.85rem" }}>
         Last year: {fmt(p.fp.ly_fp, 1)} FP · Mechanical floor–ceil{" "}
         {fmt(p.fp.floor_fp, 0)}–{fmt(p.fp.ceiling_fp, 0)} (rate×GP haircut, not

@@ -144,7 +144,7 @@ export type Player = {
     rushing_fp: number | null;
     receiving_fp: number | null;
   };
-  draft: {
+    draft: {
     draft_rank: number | null;
     wwor: number | null;
     e_win_weeks: number | null;
@@ -157,9 +157,14 @@ export type Player = {
     dwwor: number | null;
     risk_reward: number | null;
     pos_rank: number | null;
+    pos_downside_rank: number | null;
+    pos_upside_rank: number | null;
     no_pos1: string | null;
     pos1_path: string | null;
     scenario_note: string | null;
+    downside_blurb: string | null;
+    base_blurb: string | null;
+    upside_blurb: string | null;
   };
   waterfall?: unknown;
   win_weeks_hist: {
