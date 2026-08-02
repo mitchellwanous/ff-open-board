@@ -238,6 +238,126 @@ h3 {
   color: var(--accent);
 }
 
+.how-steps {
+  margin: 0.5rem 0 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 42rem;
+}
+
+.how-steps li strong {
+  color: var(--text);
+}
+
+.details-block {
+  margin: 1rem 0;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--stroke);
+  background: var(--bg-elev);
+}
+
+.details-block summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.details-block[open] summary {
+  margin-bottom: 0.35rem;
+}
+
+a.sort-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.sort-link:hover {
+  color: var(--accent);
+}
+
+a.sort-active {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.compare-picker {
+  margin: 0.75rem 0;
+}
+
+.compare-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.65rem;
+  min-height: 1.75rem;
+  align-items: center;
+}
+
+.compare-chips button {
+  cursor: pointer;
+  border: none;
+  font: inherit;
+}
+
+.compare-search {
+  position: relative;
+  max-width: 28rem;
+}
+
+.compare-search input {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  font: inherit;
+  border-radius: 0;
+}
+
+.compare-suggest {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--stroke);
+  border-top: none;
+  background: var(--bg-elev);
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+}
+
+.compare-suggest button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.7rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.compare-suggest button:hover {
+  background: var(--bg-soft);
+}
+
+.compare-table-wrap {
+  overflow-x: auto;
+}
+
+.compare-table th[scope="row"] {
+  text-align: left;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .panel {
   background: var(--bg-elev);
   border: 1px solid var(--stroke);

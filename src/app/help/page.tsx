@@ -50,8 +50,17 @@ export default function HelpPage() {
       <h2>Where to start</h2>
       <ul className="guide-list">
         <li>
-          <strong>Player role / rates</strong> →{" "}
-          <Link href="/players">Players</Link>
+          <strong>See how the board works</strong> →{" "}
+          <Link href="/">Home</Link> (Achane / MIA walkthrough)
+        </li>
+        <li>
+          <strong>Read a player&apos;s outlook first</strong> →{" "}
+          <Link href="/players">Players</Link>, then Propose only if you
+          disagree with an input
+        </li>
+        <li>
+          <strong>Draft / start-sit side-by-side</strong> →{" "}
+          <Link href="/compare">Compare</Link>
         </li>
         <li>
           <strong>Offense environment / who gets the ball</strong> →{" "}
@@ -65,8 +74,10 @@ export default function HelpPage() {
 
       <h2>1 · Open a card</h2>
       <p className="guide-p">
-        Every team and player has a card with history for orientation, a
-        published community outlook, and editable inputs further down.
+        Player cards lead with <strong>season outlook</strong> (downside / base
+        / upside) and share bands. History and details come next.{" "}
+        <strong>Disagree?</strong> is where Propose and feedback live — after
+        you&apos;ve seen the take.
       </p>
       <Figure
         src="/help/01-player-outlook.png"

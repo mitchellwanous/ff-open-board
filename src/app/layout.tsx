@@ -37,6 +37,7 @@ export default function RootLayout({
             </Link>
             <Link href="/teams">Teams</Link>
             <Link href="/players">Players</Link>
+            <Link href="/compare">Compare</Link>
             <Link href="/rankings">Rankings</Link>
             <Link href="/help">Help</Link>
             <span className="badge accent" style={{ marginLeft: "auto" }}>
