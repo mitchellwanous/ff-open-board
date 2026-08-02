@@ -26,12 +26,12 @@ test.describe("1 · Home", () => {
   test("loads freeze meta, nav, and 32 team links", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "Open Board" })).toBeVisible();
-    await expect(page.getByText(/Freeze 2026-08-02/)).toBeVisible();
+    await expect(page.getByText(/Last updated 2026-08-02/)).toBeVisible();
     await expect(page.getByText(/32 teams/)).toBeVisible();
     await expect(page.getByText(/313 players/)).toBeVisible();
-    await expect(page.getByText(/edit store: (local|supabase)/)).toBeVisible();
+    await expect(page.getByText(/republished daily/)).toBeVisible();
 
-    for (const label of ["Teams", "Players", "Rankings"]) {
+    for (const label of ["Teams", "Players", "Rankings", "Help"]) {
       await expect(page.getByRole("link", { name: label }).first()).toBeVisible();
     }
 
@@ -40,6 +40,28 @@ test.describe("1 · Home", () => {
     // 32 team cards on home grid (plus other links)
     const teamCards = page.locator(".list-grid .list-card");
     await expect(teamCards).toHaveCount(32);
+    await expect(page.getByRole("button", { name: "Site feedback" })).toBeVisible();
+  });
+
+  test("site feedback submits app-product note", async ({ page, request }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Site feedback" }).click();
+    await page.getByLabel("Your note").fill(
+      "The help guide is useful but the homepage should explain Site feedback vs card Add feedback more clearly.",
+    );
+    await page.getByLabel("Name / handle").fill("test-user");
+    await page.getByRole("checkbox").check();
+    await page.getByRole("button", { name: "Submit feedback" }).click();
+    await expect(page.getByText("Feedback submitted.")).toBeVisible();
+
+    const res = await request.get(
+      "/api/edits?grain=app&subject_id=open_board&field=app_feedback&status=pending",
+    );
+    expect(res.ok()).toBeTruthy();
+    const body = await res.json();
+    expect(
+      body.edits.some((e: { field: string }) => e.field === "app_feedback"),
+    ).toBe(true);
   });
 
   test("start-here links reach primary surfaces", async ({ page }) => {
@@ -52,6 +74,12 @@ test.describe("1 · Home", () => {
     await page.goto("/");
     await page.getByRole("link", { name: /Stat rankings/ }).click();
     await expect(page).toHaveURL(/\/rankings$/);
+    await page.goto("/");
+    await page.getByRole("link", { name: /How edits work/ }).click();
+    await expect(page).toHaveURL(/\/help$/);
+    await expect(
+      page.getByRole("heading", { name: "How edits work" }),
+    ).toBeVisible();
   });
 });
 

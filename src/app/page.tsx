@@ -1,23 +1,28 @@
 import Link from "next/link";
-import { getMeta, getRankings, getTeams } from "@/lib/data";
+import { AppFeedbackButton } from "@/components/AppFeedbackButton";
+import { getMeta, getTeams } from "@/lib/data";
 
 export default function HomePage() {
   const meta = getMeta();
   const teams = getTeams();
-  const rankings = getRankings();
 
   return (
     <>
       <h1>Open Board</h1>
       <p className="lede">
-        Inspect every team and player input that feeds the 2026 ESPN half-PPR
-        model — with history for orientation — then click <strong>Propose</strong>{" "}
-        on editable fields to submit an edit. Player boards show downside /
-        base / upside season fantasy points.
+        An open-source fantasy football model, sharpened by community consensus.
+        Inspect every input, submit your take with evidence, and we distill the
+        sharpest board we can — updated daily.
       </p>
       <div className="callout">
-        Freeze {meta.exported_on} · {meta.n_teams} teams · {meta.n_players}{" "}
-        players · edit store: <strong>{meta.edit_backend}</strong>
+        Last updated {meta.exported_on} · {meta.n_teams} teams ·{" "}
+        {meta.n_players} players · republished daily
+      </div>
+      <div className="home-actions">
+        <AppFeedbackButton />
+        <p className="muted" style={{ margin: 0, fontSize: "0.85rem" }}>
+          Bugs, UX, or ideas about the site itself — not player projections.
+        </p>
       </div>
 
       <div className="stat-grid">
@@ -30,10 +35,6 @@ export default function HomePage() {
           <div className="value" style={{ fontSize: "1rem" }}>
             {meta.scoring}
           </div>
-        </div>
-        <div className="stat">
-          <div className="label">Rank tables</div>
-          <div className="value num">{rankings.defs.length}</div>
         </div>
         <div className="stat">
           <div className="label">Status</div>
@@ -63,13 +64,13 @@ export default function HomePage() {
             One table per field — then jump to the card to propose.
           </p>
         </Link>
-        <div className="list-card">
+        <Link href="/help" className="list-card">
           <strong>How edits work</strong>
           <p className="muted" style={{ margin: "0.4rem 0 0", fontSize: "0.9rem" }}>
-            Open a team or player card → scroll to editable rows → Propose. You
-            edit inputs (shares, ceilings, team pace…), not locked FP totals.
+            Short guide: propose numbers, add feedback, and how daily updates
+            land on the board.
           </p>
-        </div>
+        </Link>
       </div>
 
       <h2>Teams</h2>

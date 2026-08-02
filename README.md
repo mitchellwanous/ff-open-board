@@ -57,11 +57,18 @@ In the Fantasy Football lab:
 .venv/bin/python scripts/pull_open_board_pending.py
 
 # 2. Review output/2026/open_board_review/YYYY-MM-DD/
-#    Focus on rationale / general_feedback (= the “why”)
+#    Two lanes:
+#      projection  — team/player Propose + card “Add feedback”
+#                    → pins / community_notes, then mark reviewed
+#      app_product — homepage “Site feedback” (grain=app)
+#                    → product/UX backlog only; see pending_app_feedback.json
+#                    → do NOT distill into community_notes or change pins
+#                    → mark reviewed after triage
 
 # 3. Apply accepted pins in data/context/2026/* and upside_scenarios.csv
+#    (projection lane only)
 
-# 4. Distill published community outlook (why) for touched subjects
+# 4. Distill published community outlook (why) for touched team/player subjects
 .venv/bin/python scripts/upsert_community_note.py \
   --grain player --subject-id 00-0037261 \
   --note "Plain-language season expectation and why the board numbers look like this."
@@ -69,6 +76,10 @@ In the Fantasy Football lab:
 # 5. Mark inbox rows reviewed
 .venv/bin/python scripts/mark_open_board_reviewed.py \
   --grain player --subject-id 00-0037261 --status reviewed
+# App/product feedback:
+.venv/bin/python scripts/mark_open_board_reviewed.py \
+  --grain app --subject-id open_board --status reviewed \
+  --note "Triaged as product backlog"
 
 # 6. Re-export freeze → Open Board public/data
 OPEN_BOARD_EDIT_BACKEND=supabase .venv/bin/python scripts/export_open_board_payload.py \
@@ -77,7 +88,10 @@ OPEN_BOARD_EDIT_BACKEND=supabase .venv/bin/python scripts/export_open_board_payl
 # 7. Deploy Open Board (git push or vercel --prod)
 ```
 
-**Community outlook** on each card is the published `community_note` from the freeze (season expectation / why) — not a live pending-edit changelog. **Add feedback** and **Propose** feed the next day’s inbox.
+**Site feedback schema:** if Supabase still rejects `grain=app`, run
+`supabase/migrate_app_grain.sql` once in the SQL editor (allows `team|player|app`).
+
+**Community outlook** on each card is the published `community_note` from the freeze (season expectation / why) — not a live pending-edit changelog. **Add feedback** and **Propose** feed the projection inbox. Homepage **Site feedback** is a separate `app` lane for product/UX notes.
 
 ## Tests
 

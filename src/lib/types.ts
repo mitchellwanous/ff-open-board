@@ -254,10 +254,13 @@ export type Meta = {
 
 export type EditStatus = "pending" | "reviewed" | "rejected";
 
+/** team/player = projection inbox; app = site/product feedback (not pins/outlook). */
+export type EditGrain = "team" | "player" | "app";
+
 export type OpenSourceEdit = {
   id: string;
   created_at: string;
-  grain: "team" | "player";
+  grain: EditGrain;
   subject_id: string;
   subject_label: string;
   field: string;

@@ -18,7 +18,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Open Board · 2026 Fantasy Projections",
   description:
-    "Team cards, player cards, rankings, and open-source edits on model inputs. ESPN half-PPR.",
+    "Open-source fantasy football projections, sharpened by community consensus. Submit your take with evidence — updated daily.",
 };
 
 export default function RootLayout({
@@ -37,6 +37,7 @@ export default function RootLayout({
             <Link href="/teams">Teams</Link>
             <Link href="/players">Players</Link>
             <Link href="/rankings">Rankings</Link>
+            <Link href="/help">Help</Link>
             <span className="badge accent" style={{ marginLeft: "auto" }}>
               2026 · ESPN half-PPR · beta
             </span>
