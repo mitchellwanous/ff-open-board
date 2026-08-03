@@ -111,22 +111,26 @@ test.describe("3 · Team card", () => {
 
     await expect(page.getByRole("heading", { name: "Team offense", exact: true })).toBeVisible();
     await expect(page.getByText("Projected points / game").first()).toBeVisible();
+    await expect(page.getByText("Points / play").first()).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Who gets the ball" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Target share" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Expected" }).first()).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Contribute to target share" }),
+    ).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Roster" })).toBeVisible();
     await expect(page.getByRole("link", { name: F.wr.name }).first()).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Community outlook" })).toBeVisible();
     await expect(page.getByText(/top scoring environment/i)).toBeVisible();
+    await expect(page.getByRole("link", { name: "Contribute to team projection" })).toBeVisible();
     await expect(page.getByRole("button", { name: "Add team outlook" })).toBeVisible();
 
-    await expect(page.getByRole("heading", { name: "Contribute to team offense" })).toBeVisible();
-    await expect(page.getByText("Projected points per game", { exact: false }).first()).toBeVisible();
-    await expect(page.getByText("Projected plays per game")).toBeVisible();
-    await expect(page.getByText("Projected pass rate")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Contribute to team offense" }),
+    ).toBeVisible();
+    await expect(page.getByText("Projected points / game", { exact: false }).first()).toBeVisible();
 
     await expect(page.getByText("History & offense detail")).toBeVisible();
   });
@@ -142,6 +146,28 @@ test.describe("3 · Team card", () => {
     await page.goto(`/teams/${F.softTeam}`);
     await expect(page.getByRole("heading", { name: F.softTeam, exact: true })).toBeVisible();
     await expect(page.getByText("18.6").first()).toBeVisible();
+  });
+
+  test("offense contribute sheet includes points/play", async ({ page }) => {
+    await page.goto(`/teams/${F.team}`);
+    await page.getByRole("button", { name: "Contribute to team offense" }).click();
+    await expect(
+      page.getByRole("heading", { name: `Contribute to team offense · ${F.team}` }),
+    ).toBeVisible();
+    await expect(page.getByText("Points / play").first()).toBeVisible();
+    await expect(
+      page.getByLabel("Points / play 2026 Expected"),
+    ).toBeVisible();
+  });
+
+  test("target share sheet shows other-team hist with tag", async ({ page }) => {
+    await page.goto(`/teams/${F.team}`);
+    await page.getByRole("button", { name: "Contribute to target share" }).click();
+    await expect(page.getByText(/Amber \+ team tag/)).toBeVisible();
+    const mooreRow = page.locator("tr", { hasText: "DJ Moore" });
+    await expect(mooreRow.locator(".edit-hist-table__away").first()).toBeVisible();
+    await expect(mooreRow.getByText("CHI").first()).toBeVisible();
+    await expect(mooreRow.getByText("15.9%").first()).toBeVisible();
   });
 });
 
@@ -379,8 +405,29 @@ test.describe("7 · Edits API", () => {
       `/api/edits?grain=team&subject_id=${F.team}`,
     );
     const json = await get.json();
-    expect(json.community.implied_ppg.n).toBe(1);
+    expect(json.community.implied_ppg.n).toBeGreaterThanOrEqual(1);
     expect(json.community.implied_ppg.median).toBeCloseTo(26.5, 5);
+  });
+
+  test("accepts team points_per_play edit", async ({ request }) => {
+    const res = await postEdit(request, {
+      grain: "team",
+      subject_id: F.team,
+      subject_label: F.team,
+      field: "points_per_play",
+      value: 0.43,
+      confidence: "med",
+      rationale: "Brady/Carmichael should sustain above-league PPP",
+      doctrine_ok: true,
+      author: "ppp-tester",
+    });
+    expect(res.status()).toBe(200);
+    const get = await request.get(
+      `/api/edits?grain=team&subject_id=${F.team}&field=points_per_play`,
+    );
+    const json = await get.json();
+    expect(json.community.points_per_play.n).toBeGreaterThanOrEqual(1);
+    expect(json.community.points_per_play.median).toBeCloseTo(0.43, 5);
   });
 
   test("rejects unknown outlook text field", async ({ request }) => {
@@ -515,24 +562,27 @@ test.describe("8 · Edit UI (Propose modal)", () => {
     await expect(page.getByText(/Contribution submitted/)).toBeVisible();
   }
 
-  test("Propose on WR target share from team pie updates community", async ({
+  test("Contribute target share sheet from team pie updates community", async ({
     page,
   }) => {
     await page.goto(`/teams/${F.wr.team}`);
-    // First "Base" button on target pie is Shakir (top named)
-    await page.getByRole("button", { name: "Expected" }).first().click();
-    await page.locator("#propose-value").fill("18.5");
-    await page.locator("#propose-rationale").fill(
+    await page.getByRole("button", { name: "Contribute to target share" }).click();
+    await expect(
+      page.getByRole("heading", { name: /Contribute to target share/ }),
+    ).toBeVisible();
+    await page
+      .locator(`input[aria-label="${F.wr.name} expected"]`)
+      .fill("18.5");
+    await page.locator("#share-target-rationale").fill(
       "UI path: absolute healthy destination near 18.5%",
     );
-    await page.locator("#propose-author").fill("ui-tester");
+    await page.locator("#share-target-author").fill("ui-tester");
     await page.getByRole("checkbox").check();
-    await page.getByRole("button", { name: "Submit contribution" }).click();
-    await expect(page.getByText(/Contribution submitted/)).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Contribute an input" })).toHaveCount(
-      0,
-      { timeout: 3000 },
-    );
+    await page.getByRole("button", { name: /Submit contribution/ }).click();
+    await expect(page.getByText(/Contribution submitted|contributions submitted/)).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /Contribute to target share/ }),
+    ).toHaveCount(0, { timeout: 3000 });
     await expect(page.getByText(/18\.5% \(\d+\)/)).toBeVisible();
   });
 

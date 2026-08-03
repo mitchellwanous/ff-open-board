@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import path from "path";
+import { pointsPerPlay } from "./format";
 import type {
   ClaimableField,
   Meta,
@@ -63,6 +64,7 @@ export function getOfficialValue(
     if (!t) return null;
     const map: Record<string, number | null | undefined> = {
       implied_ppg: t.market.implied_ppg,
+      points_per_play: pointsPerPlay(t.market.implied_ppg, t.hub.plays_pg),
       plays_pg: t.hub.plays_pg,
       pass_rate: asShare(t.hub.pass_rate),
       vol_up: t.scenario.vol_up,

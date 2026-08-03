@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { ClaimableField, PieSegment } from "@/lib/types";
 import { displayClaimValue, fmt } from "@/lib/format";
-import { ProposeButton } from "./ProposeButton";
+import {
+  TeamShareContributeSheet,
+  buildShareHistForSeg,
+  type ShareClaimantRow,
+} from "./TeamShareContributeSheet";
 
 type Community = Record<string, { median: number; n: number }>;
 
@@ -18,11 +22,6 @@ const POS_ORDER: Record<"target" | "rush", Record<string, number>> = {
   target: { WR: 0, TE: 1, RB: 2, QB: 3 },
   rush: { RB: 0, QB: 1, WR: 2, TE: 3 },
 };
-
-function toShare(pctOrShare: number | null | undefined): number | null {
-  if (pctOrShare == null || Number.isNaN(pctOrShare)) return null;
-  return Math.abs(pctOrShare) > 1.5 ? pctOrShare / 100 : pctOrShare;
-}
 
 function sortSegs(
   segs: PieSegment[],
@@ -40,6 +39,10 @@ function sortSegs(
   });
 }
 
+/**
+ * Team pie read table (Dn / Expected / Upside) + one Contribute sheet button.
+ * Per-row Propose buttons removed — sheet matches player-card guided pattern.
+ */
 export function SharePieEditor({
   team,
   pieKind,
@@ -47,29 +50,45 @@ export function SharePieEditor({
   segs,
   claimable,
   playerHrefPrefix = "/players",
+  histYears,
+  playerHist,
 }: {
   team: string;
   pieKind: "target" | "rush";
   title: string;
   segs: PieSegment[];
   claimable: ClaimableField[];
-  /** Base path for player links, e.g. `/players`. */
   playerHrefPrefix?: string;
+  /** Recent seasons for the contribute sheet hist columns. */
+  histYears: number[];
+  playerHist: Record<
+    string,
+    Array<{
+      season: number;
+      kind: string;
+      team: string | null;
+      target_share: number | null;
+      rush_share: number | null;
+    }>
+  >;
 }) {
   const baseField = pieKind === "target" ? "target_share" : "rush_share";
   const dnField = pieKind === "target" ? "target_share_dn" : "rush_share_dn";
   const ceilField =
     pieKind === "target" ? "target_share_ceil" : "rush_share_ceil";
+  const depthFieldName = DEPTH_FIELD[pieKind];
 
-  const baseDef = claimable.find((c) => c.field === baseField);
-  const dnDef = claimable.find((c) => c.field === dnField);
-  const ceilDef = claimable.find((c) => c.field === ceilField);
+  const baseDef = claimable.find((c) => c.field === baseField) ?? null;
+  const dnDef = claimable.find((c) => c.field === dnField) ?? null;
+  const ceilDef = claimable.find((c) => c.field === ceilField) ?? null;
+  const depthDef = claimable.find((c) => c.field === depthFieldName) ?? null;
 
   const orderedSegs = useMemo(() => sortSegs(segs, pieKind), [segs, pieKind]);
 
   const [communityBySubject, setCommunityBySubject] = useState<
     Record<string, Community>
   >({});
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   const refresh = useCallback(async () => {
     const next: Record<string, Community> = {};
@@ -117,15 +136,56 @@ export function SharePieEditor({
   );
   const baseOk = Math.abs(baseSumPct - 100) <= 3;
 
+  const sheetRows: ShareClaimantRow[] = useMemo(
+    () =>
+      orderedSegs.map((s) => {
+        const key = s.kind === "player" ? s.player_id! : "depth:OTHER";
+        return {
+          key,
+          kind: s.kind,
+          playerId: s.player_id,
+          name: s.name,
+          position: s.position,
+          histBySeason: buildShareHistForSeg(
+            s,
+            pieKind,
+            team,
+            playerHist,
+            histYears,
+          ),
+          shareDn: s.share_dn,
+          share: s.share,
+          shareCeil: s.share_ceil,
+          dnField: s.kind === "player" ? dnDef : null,
+          baseField: s.kind === "player" ? baseDef : depthDef,
+          ceilField: s.kind === "player" ? ceilDef : null,
+        };
+      }),
+    [
+      orderedSegs,
+      pieKind,
+      team,
+      playerHist,
+      histYears,
+      dnDef,
+      baseDef,
+      ceilDef,
+      depthDef,
+    ],
+  );
+
+  const contributeLabel =
+    pieKind === "target"
+      ? "Contribute to target share"
+      : "Contribute to rush share";
+
   return (
     <div className="panel">
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <p className="muted" style={{ fontSize: "0.85rem", marginTop: 0 }}>
-        These named shares are collective inputs
-        {pieKind === "rush" ? " (QB always listed)" : ""}. Contribute downside /
-        expected / upside; everyone else rolls into <strong>Other</strong>.{" "}
-        <strong>Expected</strong> (named + Other) should sum ≈ 100%. Upside
-        shares do not — they can&apos;t all hit together.
+        {pieKind === "rush" ? "QB always listed. " : null}
+        Expected (named + Other) should sum ≈ 100%. Upside shares do not — they
+        can&apos;t all hit together.
       </p>
       <div className="table-wrap">
         <table className="data">
@@ -135,7 +195,6 @@ export function SharePieEditor({
               <th className="right">Downside</th>
               <th className="right">Expected</th>
               <th className="right">Upside</th>
-              <th className="right">Contribute</th>
             </tr>
           </thead>
           <tbody>
@@ -143,11 +202,6 @@ export function SharePieEditor({
               const key =
                 s.kind === "player" ? s.player_id! : "depth:OTHER";
               const community = communityBySubject[key] ?? {};
-              const depthField =
-                s.kind === "depth" ? DEPTH_FIELD[pieKind] : null;
-              const depthDef = depthField
-                ? claimable.find((c) => c.field === depthField)
-                : null;
 
               return (
                 <tr key={key}>
@@ -195,15 +249,15 @@ export function SharePieEditor({
                       </div>
                     ) : null}
                     {s.kind === "depth" &&
-                    depthField &&
-                    community[depthField] ? (
+                    depthFieldName &&
+                    community[depthFieldName] ? (
                       <div className="faint" style={{ fontSize: "0.75rem" }}>
                         {displayClaimValue(
-                          depthField,
-                          community[depthField].median,
+                          depthFieldName,
+                          community[depthFieldName].median,
                           "share",
                         )}{" "}
-                        ({community[depthField].n})
+                        ({community[depthFieldName].n})
                       </div>
                     ) : null}
                   </td>
@@ -226,58 +280,6 @@ export function SharePieEditor({
                       "—"
                     )}
                   </td>
-                  <td className="right">
-                    <div className="pie-edit-actions">
-                      {s.kind === "player" && s.player_id && dnDef ? (
-                        <ProposeButton
-                          grain="player"
-                          subjectId={s.player_id}
-                          subjectLabel={s.name}
-                          field={dnDef}
-                          officialValue={toShare(s.share_dn)}
-                          buttonLabel="Downside"
-                          buttonClassName="btn primary pie-edit-btn"
-                          onSubmitted={refresh}
-                        />
-                      ) : null}
-                      {s.kind === "player" && s.player_id && baseDef ? (
-                        <ProposeButton
-                          grain="player"
-                          subjectId={s.player_id}
-                          subjectLabel={s.name}
-                          field={baseDef}
-                          officialValue={toShare(s.share)}
-                          buttonLabel="Expected"
-                          buttonClassName="btn primary pie-edit-btn"
-                          onSubmitted={refresh}
-                        />
-                      ) : null}
-                      {s.kind === "player" && s.player_id && ceilDef ? (
-                        <ProposeButton
-                          grain="player"
-                          subjectId={s.player_id}
-                          subjectLabel={s.name}
-                          field={ceilDef}
-                          officialValue={toShare(s.share_ceil)}
-                          buttonLabel="Upside"
-                          buttonClassName="btn primary pie-edit-btn"
-                          onSubmitted={refresh}
-                        />
-                      ) : null}
-                      {s.kind === "depth" && depthDef ? (
-                        <ProposeButton
-                          grain="team"
-                          subjectId={team}
-                          subjectLabel={`${team} ${s.name}`}
-                          field={depthDef}
-                          officialValue={toShare(s.share)}
-                          buttonLabel="Expected"
-                          buttonClassName="btn primary pie-edit-btn"
-                          onSubmitted={refresh}
-                        />
-                      ) : null}
-                    </div>
-                  </td>
                 </tr>
               );
             })}
@@ -286,12 +288,31 @@ export function SharePieEditor({
       </div>
       <p
         className={baseOk ? "muted" : "err"}
-        style={{ fontSize: "0.85rem", marginBottom: 0 }}
+        style={{ fontSize: "0.85rem" }}
       >
         Expected sum: {fmt(baseSumPct, 1)}%{" "}
         {baseOk ? "(≈ 100% ✓)" : "(should be near 100%)"} · Named upside sum:{" "}
         {fmt(ceilSumPct, 1)}% (not required to sum — joint constraint)
       </p>
+      <button
+        type="button"
+        className="btn primary"
+        style={{ marginTop: "0.35rem" }}
+        onClick={() => setSheetOpen(true)}
+      >
+        {contributeLabel}
+      </button>
+
+      {sheetOpen ? (
+        <TeamShareContributeSheet
+          team={team}
+          pieKind={pieKind}
+          years={histYears}
+          rows={sheetRows}
+          onClose={() => setSheetOpen(false)}
+          onSubmitted={refresh}
+        />
+      ) : null}
     </div>
   );
 }

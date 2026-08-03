@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ClaimableTable } from "@/components/ClaimableTable";
 import { CommunityOutlook } from "@/components/CommunityOutlook";
+import type { BucketRow, OffenseBoard } from "@/components/EditProjectionBuckets";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
 import { SharePieEditor } from "@/components/SharePieEditor";
+import { TeamOffenseContributeButton } from "@/components/TeamOffenseContributeButton";
 import {
   getClaimableFields,
   getPlayersByTeam,
@@ -11,7 +12,7 @@ import {
   getTeams,
 } from "@/lib/data";
 import { BRAND_TEAM_PIE_INTRO } from "@/lib/brand";
-import { fmt, fmtInt } from "@/lib/format";
+import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 import {
   compareNullable,
   nextSortDir,
@@ -44,7 +45,7 @@ export default async function TeamPage({
   const claimable = allClaimable.filter(
     (c) => c.grain === "team" && !c.field.includes("other"),
   );
-  const claimRows = claimable.map((field) => {
+  const claimRows: BucketRow[] = claimable.map((field) => {
     const passRateShare =
       team.hub.pass_rate == null
         ? null
@@ -53,6 +54,7 @@ export default async function TeamPage({
           : team.hub.pass_rate;
     const officialMap: Record<string, number | null> = {
       implied_ppg: team.market.implied_ppg,
+      points_per_play: pointsPerPlay(team.market.implied_ppg, team.hub.plays_pg),
       plays_pg: team.hub.plays_pg,
       pass_rate: passRateShare,
       vol_up: team.scenario.vol_up,
@@ -60,6 +62,70 @@ export default async function TeamPage({
     };
     return { field, official: officialMap[field.field] ?? null };
   });
+
+  const teamHistActual = (team.hist ?? [])
+    .filter((h) => h.kind === "actual")
+    .slice(-3);
+  const offenseBoard: OffenseBoard = {
+    staffLine: [
+      team.staff.head_coach ? `HC ${team.staff.head_coach}` : null,
+      team.staff.oc_name ? `OC ${team.staff.oc_name}` : null,
+      team.staff.notes === "continuity" ? "continuity" : null,
+      team.staff.oc_changed ? "New OC" : null,
+    ]
+      .filter(Boolean)
+      .join(" · "),
+    winTotal: team.market.win_total ?? null,
+    ppgRk: team.market.ppg_rk ?? null,
+    years: teamHistActual.map((h) => h.season),
+    histBySeason: Object.fromEntries(
+      teamHistActual.map((h) => [
+        h.season,
+        {
+          ppg: h.ppg,
+          plays_pg: h.plays_pg,
+          pass_rate: h.pass_rate,
+          pass_yards: h.pass_yards,
+          rush_yards: h.rush_yards,
+        },
+      ]),
+    ),
+    projYards: {
+      pass_yards: team.hub.pass_yards ?? null,
+      rush_yards: team.hub.rush_yards ?? null,
+    },
+    scenario: {
+      vol_up: team.scenario.vol_up ?? null,
+      vol_dn: team.scenario.vol_dn ?? null,
+      eff_up: team.scenario.eff_up ?? null,
+      eff_dn: team.scenario.eff_dn ?? null,
+    },
+  };
+
+  const playerHist: Record<
+    string,
+    Array<{
+      season: number;
+      kind: string;
+      team: string | null;
+      target_share: number | null;
+      rush_share: number | null;
+    }>
+  > = {};
+  const seasonSet = new Set<number>();
+  for (const p of players) {
+    playerHist[p.player_id] = (p.hist ?? []).map((h) => ({
+      season: h.season,
+      kind: h.kind,
+      team: h.team,
+      target_share: h.target_share,
+      rush_share: h.rush_share,
+    }));
+    for (const h of p.hist ?? []) {
+      if (h.kind === "actual" && h.team === teamAbbr) seasonSet.add(h.season);
+    }
+  }
+  const histYears = [...seasonSet].sort((a, b) => a - b).slice(-3);
 
   const rosterSort = (
     ["name", "downside", "base", "upside"].includes(sp.sort ?? "")
@@ -127,7 +193,14 @@ export default async function TeamPage({
         <p className="lede">{team.summary.replace(/(\d+)\.0\b/g, "$1")}</p>
       ) : null}
 
-      {/* 1 · Team offense */}
+      <CommunityOutlook
+        grain="team"
+        subjectId={team.team}
+        subjectLabel={team.team}
+        communityNote={team.community_note}
+        editHref="#suggest"
+      />
+
       <h2>Team offense</h2>
       <p className="muted" style={{ fontSize: "0.9rem" }}>
         How strong the offense is — the first piece of every player projection.
@@ -141,6 +214,13 @@ export default async function TeamPage({
           {team.market.ppg_rk != null ? (
             <div className="sub">#{team.market.ppg_rk}</div>
           ) : null}
+        </div>
+        <div className="stat">
+          <div className="label">Points / play</div>
+          <div className="value num">
+            {fmt(pointsPerPlay(team.market.implied_ppg, team.hub.plays_pg), 3)}
+          </div>
+          <div className="sub">PPG ÷ plays</div>
         </div>
         <div className="stat">
           <div className="label">Pass yards</div>
@@ -172,8 +252,14 @@ export default async function TeamPage({
           <div className="value num">{fmt(team.market.win_total, 1)}</div>
         </div>
       </div>
+      <div id="suggest" style={{ marginTop: "0.85rem" }}>
+        <TeamOffenseContributeButton
+          team={team.team}
+          rows={claimRows}
+          board={offenseBoard}
+        />
+      </div>
 
-      {/* 2 · Player share */}
       <h2 id="share-pies">Who gets the ball</h2>
       <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "40rem" }}>
         {BRAND_TEAM_PIE_INTRO}
@@ -186,6 +272,8 @@ export default async function TeamPage({
           segs={team.tgt_segs}
           claimable={allClaimable}
           playerHrefPrefix="/players"
+          histYears={histYears}
+          playerHist={playerHist}
         />
         <SharePieEditor
           team={team.team}
@@ -194,10 +282,11 @@ export default async function TeamPage({
           segs={team.rush_segs}
           claimable={allClaimable}
           playerHrefPrefix="/players"
+          histYears={histYears}
+          playerHist={playerHist}
         />
       </div>
 
-      {/* 3 · Fantasy outcomes */}
       <h2>Roster</h2>
       <p className="muted" style={{ fontSize: "0.9rem" }}>
         Fantasy points from team offense + each player&apos;s share and
@@ -260,26 +349,6 @@ export default async function TeamPage({
           </tbody>
         </table>
       </div>
-
-      {/* 4 · Contribute */}
-      <CommunityOutlook
-        grain="team"
-        subjectId={team.team}
-        subjectLabel={team.team}
-        communityNote={team.community_note}
-      />
-
-      <h2 id="suggest">Contribute to team offense</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Pace, pass rate, projected PPG, and upside volume/efficiency boosts.
-        Contribute with a short reason; we review and republish daily.
-      </p>
-      <ClaimableTable
-        grain="team"
-        subjectId={team.team}
-        subjectLabel={team.team}
-        rows={claimRows}
-      />
 
       <details className="details-block">
         <summary>History &amp; offense detail</summary>

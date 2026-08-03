@@ -9,7 +9,7 @@ import {
   getPlayer,
   getTeam,
 } from "@/lib/data";
-import { fmt, fmtInt } from "@/lib/format";
+import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 
 const SHARE_FIELDS = new Set([
   "target_share_dn",
@@ -109,6 +109,10 @@ export default async function PlayerPage({
             : team.hub.pass_rate;
       const map: Record<string, number | null | undefined> = {
         implied_ppg: team?.market.implied_ppg,
+        points_per_play: pointsPerPlay(
+          team?.market.implied_ppg,
+          team?.hub.plays_pg,
+        ),
         plays_pg: team?.hub.plays_pg,
         pass_rate: passRateShare,
         vol_up: team?.scenario.vol_up,
@@ -128,6 +132,13 @@ export default async function PlayerPage({
       value: fmt(p.team_pack.implied_ppg, 1) ?? "—",
       sub: team?.market.ppg_rk != null ? `#${team.market.ppg_rk}` : undefined,
       accent: true,
+    },
+    {
+      label: "Points / play",
+      value:
+        fmt(pointsPerPlay(p.team_pack.implied_ppg, p.team_pack.plays_pg), 3) ??
+        "—",
+      sub: "PPG ÷ plays",
     },
     {
       label: "Pass yards",

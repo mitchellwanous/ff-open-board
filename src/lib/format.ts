@@ -51,6 +51,17 @@ export function displayClaimValue(
   if (unit === "rank") return String(Math.round(value));
   if (unit === "fp" || unit === "ppg" || unit === "plays") return fmt(value, 1);
   if (unit === "yp") return fmt(value, 2);
-  if (unit === "mult") return fmt(value, 3);
+  if (unit === "ppp" || unit === "mult") return fmt(value, 3);
   return fmt(value, 2);
+}
+
+/** Projected / hist team efficiency bridge: PPG ÷ plays per game. */
+export function pointsPerPlay(
+  ppg: number | null | undefined,
+  playsPg: number | null | undefined,
+): number | null {
+  if (ppg == null || playsPg == null || Number.isNaN(ppg) || Number.isNaN(playsPg))
+    return null;
+  if (playsPg <= 0) return null;
+  return ppg / playsPg;
 }

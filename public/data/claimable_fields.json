@@ -9,6 +9,15 @@
     "doctrine": "How many points you think this offense scores per game in 2026."
   },
   {
+    "field": "points_per_play",
+    "grain": "team",
+    "label": "Points per play",
+    "unit": "ppp",
+    "min": 0.28,
+    "max": 0.55,
+    "doctrine": "Points scored per offensive play. Bridges PPG and pace — higher PPP means fewer plays needed for the same scoring environment (≈ PPG ÷ plays/G)."
+  },
+  {
     "field": "plays_pg",
     "grain": "team",
     "label": "Projected plays per game",

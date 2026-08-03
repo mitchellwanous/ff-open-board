@@ -139,6 +139,7 @@ function toInputDisplay(field: ClaimableField, official: number | null): string 
     return (Math.round(pct * 10) / 10).toFixed(1);
   }
   if (field.unit === "mult") return (Math.round(official * 1000) / 1000).toFixed(3);
+  if (field.unit === "ppp") return (Math.round(official * 1000) / 1000).toFixed(3);
   if (field.unit === "yp") return (Math.round(official * 100) / 100).toFixed(2);
   return (Math.round(official * 10) / 10).toFixed(1);
 }
@@ -158,7 +159,10 @@ function valuesDiffer(
   const next = parseInput(field, raw);
   if (next === null) return false;
   if (official === null) return true;
-  const tol = isShareField(field) || field.unit === "mult" ? 0.0005 : 0.05;
+  const tol =
+    isShareField(field) || field.unit === "mult" || field.unit === "ppp"
+      ? 0.0005
+      : 0.05;
   return Math.abs(next - official) > tol;
 }
 
@@ -550,7 +554,7 @@ export function EditProjectionBuckets(props: Props) {
       </p>
 
       {sheet === "offense" ? (
-        <OffenseBucketSheet
+        <TeamOffenseContributeSheet
           team={props.team}
           rows={props.offenseRows}
           board={props.offenseBoard}
@@ -581,7 +585,8 @@ export function EditProjectionBuckets(props: Props) {
   );
 }
 
-function OffenseBucketSheet({
+/** Team-page + player-bucket offense contribute sheet (hist + 2026 edits). */
+export function TeamOffenseContributeSheet({
   team,
   rows,
   board,
@@ -598,7 +603,12 @@ function OffenseBucketSheet({
     return m;
   }, [rows]);
 
-  const coreFields = ["implied_ppg", "plays_pg", "pass_rate"] as const;
+  const coreFields = [
+    "implied_ppg",
+    "points_per_play",
+    "plays_pg",
+    "pass_rate",
+  ] as const;
   const boostFields = ["vol_up", "eff_up"] as const;
   const editableKeys = [...coreFields, ...boostFields];
 
@@ -760,6 +770,20 @@ function OffenseBucketSheet({
       hist: (s) => fmt(board.histBySeason[s]?.ppg, 1),
     },
     {
+      key: "ppp",
+      label: "Points / play",
+      kind: "edit",
+      field: "points_per_play",
+      hist: (s) => {
+        const row = board.histBySeason[s];
+        const ppp =
+          row?.ppg != null && row?.plays_pg != null && row.plays_pg > 0
+            ? row.ppg / row.plays_pg
+            : null;
+        return fmt(ppp, 3);
+      },
+    },
+    {
       key: "plays",
       label: "Plays / G",
       kind: "edit",
@@ -811,8 +835,9 @@ function OffenseBucketSheet({
         </p>
 
         <p className="edit-sheet-lead">
-          Hist on the left. Edit the boxed values in <strong>2026 Expected</strong>.
-          PPG band below shows Downside / Expected / Upside.
+          Hist on the left. Edit the boxed values in <strong>2026 Expected</strong>
+          {" "}(PPG → points/play → pace → pass rate). PPG band below shows
+          Downside / Expected / Upside.
         </p>
         <p className="edit-sheet-meta">
           {board.staffLine}

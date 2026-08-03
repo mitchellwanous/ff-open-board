@@ -834,16 +834,24 @@ table.data.players-board .row-actions a {
 
 .edit-hist-wrap {
   margin-bottom: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .edit-hist-table {
   table-layout: fixed;
 }
 
+/* Beat table.data { min-width: 520px } — need room for hist + bands */
+.table-wrap .edit-hist-table {
+  min-width: 44rem;
+}
+
 .edit-hist-table th,
 .edit-hist-table td {
   padding: 0.55rem 0.5rem;
   vertical-align: middle;
+  overflow: hidden;
 }
 
 .edit-hist-table th:first-child,
@@ -853,6 +861,24 @@ table.data.players-board .row-actions a {
   left: 0;
   z-index: 1;
   background: var(--bg-elev);
+  box-shadow: 4px 0 8px -4px rgba(0, 0, 0, 0.45);
+}
+
+/* Keep column headers readable while scrolling long share sheets */
+.edit-hist-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--bg-elev);
+}
+
+.edit-hist-table thead th:first-child {
+  z-index: 3;
+  left: 0;
+}
+
+.edit-hist-table thead th.edit-hist-table__proj {
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg-elev));
 }
 
 .edit-hist-table th.edit-hist-table__proj,
@@ -862,6 +888,22 @@ table.data.players-board .row-actions a {
   vertical-align: middle;
   padding-left: 0.55rem;
   padding-right: 0.55rem;
+}
+
+@media (max-width: 720px) {
+  .edit-hist-table th:first-child,
+  .edit-hist-table td:first-child {
+    width: 6.25rem;
+  }
+
+  .edit-hist-table th.edit-hist-table__proj,
+  .edit-hist-table td.edit-hist-table__proj {
+    width: 5.75rem;
+  }
+
+  .table-wrap .edit-hist-table {
+    min-width: 38rem;
+  }
 }
 
 .edit-hist-table td.edit-hist-table__proj--ctx {
@@ -945,6 +987,31 @@ input.edit-hist-table__input:focus {
 
 .edit-hist-table__thin-year {
   color: var(--muted);
+}
+
+.edit-hist-table__away {
+  color: var(--warn);
+}
+
+.edit-hist-table__away-tag {
+  font-size: 0.68rem;
+  line-height: 1.1;
+  color: color-mix(in srgb, var(--warn) 75%, var(--muted));
+  font-variant-numeric: normal;
+}
+
+.edit-hist-legend {
+  margin: 0.15rem 0 0.75rem;
+}
+
+.edit-hist-legend__home {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.edit-hist-legend__away {
+  color: var(--warn);
+  font-weight: 600;
 }
 
 .edit-hist-table__group-row td {
