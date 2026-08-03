@@ -15,7 +15,7 @@
     "unit": "ppp",
     "min": 0.28,
     "max": 0.55,
-    "doctrine": "Points scored per offensive play. Bridges PPG and pace — higher PPP means fewer plays needed for the same scoring environment (≈ PPG ÷ plays/G)."
+    "doctrine": "Points scored per offensive play. Bridges PPG and pace \u2014 higher PPP means fewer plays needed for the same scoring environment (\u2248 PPG \u00f7 plays/G)."
   },
   {
     "field": "plays_pg",

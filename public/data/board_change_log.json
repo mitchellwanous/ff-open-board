@@ -1,0 +1,13 @@
+[
+  {
+    "logged_at": "2026-08-03T12:56:28.675878+00:00",
+    "grain": "team",
+    "subject_id": "CHI",
+    "field": "implied_ppg",
+    "old_value": 24.56,
+    "new_value": 25.05,
+    "source": "community_review",
+    "note": "Split-diff between freeze ~24.6 and community 25.5; published with team outlook note.",
+    "edit_ids": "c8c21eea-a0cb-4550-bf28-b041d788233b"
+  }
+]

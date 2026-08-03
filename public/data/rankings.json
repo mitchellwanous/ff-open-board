@@ -155,17 +155,17 @@
         "rank": 8
       },
       {
+        "id": "CHI",
+        "label": "CHI",
+        "team": "CHI",
+        "value": 25.1,
+        "rank": 9
+      },
+      {
         "id": "SEA",
         "label": "SEA",
         "team": "SEA",
         "value": 25.0,
-        "rank": 9
-      },
-      {
-        "id": "CHI",
-        "label": "CHI",
-        "team": "CHI",
-        "value": 24.6,
         "rank": 10
       },
       {
@@ -335,7 +335,7 @@
         "id": "CHI",
         "label": "CHI",
         "team": "CHI",
-        "value": 65.3,
+        "value": 65.7,
         "rank": 2
       },
       {
@@ -850,7 +850,7 @@
         "id": "CHI",
         "label": "CHI",
         "team": "CHI",
-        "value": 3995.0,
+        "value": 4019.0,
         "rank": 11
       },
       {
@@ -1020,7 +1020,7 @@
         "id": "CHI",
         "label": "CHI",
         "team": "CHI",
-        "value": 2465.0,
+        "value": 2480.0,
         "rank": 3
       },
       {
