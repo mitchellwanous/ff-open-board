@@ -1,0 +1,41 @@
+---
+description: The FF Collective brand, contribute UX, and product north star for all app work
+alwaysApply: true
+---
+
+# The FF Collective — product doctrine
+
+This app is **The FF Collective** (not “Open Board” in user-facing copy).
+
+**Live URL:** https://theffcollective.vercel.app/  
+**Source of truth for strings:** `src/lib/brand.ts` — prefer shared constants over new one-off copy.
+
+## North star
+
+Best half-PPR projections **because** the public contributes inputs; we review and republish together.  
+Formula: **team offense + player share + player efficiency = fantasy points**.
+
+Prefer **contribute / input / collective model / review & republish** (ownership).  
+Avoid ticket language: “looks wrong,” “submit a bug,” “propose edit,” “edit projection” as the primary CTA.
+
+## Verb map (UI)
+
+| Don’t ship | Do ship |
+|---|---|
+| Edit projection | Contribute (to this / team offense / share / efficiency) |
+| Propose / Propose edit | Contribute / Contribute an input |
+| Submit edit | Submit contribution |
+| looks wrong | disagree with an input / improve an input |
+
+Keep **Community outlook / Add player|team outlook** as the written-take lane (not a number pin).
+
+## When changing UI
+
+1. Reuse `BRAND_*` from `brand.ts` for callouts, loops, success, pie intros.
+2. Preserve the contribute loop: inspect pieces → contribute input → review & republish.
+3. Don’t rename internal IDs (`open_board`, API `edits`, code symbols) unless asked — only user-facing labels.
+4. Mockups under `/preview` are optional; live `/` must stay on-brand.
+
+## External / marketing copy
+
+Name the product **The FF Collective**, link https://theffcollective.vercel.app/, invite people to **contribute** (not “submit a bug / edit because wrong”).

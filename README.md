@@ -1,12 +1,15 @@
 # The FF Collective
 
-Crowdsourced half-PPR **fantasy football projections**. Collective wisdom on
-every input: browse **team cards**, **player cards**, **stat rankings**, and
-**submit an edit** when a number looks wrong.
-
 **Crowdsourced fantasy football projections. The collective is stronger than one.**
 
-Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`). The projection engine is not re-run in this app. Visitors propose number edits and add feedback; you review daily in the lab, update pins + distilled community outlook notes, then republish.
+Live: [https://theffcollective.vercel.app/](https://theffcollective.vercel.app/)
+
+Half-PPR projections built in public: **team offense + player share + player efficiency = fantasy points**. Anyone can **contribute** a better input with a short reason; we review and republish so the collective model improves.
+
+Brand / UI copy source of truth: [`src/lib/brand.ts`](src/lib/brand.ts). Agent doctrine: [`.cursor/rules/ff-collective-brand.mdc`](.cursor/rules/ff-collective-brand.mdc).
+
+Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`). The projection engine is not re-run in this app. Visitors contribute number inputs and outlook notes; you review daily in the lab, update pins + distilled community outlook notes, then republish.
+
 
 ## Run locally
 
@@ -49,8 +52,10 @@ OPEN_BOARD_EDIT_BACKEND=supabase \
 
 1. Import the `ff-open-board` repo in Vercel.
 2. Set the Supabase env vars above (+ `REVIEW_API_SECRET` recommended).
-3. Deploy. Confirm `POST /api/edits` works from a player card Propose.
+3. Deploy. Confirm `POST /api/edits` works from a player card Contribute flow.
 4. After each lab republish, push updated `public/data/*` (or trigger a deploy).
+
+Production domain: [https://theffcollective.vercel.app/](https://theffcollective.vercel.app/)
 
 ## Daily review loop (no admin UI)
 
@@ -62,7 +67,7 @@ In the Fantasy Football lab:
 
 # 2. Review output/2026/open_board_review/YYYY-MM-DD/
 #    Two lanes:
-#      projection  — team/player Propose + card “Add feedback”
+#      projection  — team/player Contribute + card “Add outlook”
 #                    → pins / community_notes, then mark reviewed
 #      app_product — homepage “Site feedback” (grain=app)
 #                    → product/UX backlog only; see pending_app_feedback.json
