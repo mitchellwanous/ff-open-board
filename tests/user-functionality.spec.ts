@@ -23,23 +23,33 @@ test.beforeAll(() => {
 });
 
 test.describe("1 · Home", () => {
-  test("loads freeze meta, nav, and 32 team links", async ({ page }) => {
+  test("loads freeze meta, nav, and primary CTAs", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { name: "Open Board" })).toBeVisible();
-    await expect(page.getByText(/Last updated 2026-08-02/)).toBeVisible();
-    await expect(page.getByText(/32 teams/)).toBeVisible();
+    await expect(page.getByRole("heading", { name: "The FF Collective" })).toBeVisible();
+    await expect(
+      page.getByText(/The collective is stronger than one/i).first(),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Crowdsourced fantasy football projections/i).first(),
+    ).toBeVisible();
+    await expect(page.getByText(/last update 2026-08-02/i)).toBeVisible();
     await expect(page.getByText(/313 players/)).toBeVisible();
-    await expect(page.getByText(/republished daily/)).toBeVisible();
+    await expect(page.getByText(/half PPR/i).first()).toBeVisible();
+    await expect(
+      page.getByText(/team offense \+ player share \+ player efficiency/i),
+    ).toBeVisible();
 
-    for (const label of ["Teams", "Players", "Rankings", "Help"]) {
+    for (const label of ["Players", "Compare", "Teams", "Explore", "Help"]) {
       await expect(page.getByRole("link", { name: label }).first()).toBeVisible();
     }
 
-    await expect(page.getByRole("link", { name: /BUF/ })).toBeVisible();
-    await expect(page.getByRole("link", { name: /DET/ })).toBeVisible();
-    // 32 team cards on home grid (plus other links)
-    const teamCards = page.locator(".list-grid .list-card");
-    await expect(teamCards).toHaveCount(32);
+    await expect(page.getByRole("link", { name: "Contribute an input" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Browse players" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Compare players" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Browse teams" })).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Check Achane and contribute" }),
+    ).toBeVisible();
     await expect(page.getByRole("button", { name: "Site feedback" })).toBeVisible();
   });
 
@@ -66,20 +76,18 @@ test.describe("1 · Home", () => {
 
   test("start-here links reach primary surfaces", async ({ page }) => {
     await page.goto("/");
-    await page.getByRole("link", { name: /Team cards/ }).click();
+    await page.getByRole("link", { name: "Browse teams" }).click();
     await expect(page).toHaveURL(/\/teams$/);
     await page.goto("/");
-    await page.getByRole("link", { name: /Player cards/ }).click();
+    await page.getByRole("link", { name: "Browse players" }).click();
     await expect(page).toHaveURL(/\/players/);
     await page.goto("/");
-    await page.getByRole("link", { name: /Stat rankings/ }).click();
-    await expect(page).toHaveURL(/\/rankings$/);
+    await page.getByRole("link", { name: "Explore" }).first().click();
+    await expect(page).toHaveURL(/\/explore$/);
     await page.goto("/");
-    await page.getByRole("link", { name: /How edits work/ }).click();
+    await page.getByRole("link", { name: "How contributing works" }).first().click();
     await expect(page).toHaveURL(/\/help$/);
-    await expect(
-      page.getByRole("heading", { name: "How edits work" }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Help" })).toBeVisible();
   });
 });
 
@@ -96,46 +104,36 @@ test.describe("2 · Teams index", () => {
 });
 
 test.describe("3 · Team card", () => {
-  test("shows history, pack sections, pies, claimables, roster", async ({
-    page,
-  }) => {
+  test("shows offense, pies, claimables, roster", async ({ page }) => {
     await page.goto(`/teams/${F.team}`);
     await expect(page.getByRole("heading", { name: F.team })).toBeVisible();
-    await expect(page.getByText(/Proj PPG #/)).toBeVisible();
+    await expect(page.getByText(/PPG/).first()).toBeVisible();
+
+    await expect(page.getByRole("heading", { name: "Team offense", exact: true })).toBeVisible();
+    await expect(page.getByText("Projected points / game").first()).toBeVisible();
+
+    await expect(page.getByRole("heading", { name: "Who gets the ball" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Target share" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Expected" }).first()).toBeVisible();
+
+    await expect(page.getByRole("heading", { name: "Roster" })).toBeVisible();
+    await expect(page.getByRole("link", { name: F.wr.name }).first()).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Community outlook" })).toBeVisible();
     await expect(page.getByText(/top scoring environment/i)).toBeVisible();
-    await expect(page.getByRole("button", { name: "Add feedback" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Add team outlook" })).toBeVisible();
 
-    await expect(page.getByRole("heading", { name: /Recent history/ })).toBeVisible();
-    await expect(page.getByRole("cell", { name: "2025", exact: true })).toBeVisible();
-    await expect(page.getByText("proj").first()).toBeVisible();
-
-    await expect(page.getByRole("heading", { name: /Coaching & market/ })).toBeVisible();
-    await expect(page.getByText("25.7").first()).toBeVisible();
-
-    await expect(page.getByRole("heading", { name: /2026 projected offense/ })).toBeVisible();
-    await expect(page.getByText(/last completed season/i)).toBeVisible();
-    await expect(page.getByRole("columnheader", { name: "2026" })).toBeVisible();
-    await expect(page.getByRole("columnheader", { name: "2025" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Team upside \/ downside range/ })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Team environment/ })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Who gets the ball/ })).toBeVisible();
-
-    // Team claimables + share pie
+    await expect(page.getByRole("heading", { name: "Contribute to team offense" })).toBeVisible();
     await expect(page.getByText("Projected points per game", { exact: false }).first()).toBeVisible();
     await expect(page.getByText("Projected plays per game")).toBeVisible();
     await expect(page.getByText("Projected pass rate")).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Target share" })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Base" }).first()).toBeVisible();
 
-    // Pie / roster link to Shakir
-    await expect(page.getByRole("link", { name: F.wr.name }).first()).toBeVisible();
+    await expect(page.getByText("History & offense detail")).toBeVisible();
   });
 
   test("roster link opens player card", async ({ page }) => {
     await page.goto(`/teams/${F.team}`);
-    await page.locator("table.data").last().getByRole("link", { name: F.wr.name }).click();
+    await page.locator("table.data").first().getByRole("link", { name: F.wr.name }).click();
     await expect(page).toHaveURL(new RegExp(`/players/${F.wr.id}`));
     await expect(page.getByRole("heading", { name: F.wr.name })).toBeVisible();
   });
@@ -165,73 +163,79 @@ test.describe("4 · Players index", () => {
 });
 
 test.describe("5 · Player card", () => {
-  test("WR card: hist, team pack, claimables, locked draft", async ({ page }) => {
+  test("WR card: outlook, share, efficiency, edit sheets", async ({ page }) => {
     await page.goto(`/players/${F.wr.id}`);
     await expect(page.getByRole("heading", { name: F.wr.name })).toBeVisible();
     await expect(page.getByText("WR").first()).toBeVisible();
-    await expect(page.getByText(/Pos FP #/)).toBeVisible();
+    await expect(page.getByText(/WR\d+/).first()).toBeVisible();
 
     await expect(page.getByRole("heading", { name: "Community outlook" })).toBeVisible();
     await expect(page.getByText(/reliable slot option/i)).toBeVisible();
-    await expect(page.getByRole("button", { name: "Add feedback" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Add player outlook" })).toBeVisible();
 
-    await expect(page.getByRole("heading", { name: /Recent history/ })).toBeVisible();
-    await expect(page.getByText("17.4").first()).toBeVisible();
-    await expect(page.getByText("19.5").first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Season outlook" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Contribute to this projection" })).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Contribute to team offense" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Contribute to player share" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Contribute to player efficiency" }),
+    ).toBeVisible();
 
-    await expect(page.getByText("Team context")).toBeVisible();
-    await expect(page.getByRole("link", { name: `Full ${F.wr.team} card` })).toBeVisible();
-
-    await expect(page.getByRole("heading", { name: /Share band/ })).toBeVisible();
-    await expect(page.getByText("Target base").first()).toBeVisible();
-    await expect(page.getByText("Target ceiling").first()).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Efficiency & TD rates/ })).toBeVisible();
-    await expect(page.getByText("Yards per target").first()).toBeVisible();
+    await expect(page.getByText("Target share").first()).toBeVisible();
+    await expect(page.getByText("Yards / target").first()).toBeVisible();
     // Downside FP is a locked roll-up output, not a claimable
     await expect(page.getByText("Downside fantasy points")).toHaveCount(0);
-    // WR should not see rush band on this card
-    await expect(page.getByText("Rush base")).toHaveCount(0);
+    // WR should not see rush share band on this card
+    await expect(page.getByText("Rush share", { exact: true })).toHaveCount(0);
 
-    await expect(
-      page.getByRole("heading", { name: /Roll-up: volume/ }),
-    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Recent history" })).toBeVisible();
     await expect(page.getByText("Downside").first()).toBeVisible();
-    await expect(page.getByText("Base").first()).toBeVisible();
+    await expect(page.getByText("Expected").first()).toBeVisible();
     await expect(page.getByText("Upside").first()).toBeVisible();
   });
 
-  test("QB card shows rush band and pass rates, not target band", async ({ page }) => {
+  test("QB card shows rush share and pass rates, not target share", async ({ page }) => {
     await page.goto(`/players/${F.qb.id}`);
     await expect(page.getByRole("heading", { name: F.qb.name })).toBeVisible();
-    await expect(page.getByText("Rush base").first()).toBeVisible();
-    await expect(page.getByText("Pass yards per attempt").first()).toBeVisible();
-    await expect(page.getByText("Target base")).toHaveCount(0);
+    await expect(page.getByText("Rush share").first()).toBeVisible();
+    await expect(page.getByText("Pass YPA").first()).toBeVisible();
+    await expect(page.getByText("Target share", { exact: true })).toHaveCount(0);
   });
 
-  test("RB card shows target and rush bands", async ({ page }) => {
+  test("RB card shows target and rush shares", async ({ page }) => {
     await page.goto(`/players/${F.rb.id}`);
     await expect(page.getByRole("heading", { name: F.rb.name })).toBeVisible();
-    await expect(page.getByText("Target base").first()).toBeVisible();
-    await expect(page.getByText("Rush base").first()).toBeVisible();
-    await expect(page.getByText("Yards per carry").first()).toBeVisible();
+    await expect(page.getByText("Target share").first()).toBeVisible();
+    await expect(page.getByText("Rush share").first()).toBeVisible();
+    await expect(page.getByText("Yards / carry").first()).toBeVisible();
   });
 
   test("player → team share-pie button", async ({ page }) => {
     await page.goto(`/players/${F.wr.id}`);
-    await page.getByRole("link", { name: `Adjust shares on ${F.wr.team} pie` }).click();
+    await page.getByRole("link", { name: `Also contribute on ${F.wr.team} pie` }).click();
     await expect(page).toHaveURL(new RegExp(`/teams/${F.wr.team}#share-pies`));
     await expect(page.getByRole("heading", { name: /Who gets the ball/ })).toBeVisible();
   });
 });
 
-test.describe("6 · Rankings", () => {
-  test("index lists team and player ranking defs", async ({ page }) => {
-    await page.goto("/rankings");
-    await expect(page.getByRole("heading", { name: "Rankings" })).toBeVisible();
+test.describe("6 · Explore / Rankings", () => {
+  test("explore index lists team and player ranking defs", async ({ page }) => {
+    await page.goto("/explore");
+    await expect(page.getByRole("heading", { name: "Explore" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Projected points / game" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Target share" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Base season FP" })).toBeVisible();
     await expect(page.getByRole("link", { name: "Upside FP" })).toBeVisible();
+  });
+
+  test("rankings index still works", async ({ page }) => {
+    await page.goto("/rankings");
+    await expect(page.getByRole("heading", { name: "Rankings" })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Projected points / game" })).toBeVisible();
   });
 
   test("team PPG ranking is descending and links to team", async ({ page }) => {
@@ -500,14 +504,14 @@ test.describe("8 · Edit UI (Propose modal)", () => {
     page: Page,
     opts: { value: string; rationale: string; author?: string },
   ) {
-    await page.getByRole("button", { name: "Propose" }).first().click();
-    await expect(page.getByRole("heading", { name: "Propose edit" })).toBeVisible();
+    await page.getByRole("button", { name: "Contribute" }).first().click();
+    await expect(page.getByRole("heading", { name: "Contribute an input" })).toBeVisible();
     await page.locator("#propose-value").fill(opts.value);
     await page.locator("#propose-rationale").fill(opts.rationale);
     await page.locator("#propose-author").fill(opts.author ?? "ui-tester");
     await page.getByRole("checkbox").check();
-    await page.getByRole("button", { name: "Submit edit" }).click();
-    await expect(page.getByText(/Edit submitted/)).toBeVisible();
+    await page.getByRole("button", { name: "Submit contribution" }).click();
+    await expect(page.getByText(/Contribution submitted/)).toBeVisible();
   }
 
   test("Propose on WR target share from team pie updates community", async ({
@@ -515,48 +519,54 @@ test.describe("8 · Edit UI (Propose modal)", () => {
   }) => {
     await page.goto(`/teams/${F.wr.team}`);
     // First "Base" button on target pie is Shakir (top named)
-    await page.getByRole("button", { name: "Base" }).first().click();
+    await page.getByRole("button", { name: "Expected" }).first().click();
     await page.locator("#propose-value").fill("18.5");
     await page.locator("#propose-rationale").fill(
       "UI path: absolute healthy destination near 18.5%",
     );
     await page.locator("#propose-author").fill("ui-tester");
     await page.getByRole("checkbox").check();
-    await page.getByRole("button", { name: "Submit edit" }).click();
-    await expect(page.getByText(/Edit submitted/)).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Propose edit" })).toHaveCount(
+    await page.getByRole("button", { name: "Submit contribution" }).click();
+    await expect(page.getByText(/Contribution submitted/)).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Contribute an input" })).toHaveCount(
       0,
       { timeout: 3000 },
     );
-    await expect(page.getByText(/18\.5% \(1\)/)).toBeVisible();
+    await expect(page.getByText(/18\.5% \(\d+\)/)).toBeVisible();
   });
 
   test("Propose validation blocks submit without doctrine", async ({ page }) => {
-    await page.goto(`/players/${F.wr.id}`);
-    await page.getByRole("button", { name: "Propose" }).first().click();
-    // First player claimable is Catch % — enter a valid percent so only doctrine fails
+    await page.goto(`/players/${F.wr.id}?edit=classic`);
+    await page
+      .locator("tr", { hasText: "Catch %" })
+      .getByRole("button", { name: "Contribute" })
+      .click();
+    // Catch % — enter a valid percent so only doctrine fails
     await page.locator("#propose-value").fill("72");
     await page.locator("#propose-rationale").fill("Enough characters for rationale text");
     // leave doctrine unchecked
-    await page.getByRole("button", { name: "Submit edit" }).click();
+    await page.getByRole("button", { name: "Submit contribution" }).click();
     await expect(page.getByText(/Confirm you.ve read the field description/)).toBeVisible();
   });
 
   test("Propose still saves without changing published outlook", async ({
     page,
   }) => {
-    await page.goto(`/players/${F.wr.id}`);
+    await page.goto(`/players/${F.wr.id}?edit=classic`);
     await expect(page.getByText(/reliable slot option/i)).toBeVisible();
-    await page.getByRole("button", { name: "Propose" }).first().click();
+    await page
+      .locator("tr", { hasText: "Catch %" })
+      .getByRole("button", { name: "Contribute" })
+      .click();
     await page.locator("#propose-value").fill("74");
     await page.locator("#propose-rationale").fill(
       "Catch rate stays sturdy on short and intermediate looks",
     );
     await page.locator("#propose-author").fill("ui-outlook");
     await page.getByRole("checkbox").check();
-    await page.getByRole("button", { name: "Submit edit" }).click();
-    await expect(page.getByText(/Edit submitted/)).toBeVisible();
-    // Published outlook is freeze text — not overwritten by Propose
+    await page.getByRole("button", { name: "Submit contribution" }).click();
+    await expect(page.getByText(/Contribution submitted/)).toBeVisible();
+    // Published outlook is freeze text — not overwritten by Contribute
     await expect(page.getByText(/reliable slot option/i)).toBeVisible();
   });
 
@@ -565,9 +575,9 @@ test.describe("8 · Edit UI (Propose modal)", () => {
     request,
   }) => {
     await page.goto(`/players/${F.wr.id}`);
-    await page.getByRole("button", { name: "Add feedback" }).click();
+    await page.getByRole("button", { name: "Add player outlook" }).click();
     await expect(
-      page.getByRole("heading", { name: "Add general feedback" }),
+      page.getByRole("heading", { name: /Add player outlook|Add general feedback/ }),
     ).toBeVisible();
     await page.locator("#feedback-text").fill(
       "Shakir profiles as a reliable weekly slot option with a sturdy floor " +
@@ -575,9 +585,9 @@ test.describe("8 · Edit UI (Propose modal)", () => {
     );
     await page.locator("#feedback-author").fill("ui-feedback");
     await page.getByRole("checkbox").check();
-    await page.getByRole("button", { name: "Submit feedback" }).click();
+    await page.getByRole("button", { name: "Submit", exact: true }).click();
     await expect(
-      page.getByRole("heading", { name: "Add general feedback" }),
+      page.getByRole("heading", { name: "Add player outlook" }),
     ).toHaveCount(0);
 
     const get = await request.get(

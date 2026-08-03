@@ -1,4 +1,4 @@
-/** Shared types for Open Board frozen payloads + open-source edits. */
+/** Shared types for The FF Collective frozen payloads + community edits. */
 
 export type HistKind = "actual" | "proj";
 
@@ -181,9 +181,28 @@ export type Player = {
     targets: number | null;
     receptions: number | null;
     rec_yards: number | null;
+    rec_tds?: number | null;
+    rush_att?: number | null;
+    rush_yards?: number | null;
+    rush_tds?: number | null;
+    pass_attempts?: number | null;
+    pass_yards?: number | null;
+    pass_tds?: number | null;
     target_share: number | null;
     rush_share: number | null;
     season_fp: number | null;
+    ypt?: number | null;
+    catch_pct?: number | null;
+    ypc?: number | null;
+    rec_td_rate?: number | null;
+    rush_td_rate?: number | null;
+    pass_ypa?: number | null;
+    pass_td_rate?: number | null;
+    int_rate?: number | null;
+    cay_per_rec?: number | null;
+    yac_per_rec?: number | null;
+    designed_ypc?: number | null;
+    comp_pct?: number | null;
   }>;
   // flat claimable mirrors
   target_share: number | null;

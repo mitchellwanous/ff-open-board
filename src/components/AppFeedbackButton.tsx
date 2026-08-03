@@ -12,13 +12,15 @@ import {
 
 export function AppFeedbackButton({
   buttonLabel = "Site feedback",
+  className = "btn",
 }: {
   buttonLabel?: string;
+  className?: string;
 }) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button type="button" className="btn primary" onClick={() => setOpen(true)}>
+      <button type="button" className={className} onClick={() => setOpen(true)}>
         {buttonLabel}
       </button>
       {open ? <AppFeedbackModal onClose={() => setOpen(false)} /> : null}
@@ -101,11 +103,11 @@ function AppFeedbackModal({ onClose }: { onClose: () => void }) {
         aria-labelledby="app-feedback-title"
       >
         <h2 id="app-feedback-title">Site feedback</h2>
-        <p className="modal-meta">Open Board · product &amp; experience</p>
+        <p className="modal-meta">The FF Collective · product &amp; experience</p>
         <div className="modal-official">
           <div className="official-doctrine">
             Bugs, UX friction, missing docs, or ideas for the site itself — not
-            a player/team projection (use Propose / Add feedback on those
+            a player/team projection (use Contribute / Add outlook on those
             cards).
           </div>
         </div>
@@ -117,7 +119,7 @@ function AppFeedbackModal({ onClose }: { onClose: () => void }) {
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={6}
-              placeholder="What’s confusing, broken, or missing on Open Board?"
+              placeholder="What’s confusing, broken, or missing on The FF Collective?"
               autoFocus
             />
             <p className="hint">
@@ -140,7 +142,7 @@ function AppFeedbackModal({ onClose }: { onClose: () => void }) {
               onChange={(e) => setDoctrineOk(e.target.checked)}
             />
             <span>
-              This is about the Open Board product/experience — not a
+              This is about The FF Collective product/experience — not a
               projection pin for a player or team.
             </span>
           </label>

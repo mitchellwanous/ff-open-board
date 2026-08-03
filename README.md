@@ -1,8 +1,12 @@
-# Open Board
+# The FF Collective
 
-Public board for **team cards**, **player cards**, **stat rankings**, and **open-source edits** on claimable model inputs.
+Crowdsourced half-PPR **fantasy football projections**. Collective wisdom on
+every input: browse **team cards**, **player cards**, **stat rankings**, and
+**submit an edit** when a number looks wrong.
 
-Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`). The projection engine is not re-run in this app. Visitors Propose number edits and Add feedback; you review daily in the lab, update pins + distilled community outlook notes, then republish.
+**Crowdsourced fantasy football projections. The collective is stronger than one.**
+
+Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`). The projection engine is not re-run in this app. Visitors propose number edits and add feedback; you review daily in the lab, update pins + distilled community outlook notes, then republish.
 
 ## Run locally
 

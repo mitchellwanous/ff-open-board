@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
       const edit = await addEdit({
         grain: APP_GRAIN,
         subject_id: APP_SUBJECT_ID,
-        subject_label: String(body.subject_label || "Open Board"),
+        subject_label: String(body.subject_label || "The FF Collective"),
         field: APP_FEEDBACK_FIELD,
         field_label: APP_FEEDBACK_LABEL,
         official_value: null,

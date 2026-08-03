@@ -1,135 +1,184 @@
 import Link from "next/link";
 import { AppFeedbackButton } from "@/components/AppFeedbackButton";
-import { getMeta, getPlayer, getTeam, getTeams } from "@/lib/data";
-import { fmt } from "@/lib/format";
+import {
+  BRAND_CATCHPHRASE,
+  BRAND_FORMULA,
+  BRAND_NAME,
+  BRAND_TAGLINE,
+} from "@/lib/brand";
+import { getMeta, getPlayer, getTeam } from "@/lib/data";
+import { fmt, fmtInt } from "@/lib/format";
 
 const ACHANE_ID = "00-0039040";
 
 export default function HomePage() {
   const meta = getMeta();
-  const teams = getTeams();
   const achane = getPlayer(ACHANE_ID);
   const mia = getTeam("MIA");
+  const pos = achane?.position ?? "RB";
 
   return (
     <>
-      <h1>Open Board</h1>
+      <p className="brand-kicker">{BRAND_TAGLINE}</p>
+      <h1>{BRAND_NAME}</h1>
       <p className="lede">
-        2026 half-PPR projections you can inspect and challenge. Fantasy points
-        come from <strong>team offense × player share × efficiency</strong> —
-        propose better inputs; we republish daily.
+        <strong>{BRAND_CATCHPHRASE}</strong>
+      </p>
+      <p className="lede" style={{ marginTop: "0.85rem" }}>
+        We&apos;re building the best half-PPR projections in public — by letting
+        anyone contribute better inputs, then refining and republishing
+        together.
+      </p>
+      <p className="lede" style={{ marginTop: "0.75rem" }}>
+        How every player is built: <strong>{BRAND_FORMULA}</strong>. This site
+        lays out those pieces for 2026. If you disagree with an input, contribute a
+        better one with a short reason.
       </p>
       <div className="callout">
-        Last updated {meta.exported_on} · {meta.scoring} · {meta.n_players}{" "}
-        players
+        Updated daily · last update {meta.exported_on} · {meta.n_players}{" "}
+        players · half PPR
       </div>
 
-      <h2>Find a player</h2>
-      <div className="home-actions" style={{ marginBottom: "1rem" }}>
-        <Link href="/players" className="btn primary">
-          Browse players
-        </Link>
-        <Link href="/compare" className="btn">
-          Compare players
-        </Link>
-        <Link href="/teams" className="btn">
-          Teams
-        </Link>
-      </div>
-      <p className="muted" style={{ fontSize: "0.9rem", marginTop: 0 }}>
-        Examples:{" "}
-        <Link href={`/players/${ACHANE_ID}`}>De&apos;Von Achane</Link>
-        {" · "}
-        <Link href="/players/00-0039915">Ladd McConkey</Link>
-        {" · "}
-        <Link href="/players/00-0038606">Parker Washington</Link>
-        {" · "}
-        <Link href="/compare?ids=00-0039040,00-0034844,00-0040122">
-          Achane vs Saquon vs Jeanty
-        </Link>
-      </p>
+      <section className="home-section">
+        <h2>Contribute to the model</h2>
+        <div className="panel home-contribute">
+          <p className="home-contribute__lead">
+            You&apos;re not filing a ticket — you&apos;re feeding the collective
+            model. Strong reasons get reviewed; accepted inputs update the board
+            for everyone.
+          </p>
+          <ol className="home-loop">
+            <li>
+              <strong>Inspect the pieces</strong> — team offense, player share,
+              player efficiency behind every fantasy total.
+            </li>
+            <li>
+              <strong>Contribute an input</strong> — change what you disagree
+              with and leave a short reason.
+            </li>
+            <li>
+              <strong>We review and republish</strong> — the public model gets
+              better over time.
+            </li>
+          </ol>
+          <div className="home-actions" style={{ margin: "1.1rem 0 0" }}>
+            <Link href="/players" className="btn primary">
+              Contribute an input
+            </Link>
+            <Link href="/help" className="btn">
+              How contributing works
+            </Link>
+          </div>
+        </div>
+      </section>
 
-      <h2>How it works (example: Achane / MIA)</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        One short loop — same structure for every player.
-      </p>
-      <ol className="how-steps">
-        <li>
-          <strong>Team offense.</strong> Miami is projected around{" "}
-          <Link href="/teams/MIA">
-            {fmt(mia?.market.implied_ppg ?? achane?.team_pack.implied_ppg, 1)}{" "}
-            points / game
-          </Link>{" "}
-          (a soft environment already baked in).
-        </li>
-        <li>
-          <strong>Role.</strong> Achane gets about{" "}
-          <Link href={`/players/${ACHANE_ID}`}>
-            {fmt(achane?.usage.rush_share, 0)}% of the rushes
-          </Link>{" "}
-          and {fmt(achane?.usage.target_share, 0)}% of the targets (with a
-          low–high band if Wright eats or he consolidates).
-        </li>
-        <li>
-          <strong>Efficiency.</strong> Yards per carry / catch and TD rates turn
-          that volume into production.
-        </li>
-        <li>
-          <strong>Season fantasy points.</strong> Those three become downside /{" "}
-          base / upside — currently about{" "}
-          <Link href={`/players/${ACHANE_ID}`}>
-            {fmt(achane?.draft.downside_fp, 0)} /{" "}
-            {fmt(achane?.fp.season_fp, 0)} /{" "}
-            {fmt(achane?.draft.scenario_fp, 0)}
-          </Link>{" "}
-          (about {achane?.position}
-          {achane?.draft.pos_downside_rank} / {achane?.position}
-          {achane?.draft.pos_rank} / {achane?.position}
-          {achane?.draft.pos_upside_rank} vs the board). FP totals on the card
-          are locked.
-        </li>
-        <li>
-          <strong>Community.</strong> Disagree? Propose a better{" "}
-          <em>input</em> — MIA points/game, Achane&apos;s shares on the pie, or
-          his rates — or leave outlook feedback. Don&apos;t edit the FP total
-          directly.
-        </li>
-        <li>
-          <strong>Republish.</strong> Accepted inputs + a distilled outlook
-          update the board daily; fantasy points move because the inputs moved.
-        </li>
-      </ol>
-      <p style={{ marginTop: "0.75rem" }}>
-        <Link href={`/players/${ACHANE_ID}`} className="btn primary">
-          Open Achane&apos;s card
-        </Link>{" "}
-        <Link href="/teams/MIA" className="btn">
-          Open MIA team card
-        </Link>{" "}
-        <Link href="/help" className="btn">
-          How edits work
-        </Link>
-      </p>
+      <section className="home-section">
+        <h2>Use the board</h2>
+        <div className="home-do home-do--secondary">
+          <div className="home-do__item">
+            <Link href="/players" className="btn">
+              Browse players
+            </Link>
+            <p>
+              See projected fantasy points for every player: a downside, our
+              expected call, and an upside.
+            </p>
+          </div>
+          <div className="home-do__item">
+            <Link href="/compare" className="btn">
+              Compare players
+            </Link>
+            <p>
+              Put players side by side when you are deciding who to draft or
+              start.
+            </p>
+          </div>
+          <div className="home-do__item">
+            <Link href="/teams" className="btn">
+              Browse teams
+            </Link>
+            <p>
+              See how strong an offense is and who gets the ball on each roster.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="home-actions" style={{ marginTop: "1.5rem" }}>
+      <section className="home-section">
+        <h2>Example</h2>
+        <div className="panel home-example">
+          <p className="home-example__lead">
+            <Link href={`/players/${ACHANE_ID}`}>
+              <strong>De&apos;Von Achane</strong>
+            </Link>{" "}
+            projects as{" "}
+            <strong>
+              {pos}
+              {achane?.draft.pos_rank}
+            </strong>{" "}
+            ({fmt(achane?.fp.season_fp, 0)} expected fantasy points). Here is how
+            that is built:
+          </p>
+          <ul className="guide-list">
+            <li>
+              <strong>Team offense:</strong> Miami at{" "}
+              {fmt(achane?.team_pack.implied_ppg, 1)} points per game,{" "}
+              {fmtInt(mia?.hub.pass_yards)} pass yards, and{" "}
+              {fmtInt(mia?.hub.rush_yards)} rush yards
+            </li>
+            <li>
+              <strong>Player share:</strong>{" "}
+              {fmt(achane?.usage.rush_share, 0)}% of the rushes and{" "}
+              {fmt(achane?.usage.target_share, 0)}% of the targets
+            </li>
+            <li>
+              <strong>Player efficiency:</strong> {fmt(achane?.rates.ypc, 1)}{" "}
+              yards per carry, {fmt(achane?.rates.ypt, 1)} yards per target,{" "}
+              {fmt(achane?.rates.rush_td_rate, 1)}% rush TD rate,{" "}
+              {fmt(achane?.rates.rec_td_rate, 1)}% receiving TD rate
+            </li>
+            <li>
+              <strong>Fantasy points:</strong>{" "}
+              {fmt(achane?.draft.downside_fp, 0)} downside ({pos}
+              {achane?.draft.pos_downside_rank}) / {fmt(achane?.fp.season_fp, 0)}{" "}
+              expected ({pos}
+              {achane?.draft.pos_rank}) / {fmt(achane?.draft.scenario_fp, 0)}{" "}
+              upside ({pos}
+              {achane?.draft.pos_upside_rank})
+            </li>
+          </ul>
+          <p className="muted home-example__why">
+            Soft team offense + large rush and receiving roles + steady
+            production when he gets the ball = that {pos}
+            {achane?.draft.pos_rank} projection. Every one of those numbers is
+            an input the collective can improve.
+          </p>
+          <div className="home-actions" style={{ margin: "1rem 0 0" }}>
+            <Link
+              href={`/players/${ACHANE_ID}#suggest`}
+              className="btn primary"
+            >
+              Check Achane and contribute
+            </Link>
+            <Link
+              href="/compare?ids=00-0039040,00-0034844,00-0040122"
+              className="btn"
+            >
+              Compare to Saquon and Jeanty
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <footer className="home-footer">
         <AppFeedbackButton />
         <p className="muted" style={{ margin: 0, fontSize: "0.85rem" }}>
-          Bugs or UX ideas about the site — not player projections.
-        </p>
-      </div>
-
-      <h2>All teams</h2>
-      <div className="list-grid">
-        {teams.map((t) => (
-          <Link key={t.team} href={`/teams/${t.team}`} className="list-card">
-            <div style={{ fontWeight: 650 }}>{t.team}</div>
-            <div className="num muted" style={{ fontSize: "0.85rem" }}>
-              {t.market.implied_ppg?.toFixed(1)} PPG
-              {t.market.ppg_rk ? ` · #${t.market.ppg_rk}` : ""}
-            </div>
+          Bugs or UX ideas about the site — not player projections.{" "}
+          <Link href="/help" className="text-link">
+            How contributing works
           </Link>
-        ))}
-      </div>
+        </p>
+      </footer>
     </>
   );
 }

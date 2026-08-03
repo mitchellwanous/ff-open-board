@@ -48,7 +48,7 @@ export function ClaimableTable({
           <tr>
             <th>Field</th>
             <th className="right">Value</th>
-            <th className="right">Propose</th>
+            <th className="right">Contribute</th>
           </tr>
         </thead>
         <tbody>
@@ -76,6 +76,7 @@ export function ClaimableTable({
                     subjectLabel={subjectLabel}
                     field={field}
                     officialValue={live}
+                    buttonLabel="Contribute"
                     onSubmitted={refresh}
                   />
                 </td>

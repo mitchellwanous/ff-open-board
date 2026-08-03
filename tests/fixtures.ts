@@ -1,14 +1,14 @@
 /**
- * User-functionality matrix for Open Board.
+ * User-functionality matrix for The FF Collective.
  *
  * Covered by Playwright E2E (tests/user-functionality.spec.ts):
- * 1. Home — meta freeze banner, nav, team grid, start-here links
+ * 1. Home — meta freeze banner, nav, CTAs, Site feedback
  * 2. Teams index — PPG-ranked table, navigate to team card
- * 3. Team card — hist seasons, hub/market/scenario, pies, claimable Propose, roster→player
+ * 3. Team card — offense, pies, claimable Propose, roster→player
  * 4. Players index — position filters, navigate to player card
- * 5. Player card — hist+proj, team pack, claimable by position, locked draft section
+ * 5. Player card — season outlook, guided edit sheets, share/efficiency
  * 5b. Community outlook — auto-summary from Propose edits (empty until edits exist)
- * 6. Rankings index — team + player defs listed
+ * 6. Explore / Rankings — defs listed; ranking tables ordered
  * 7. Ranking table — ordered values, deep-link to subject card
  * 8. Edits API — reject locked/OOR/no-doctrine/short rationale; accept valid; outlook why note
  * 9. Edit UI — Propose modal submit → community median updates

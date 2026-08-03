@@ -12,7 +12,7 @@ export const APP_GRAIN = "app" as const;
 
 export const APP_SUBJECT_ID = "open_board";
 
-export const APP_SUBJECT_LABEL = "Open Board";
+export const APP_SUBJECT_LABEL = "The FF Collective";
 
 export const GENERAL_FEEDBACK_MIN = 20;
 export const GENERAL_FEEDBACK_MAX = 900;

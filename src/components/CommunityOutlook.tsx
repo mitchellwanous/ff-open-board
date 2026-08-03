@@ -15,6 +15,11 @@ type Props = {
   subjectLabel: string;
   /** Published distilled why from the freeze export. */
   communityNote?: string | null;
+  /**
+   * When set, primary CTA goes here (e.g. `#suggest`) to contribute projection
+   * inputs. Written season-take feedback stays available as a secondary action.
+   */
+  editHref?: string;
 };
 
 export function CommunityOutlook({
@@ -22,9 +27,13 @@ export function CommunityOutlook({
   subjectId,
   subjectLabel,
   communityNote,
+  editHref,
 }: Props) {
   const [open, setOpen] = useState(false);
   const note = (communityNote ?? "").trim();
+  const isTeam = grain === "team";
+  const editLabel = isTeam ? "Contribute to team projection" : "Contribute to projection";
+  const outlookLabel = isTeam ? "Add team outlook" : "Add player outlook";
 
   return (
     <section className="outlook" aria-labelledby="community-outlook-heading">
@@ -35,21 +44,54 @@ export function CommunityOutlook({
           </h2>
           <p className="outlook-sub">
             What to expect in 2026 and why — updated when the board republishes.
-            Use Add feedback for open-source input.
+            {editHref
+              ? ` Use ${editLabel} for numbers, or ${outlookLabel} for a plain-language take.`
+              : ` Use ${outlookLabel} for open-source input.`}
           </p>
         </div>
-        <button type="button" className="btn primary" onClick={() => setOpen(true)}>
-          Add feedback
-        </button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "stretch",
+            gap: "0.4rem",
+          }}
+        >
+          {editHref ? (
+            <a href={editHref} className="btn primary">
+              {editLabel}
+            </a>
+          ) : (
+            <button
+              type="button"
+              className="btn primary"
+              onClick={() => setOpen(true)}
+            >
+              {outlookLabel}
+            </button>
+          )}
+          {editHref ? (
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setOpen(true)}
+            >
+              {outlookLabel}
+            </button>
+          ) : null}
+        </div>
       </div>
 
       {note ? (
         <p className="outlook-body">{note}</p>
       ) : (
         <p className="outlook-empty">
-          No community outlook published yet for 2026. Propose number edits
-          below or add general feedback — the next republish will distill a
-          plain-language why for this {grain === "team" ? "team" : "player"}.
+          No community outlook published yet for 2026.{" "}
+          {editHref
+            ? "Contribute to the projection below or add a season take"
+            : "Contribute numbers below or add a season take"}{" "}
+          — the next republish will distill a plain-language why for this{" "}
+          {isTeam ? "team" : "player"}.
         </p>
       )}
 
@@ -84,6 +126,7 @@ function FeedbackModal({
   const [doctrineOk, setDoctrineOk] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const isTeam = grain === "team";
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -155,13 +198,15 @@ function FeedbackModal({
         aria-modal="true"
         aria-labelledby="feedback-modal-title"
       >
-        <h2 id="feedback-modal-title">Add general feedback</h2>
+        <h2 id="feedback-modal-title">
+          {isTeam ? "Add team outlook" : "Add player outlook"}
+        </h2>
         <p className="modal-meta">{subjectLabel} · 2026</p>
         <div className="modal-official">
           <div className="official-doctrine">
-            Broader take on this {grain === "team" ? "team’s offense" : "player"}{" "}
-            — what you expect this season and why. Not a single-stat edit (use
-            Propose for those).
+            Broader take on this {isTeam ? "team’s offense" : "player"} — what
+            you expect this season and why. Not a single-stat contribution (use
+            Contribute for those).
           </div>
         </div>
         <form onSubmit={submit}>
@@ -202,7 +247,7 @@ function FeedbackModal({
           {error ? <p className="err">{error}</p> : null}
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <button type="submit" className="btn primary" disabled={busy}>
-              {busy ? "Saving…" : "Submit feedback"}
+              {busy ? "Saving…" : "Submit"}
             </button>
             <button type="button" className="btn" onClick={onClose}>
               Cancel

@@ -13,9 +13,31 @@ const DEPTH_FIELD: Record<"target" | "rush", string> = {
   rush: "rush_share_other",
 };
 
+/** Keep position groups together so WR/RB rows aren’t interleaved. */
+const POS_ORDER: Record<"target" | "rush", Record<string, number>> = {
+  target: { WR: 0, TE: 1, RB: 2, QB: 3 },
+  rush: { RB: 0, QB: 1, WR: 2, TE: 3 },
+};
+
 function toShare(pctOrShare: number | null | undefined): number | null {
   if (pctOrShare == null || Number.isNaN(pctOrShare)) return null;
   return Math.abs(pctOrShare) > 1.5 ? pctOrShare / 100 : pctOrShare;
+}
+
+function sortSegs(
+  segs: PieSegment[],
+  pieKind: "target" | "rush",
+): PieSegment[] {
+  const order = POS_ORDER[pieKind];
+  return [...segs].sort((a, b) => {
+    if (a.kind !== b.kind) return a.kind === "depth" ? 1 : -1;
+    if (a.kind === "player" && b.kind === "player") {
+      const pa = order[a.position] ?? 50;
+      const pb = order[b.position] ?? 50;
+      if (pa !== pb) return pa - pb;
+    }
+    return (b.share ?? 0) - (a.share ?? 0);
+  });
 }
 
 export function SharePieEditor({
@@ -24,12 +46,15 @@ export function SharePieEditor({
   title,
   segs,
   claimable,
+  playerHrefPrefix = "/players",
 }: {
   team: string;
   pieKind: "target" | "rush";
   title: string;
   segs: PieSegment[];
   claimable: ClaimableField[];
+  /** Base path for player links, e.g. `/players`. */
+  playerHrefPrefix?: string;
 }) {
   const baseField = pieKind === "target" ? "target_share" : "rush_share";
   const dnField = pieKind === "target" ? "target_share_dn" : "rush_share_dn";
@@ -40,6 +65,8 @@ export function SharePieEditor({
   const dnDef = claimable.find((c) => c.field === dnField);
   const ceilDef = claimable.find((c) => c.field === ceilField);
 
+  const orderedSegs = useMemo(() => sortSegs(segs, pieKind), [segs, pieKind]);
+
   const [communityBySubject, setCommunityBySubject] = useState<
     Record<string, Community>
   >({});
@@ -47,7 +74,7 @@ export function SharePieEditor({
   const refresh = useCallback(async () => {
     const next: Record<string, Community> = {};
     await Promise.all(
-      segs.map(async (s) => {
+      orderedSegs.map(async (s) => {
         if (s.kind === "player" && s.player_id) {
           const q = new URLSearchParams({
             grain: "player",
@@ -58,7 +85,6 @@ export function SharePieEditor({
           const data = await res.json();
           next[s.player_id] = data.community ?? {};
         } else if (s.kind === "depth") {
-          const field = DEPTH_FIELD[pieKind];
           const q = new URLSearchParams({
             grain: "team",
             subject_id: team,
@@ -71,23 +97,23 @@ export function SharePieEditor({
       }),
     );
     setCommunityBySubject(next);
-  }, [segs, pieKind, team]);
+  }, [orderedSegs, team]);
 
   useEffect(() => {
     void refresh();
   }, [refresh]);
 
   const baseSumPct = useMemo(
-    () => segs.reduce((acc, s) => acc + (s.share ?? 0), 0),
-    [segs],
+    () => orderedSegs.reduce((acc, s) => acc + (s.share ?? 0), 0),
+    [orderedSegs],
   );
   const ceilSumPct = useMemo(
     () =>
-      segs.reduce((acc, s) => {
+      orderedSegs.reduce((acc, s) => {
         if (s.kind !== "player") return acc;
         return acc + (s.share_ceil ?? s.share ?? 0);
       }, 0),
-    [segs],
+    [orderedSegs],
   );
   const baseOk = Math.abs(baseSumPct - 100) <= 3;
 
@@ -95,10 +121,11 @@ export function SharePieEditor({
     <div className="panel">
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <p className="muted" style={{ fontSize: "0.85rem", marginTop: 0 }}>
-        Propose downside / base / ceiling on named players
+        Contribute downside / expected / upside shares on named players
         {pieKind === "rush" ? " (QB always listed)" : ""}. Everyone else rolls
-        into <strong>Other</strong>. <strong>Base</strong> (named + Other)
-        should sum ≈ 100%. Ceilings do not — they can’t all hit together.
+        into <strong>Other</strong>. <strong>Expected</strong> (named + Other)
+        should sum ≈ 100%. Upside shares do not — they can&apos;t all hit
+        together.
       </p>
       <div className="table-wrap">
         <table className="data">
@@ -106,13 +133,13 @@ export function SharePieEditor({
             <tr>
               <th>Claimant</th>
               <th className="right">Downside</th>
-              <th className="right">Base</th>
-              <th className="right">Ceiling</th>
-              <th className="right">Propose</th>
+              <th className="right">Expected</th>
+              <th className="right">Upside</th>
+              <th className="right">Contribute</th>
             </tr>
           </thead>
           <tbody>
-            {segs.map((s) => {
+            {orderedSegs.map((s) => {
               const key =
                 s.kind === "player" ? s.player_id! : "depth:OTHER";
               const community = communityBySubject[key] ?? {};
@@ -126,15 +153,15 @@ export function SharePieEditor({
                 <tr key={key}>
                   <td>
                     {s.kind === "player" && s.player_id ? (
-                      <Link href={`/players/${s.player_id}`}>{s.name}</Link>
+                      <Link href={`${playerHrefPrefix}/${s.player_id}`}>
+                        {s.name}
+                      </Link>
                     ) : (
                       <strong>{s.name}</strong>
                     )}
-                    {s.kind === "player" ? (
-                      <span className="faint"> · {s.position}</span>
-                    ) : (
-                      <span className="faint"> · rest of roster</span>
-                    )}
+                    <div className="faint" style={{ fontSize: "0.8rem" }}>
+                      {s.kind === "player" ? s.position : "rest of roster"}
+                    </div>
                   </td>
                   <td className="right num">
                     {s.kind === "player" ? (
@@ -200,14 +227,7 @@ export function SharePieEditor({
                     )}
                   </td>
                   <td className="right">
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "0.25rem",
-                        justifyContent: "flex-end",
-                        flexWrap: "wrap",
-                      }}
-                    >
+                    <div className="pie-edit-actions">
                       {s.kind === "player" && s.player_id && dnDef ? (
                         <ProposeButton
                           grain="player"
@@ -215,7 +235,8 @@ export function SharePieEditor({
                           subjectLabel={s.name}
                           field={dnDef}
                           officialValue={toShare(s.share_dn)}
-                          buttonLabel="Dn"
+                          buttonLabel="Downside"
+                          buttonClassName="btn primary pie-edit-btn"
                           onSubmitted={refresh}
                         />
                       ) : null}
@@ -226,7 +247,8 @@ export function SharePieEditor({
                           subjectLabel={s.name}
                           field={baseDef}
                           officialValue={toShare(s.share)}
-                          buttonLabel="Base"
+                          buttonLabel="Expected"
+                          buttonClassName="btn primary pie-edit-btn"
                           onSubmitted={refresh}
                         />
                       ) : null}
@@ -237,7 +259,8 @@ export function SharePieEditor({
                           subjectLabel={s.name}
                           field={ceilDef}
                           officialValue={toShare(s.share_ceil)}
-                          buttonLabel="Ceil"
+                          buttonLabel="Upside"
+                          buttonClassName="btn primary pie-edit-btn"
                           onSubmitted={refresh}
                         />
                       ) : null}
@@ -248,7 +271,8 @@ export function SharePieEditor({
                           subjectLabel={`${team} ${s.name}`}
                           field={depthDef}
                           officialValue={toShare(s.share)}
-                          buttonLabel="Base"
+                          buttonLabel="Expected"
+                          buttonClassName="btn primary pie-edit-btn"
                           onSubmitted={refresh}
                         />
                       ) : null}
@@ -264,8 +288,8 @@ export function SharePieEditor({
         className={baseOk ? "muted" : "err"}
         style={{ fontSize: "0.85rem", marginBottom: 0 }}
       >
-        Base sum: {fmt(baseSumPct, 1)}%{" "}
-        {baseOk ? "(≈ 100% ✓)" : "(should be near 100%)"} · Named ceilings sum:{" "}
+        Expected sum: {fmt(baseSumPct, 1)}%{" "}
+        {baseOk ? "(≈ 100% ✓)" : "(should be near 100%)"} · Named upside sum:{" "}
         {fmt(ceilSumPct, 1)}% (not required to sum — joint constraint)
       </p>
     </div>

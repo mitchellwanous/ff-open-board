@@ -2,7 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClaimableTable } from "@/components/ClaimableTable";
 import { CommunityOutlook } from "@/components/CommunityOutlook";
-import { getClaimableFields, getOfficialValue, getPlayer, getTeam } from "@/lib/data";
+import { EditProjectionBuckets } from "@/components/EditProjectionBuckets";
+import {
+  getClaimableFields,
+  getOfficialValue,
+  getPlayer,
+  getTeam,
+} from "@/lib/data";
 import { fmt, fmtInt } from "@/lib/format";
 
 const SHARE_FIELDS = new Set([
@@ -14,37 +20,294 @@ const SHARE_FIELDS = new Set([
   "rush_share_ceil",
 ]);
 
-export default async function PlayerCardPage({
+const SHARE_LABELS: Record<string, string> = {
+  rush_share_dn: "Downside rush share",
+  rush_share: "Expected rush share",
+  rush_share_ceil: "Upside rush share",
+  target_share_dn: "Downside target share",
+  target_share: "Expected target share",
+  target_share_ceil: "Upside target share",
+};
+
+const SHARE_ORDER = [
+  "rush_share_dn",
+  "rush_share",
+  "rush_share_ceil",
+  "target_share_dn",
+  "target_share",
+  "target_share_ceil",
+];
+
+const EFF_ORDER_RB = [
+  "ypc",
+  "rush_td_rate",
+  "catch_pct",
+  "ypt",
+  "cay_per_rec",
+  "yac_per_rec",
+  "rec_td_rate",
+];
+
+export default async function PlayerPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ edit?: string }>;
 }) {
   const { id } = await params;
+  const sp = await searchParams;
+  const classicEdit = sp.edit === "classic";
   const p = getPlayer(id);
   if (!p) notFound();
   const team = getTeam(p.team);
-
   const allClaimable = getClaimableFields();
 
-  const claimable = allClaimable.filter((c) => {
-    if (c.grain !== "player") return false;
-    if (SHARE_FIELDS.has(c.field)) return false;
-    if (c.positions && !c.positions.includes(p.position)) return false;
-    return true;
-  });
-  const claimRows = claimable.map((field) => ({
-    field,
-    official: getOfficialValue("player", p.player_id, field.field),
-  }));
+  const rateRows = allClaimable
+    .filter((c) => {
+      if (c.grain !== "player") return false;
+      if (SHARE_FIELDS.has(c.field)) return false;
+      if (c.positions && !c.positions.includes(p.position)) return false;
+      return true;
+    })
+    .map((field) => ({
+      field,
+      official: getOfficialValue("player", p.player_id, field.field),
+    }))
+    .sort((a, b) => {
+      if (p.position !== "RB") return 0;
+      const ia = EFF_ORDER_RB.indexOf(a.field.field);
+      const ib = EFF_ORDER_RB.indexOf(b.field.field);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
 
-  const fpVals = p.hist.map((h) => h.season_fp ?? 0);
-  const maxFp = Math.max(...fpVals, 1);
-  const piePeers =
-    team?.tgt_segs.filter((s) => s.kind === "player").slice(0, 6) ?? [];
-  const rushPeers =
-    team?.rush_segs.filter((s) => s.kind === "player").slice(0, 5) ?? [];
+  const shareRows = allClaimable
+    .filter((c) => {
+      if (c.grain !== "player") return false;
+      if (!SHARE_FIELDS.has(c.field)) return false;
+      if (c.positions && !c.positions.includes(p.position)) return false;
+      return true;
+    })
+    .map((field) => ({
+      field,
+      official: getOfficialValue("player", p.player_id, field.field),
+      displayLabel: SHARE_LABELS[field.field],
+    }))
+    .sort(
+      (a, b) =>
+        SHARE_ORDER.indexOf(a.field.field) - SHARE_ORDER.indexOf(b.field.field),
+    );
+
+  const teamRows = allClaimable
+    .filter((c) => c.grain === "team" && !c.field.includes("other"))
+    .map((field) => {
+      const passRateShare =
+        team?.hub.pass_rate == null
+          ? null
+          : Math.abs(team.hub.pass_rate) > 1.5
+            ? team.hub.pass_rate / 100
+            : team.hub.pass_rate;
+      const map: Record<string, number | null | undefined> = {
+        implied_ppg: team?.market.implied_ppg,
+        plays_pg: team?.hub.plays_pg,
+        pass_rate: passRateShare,
+        vol_up: team?.scenario.vol_up,
+        eff_up: team?.scenario.eff_up,
+      };
+      return { field, official: map[field.field] ?? null };
+    });
+
   const showTgt = ["WR", "TE", "RB"].includes(p.position);
   const showRush = ["RB", "QB"].includes(p.position);
+  const maxFp = Math.max(...p.hist.map((h) => h.season_fp ?? 0), 1);
+
+  const histActual = p.hist.filter((h) => h.kind === "actual").slice(-3);
+  const offenseSnapshot = [
+    {
+      label: "Proj PPG",
+      value: fmt(p.team_pack.implied_ppg, 1) ?? "—",
+      sub: team?.market.ppg_rk != null ? `#${team.market.ppg_rk}` : undefined,
+      accent: true,
+    },
+    {
+      label: "Pass yards",
+      value: fmtInt(team?.hub.pass_yards),
+      sub: team?.hub.pass_rk != null ? `#${team.hub.pass_rk}` : undefined,
+    },
+    {
+      label: "Rush yards",
+      value: fmtInt(team?.hub.rush_yards),
+      sub: team?.hub.rush_rk != null ? `#${team.hub.rush_rk}` : undefined,
+    },
+    {
+      label: "Plays / G",
+      value: fmt(p.team_pack.plays_pg, 1) ?? "—",
+      sub: team?.hub.plays_rk != null ? `#${team.hub.plays_rk}` : undefined,
+    },
+    {
+      label: "Pass rate",
+      value: `${fmt(p.team_pack.pass_rate, 0)}%`,
+    },
+  ];
+
+  const shareBands = [
+    ...(showRush
+      ? [
+          {
+            group: "Rush share",
+            downside: `${fmt(p.usage.rush_share_floor, 0)}%`,
+            expected: `${fmt(p.usage.rush_share, 0)}%`,
+            upside: `${fmt(p.usage.rush_share_ceil, 0)}%`,
+          },
+        ]
+      : []),
+    ...(showTgt
+      ? [
+          {
+            group: "Target share",
+            downside: `${fmt(p.usage.target_share_floor, 0)}%`,
+            expected: `${fmt(p.usage.target_share, 0)}%`,
+            upside: `${fmt(p.usage.target_share_ceil, 0)}%`,
+          },
+        ]
+      : []),
+  ];
+
+  const efficiencyGroups = [
+    ...(showRush
+      ? [
+          {
+            group: "Rush",
+            stats: [
+              { label: "Yards / carry", value: fmt(p.rates.ypc, 2) ?? "—" },
+              {
+                label: "Rush TD rate",
+                value: `${fmt(p.rates.rush_td_rate, 1)}%`,
+              },
+            ],
+          },
+        ]
+      : []),
+    ...(showTgt
+      ? [
+          {
+            group: "Receiving",
+            stats: [
+              { label: "Catch %", value: `${fmt(p.rates.catch_pct, 0)}%` },
+              { label: "Yards / target", value: fmt(p.rates.ypt, 2) ?? "—" },
+              {
+                label: "Rec TD rate",
+                value: `${fmt(p.rates.rec_td_rate, 1)}%`,
+              },
+            ],
+          },
+        ]
+      : []),
+    ...(p.position === "QB"
+      ? [
+          {
+            group: "Passing",
+            stats: [
+              { label: "Pass YPA", value: fmt(p.rates.pass_ypa, 2) ?? "—" },
+              {
+                label: "Pass TD rate",
+                value: `${fmt(p.rates.pass_td_rate, 1)}%`,
+              },
+              { label: "INT rate", value: `${fmt(p.rates.int_rate, 1)}%` },
+            ],
+          },
+        ]
+      : []),
+  ];
+
+  const teamHistActual = (team?.hist ?? [])
+    .filter((h) => h.kind === "actual")
+    .slice(-3);
+  const offenseBoard = {
+    staffLine: [
+      team?.staff.head_coach ? `HC ${team.staff.head_coach}` : null,
+      team?.staff.oc_name ? `OC ${team.staff.oc_name}` : null,
+      team?.staff.notes === "continuity" ? "continuity" : null,
+      team?.staff.oc_changed ? "New OC" : null,
+    ]
+      .filter(Boolean)
+      .join(" · "),
+    winTotal: team?.market.win_total ?? null,
+    ppgRk: team?.market.ppg_rk ?? null,
+    years: teamHistActual.map((h) => h.season),
+    histBySeason: Object.fromEntries(
+      teamHistActual.map((h) => [
+        h.season,
+        {
+          ppg: h.ppg,
+          plays_pg: h.plays_pg,
+          pass_rate: h.pass_rate,
+          pass_yards: h.pass_yards,
+          rush_yards: h.rush_yards,
+        },
+      ]),
+    ),
+    projYards: {
+      pass_yards: team?.hub.pass_yards ?? null,
+      rush_yards: team?.hub.rush_yards ?? null,
+    },
+    scenario: {
+      vol_up: team?.scenario.vol_up ?? null,
+      vol_dn: team?.scenario.vol_dn ?? null,
+      eff_up: team?.scenario.eff_up ?? null,
+      eff_dn: team?.scenario.eff_dn ?? null,
+    },
+  };
+
+  const shareBoard = {
+    years: histActual.map((h) => h.season),
+    gamesBySeason: Object.fromEntries(
+      histActual.map((h) => [h.season, h.games]),
+    ),
+    teamBySeason: Object.fromEntries(
+      histActual.map((h) => [h.season, h.team]),
+    ),
+    currentTeam: p.team,
+    showRush,
+    showTgt,
+    histBySeason: Object.fromEntries(
+      histActual.map((h) => [
+        h.season,
+        {
+          rush_share: h.rush_share,
+          target_share: h.target_share,
+        },
+      ]),
+    ),
+  };
+
+  const efficiencyBoard = {
+    years: histActual.map((h) => h.season),
+    gamesBySeason: Object.fromEntries(
+      histActual.map((h) => [h.season, h.games]),
+    ),
+    showRush,
+    showTgt,
+    showPass: p.position === "QB",
+    histBySeason: Object.fromEntries(
+      histActual.map((h) => [
+        h.season,
+        {
+          ypc: h.ypc ?? null,
+          rush_td_rate: h.rush_td_rate ?? null,
+          catch_pct: h.catch_pct ?? null,
+          ypt: h.ypt ?? null,
+          rec_td_rate: h.rec_td_rate ?? null,
+          pass_ypa: h.pass_ypa ?? null,
+          pass_td_rate: h.pass_td_rate ?? null,
+          int_rate: h.int_rate ?? null,
+        },
+      ]),
+    ),
+  };
+
+  const bucketsHref = `/players/${p.player_id}`;
+  const classicHref = `/players/${p.player_id}?edit=classic`;
 
   return (
     <>
@@ -55,10 +318,9 @@ export default async function PlayerCardPage({
       <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
         <span className="badge accent">{p.position}</span>
         <span className="badge">
-          <Link href={`/teams/${p.team}`}>{p.team}</Link> · depth{" "}
-          {p.depth_rank}
+          <Link href={`/teams/${p.team}`}>{p.team}</Link>
         </span>
-        {p.draft.pos_rank ? (
+        {p.draft.pos_rank != null ? (
           <span className="badge">
             {p.position}
             {p.draft.pos_rank}
@@ -72,10 +334,19 @@ export default async function PlayerCardPage({
         </Link>
       </div>
 
+      <CommunityOutlook
+        grain="player"
+        subjectId={p.player_id}
+        subjectLabel={p.name}
+        communityNote={p.community_note}
+      />
+
+      {/* 1 Verdict */}
       <h2>Season outlook</h2>
       <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Fantasy points from team offense × his share × efficiency. Totals are
-        locked — change inputs below if you disagree.
+        Half PPR fantasy points from team offense + player share + player
+        efficiency. Totals come from those pieces. To change them, contribute
+        below.
       </p>
       <div className="stat-grid">
         <div className="stat">
@@ -89,7 +360,7 @@ export default async function PlayerCardPage({
           ) : null}
         </div>
         <div className="stat">
-          <div className="label">Base</div>
+          <div className="label">Expected</div>
           <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
           {p.draft.pos_rank != null ? (
             <div className="sub">
@@ -121,13 +392,13 @@ export default async function PlayerCardPage({
         <div className="scenario-blurbs">
           {p.draft.downside_blurb ? (
             <p>
-              <span className="scenario-blurbs__tag warn">Dn</span>
+              <span className="scenario-blurbs__tag warn">Downside</span>
               {p.draft.downside_blurb}
             </p>
           ) : null}
           {p.draft.base_blurb ? (
             <p>
-              <span className="scenario-blurbs__tag">Base</span>
+              <span className="scenario-blurbs__tag">Expected</span>
               {p.draft.base_blurb}
             </p>
           ) : null}
@@ -140,87 +411,74 @@ export default async function PlayerCardPage({
         </div>
       )}
 
-      <h2>Share band</h2>
-      <div className="stat-grid">
-        {showTgt ? (
-          <>
-            <div className="stat">
-              <div className="label">Low target share</div>
-              <div className="value num">
-                {fmt(p.usage.target_share_floor, 1)}%
-              </div>
-            </div>
-            <div className="stat">
-              <div className="label">Expected targets</div>
-              <div className="value num accent">
-                {fmt(p.usage.target_share, 1)}%
-              </div>
-            </div>
-            <div className="stat">
-              <div className="label">High target share</div>
-              <div className="value num">
-                {fmt(p.usage.target_share_ceil, 1)}%
-              </div>
-            </div>
-          </>
-        ) : null}
-        {showRush ? (
-          <>
-            <div className="stat">
-              <div className="label">Low rush share</div>
-              <div className="value num">
-                {fmt(p.usage.rush_share_floor, 1)}%
-              </div>
-            </div>
-            <div className="stat">
-              <div className="label">Expected rushes</div>
-              <div className="value num accent">
-                {fmt(p.usage.rush_share, 1)}%
-              </div>
-            </div>
-            <div className="stat">
-              <div className="label">High rush share</div>
-              <div className="value num">
-                {fmt(p.usage.rush_share_ceil, 1)}%
-              </div>
-            </div>
-          </>
-        ) : null}
-        <div className="stat">
-          <div className="label">Age / years in NFL</div>
-          <div className="value num">
-            {fmt(p.age, 1)} / {p.years_exp ?? "—"}
-          </div>
-        </div>
-      </div>
-
-      <div className="panel soft">
-        <h3 style={{ marginTop: 0 }}>Team offense</h3>
-        <div className="stat-grid">
-          <div className="stat">
-            <div className="label">Team points / game</div>
-            <div className="value num">{fmt(p.team_pack.implied_ppg, 1)}</div>
-          </div>
-          <div className="stat">
-            <div className="label">Plays / game</div>
-            <div className="value num">{fmt(p.team_pack.plays_pg, 1)}</div>
-          </div>
-          <div className="stat">
-            <div className="label">Pass rate</div>
-            <div className="value num">{fmt(p.team_pack.pass_rate, 0)}%</div>
-          </div>
-          <div className="stat">
-            <div className="label">Team targets</div>
-            <div className="value num">{fmtInt(p.team_pack.team_targets)}</div>
-          </div>
-        </div>
-        <p className="faint" style={{ marginBottom: 0, fontSize: "0.85rem" }}>
-          <Link href={`/teams/${p.team}`}>Full {p.team} card</Link>
-          {p.team_pack.coach_change_kind
-            ? ` · coaching: ${p.team_pack.coach_change_kind}`
-            : ""}
-        </p>
-      </div>
+      {/* 2 Interact with the projection */}
+      {classicEdit ? (
+        <>
+          <h2 id="suggest">Contribute to this projection</h2>
+          <p className="muted" style={{ fontSize: "0.9rem" }}>
+            Classic field-by-field inventory.{" "}
+            <Link href={bucketsHref} className="text-link">
+              Back to guided sheets
+            </Link>
+          </p>
+          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+            Team offense ({p.team})
+          </h3>
+          <p className="muted" style={{ fontSize: "0.85rem" }}>
+            Includes pace, pass rate, and upside volume/efficiency boosts.
+          </p>
+          <ClaimableTable
+            grain="team"
+            subjectId={p.team}
+            subjectLabel={p.team}
+            rows={teamRows}
+          />
+          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+            Player share (team pie)
+          </h3>
+          <p style={{ marginBottom: "0.5rem" }}>
+            <Link
+              href={`/teams/${p.team}#share-pies`}
+              className="btn primary"
+            >
+              Contribute on {p.team} pie
+            </Link>
+          </p>
+          <ClaimableTable
+            grain="player"
+            subjectId={p.player_id}
+            subjectLabel={p.name}
+            rows={shareRows}
+          />
+          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+            Efficiency &amp; TD rates
+          </h3>
+          <ClaimableTable
+            grain="player"
+            subjectId={p.player_id}
+            subjectLabel={p.name}
+            rows={rateRows}
+          />
+        </>
+      ) : (
+        <EditProjectionBuckets
+          playerId={p.player_id}
+          playerName={p.name}
+          team={p.team}
+          position={p.position}
+          offenseRows={teamRows}
+          shareRows={shareRows}
+          efficiencyRows={rateRows}
+          offenseSnapshot={offenseSnapshot}
+          shareBands={shareBands}
+          efficiencyGroups={efficiencyGroups}
+          offenseBoard={offenseBoard}
+          shareBoard={shareBoard}
+          efficiencyBoard={efficiencyBoard}
+          pieHref={`/teams/${p.team}#share-pies`}
+          classicHref={classicHref}
+        />
+      )}
 
       <h2>Recent history</h2>
       <div className="spark" aria-hidden>
@@ -231,7 +489,6 @@ export default async function PlayerCardPage({
             style={{
               height: `${Math.max(8, ((h.season_fp ?? 0) / maxFp) * 100)}%`,
             }}
-            title={`${h.season}: ${h.season_fp}`}
           />
         ))}
       </div>
@@ -242,9 +499,6 @@ export default async function PlayerCardPage({
               <th>Season</th>
               <th>Tm</th>
               <th className="right">GP</th>
-              <th className="right">Tgt</th>
-              <th className="right">Rec</th>
-              <th className="right">Yds</th>
               <th className="right">Tgt%</th>
               <th className="right">Rush%</th>
               <th className="right">FP</th>
@@ -266,9 +520,6 @@ export default async function PlayerCardPage({
                 </td>
                 <td>{h.team ?? "—"}</td>
                 <td className="right num">{fmt(h.games, 1)}</td>
-                <td className="right num">{fmtInt(h.targets)}</td>
-                <td className="right num">{fmtInt(h.receptions)}</td>
-                <td className="right num">{fmtInt(h.rec_yards)}</td>
                 <td className="right num">{fmt(h.target_share, 1)}%</td>
                 <td className="right num">{fmt(h.rush_share, 1)}%</td>
                 <td className="right num">{fmt(h.season_fp, 1)}</td>
@@ -277,35 +528,14 @@ export default async function PlayerCardPage({
           </tbody>
         </table>
       </div>
-      {p.win_weeks_hist ? (
-        <p className="muted" style={{ fontSize: "0.9rem" }}>
-          {`Hist win weeks: ${fmtInt(p.win_weeks_hist.win_weeks)}/${fmtInt(p.win_weeks_hist.win_week_games)} (${fmt(p.win_weeks_hist.win_week_rate, 1)}%) · max weekly ${fmt(p.win_weeks_hist.max_weekly_fp, 1)}`}
-        </p>
-      ) : null}
 
       <details className="details-block">
-        <summary>Volume &amp; counting stats</summary>
+        <summary>Counting stats (outputs)</summary>
         <div className="stat-grid" style={{ marginTop: "0.75rem" }}>
-          {p.position === "QB" ? (
+          {p.position === "RB" ? (
             <>
               <div className="stat">
-                <div className="label">Pass attempts</div>
-                <div className="value num">{fmtInt(p.volume.pass_attempts)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Pass yards</div>
-                <div className="value num">{fmtInt(p.volume.pass_yards)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Pass TDs</div>
-                <div className="value num">{fmt(p.volume.pass_tds, 1)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">INTs</div>
-                <div className="value num">{fmt(p.volume.interceptions, 1)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Rush attempts</div>
+                <div className="label">Rush att</div>
                 <div className="value num">{fmtInt(p.volume.rush_att)}</div>
               </div>
               <div className="stat">
@@ -313,8 +543,12 @@ export default async function PlayerCardPage({
                 <div className="value num">{fmtInt(p.volume.rush_yards)}</div>
               </div>
               <div className="stat">
-                <div className="label">Rush TDs</div>
-                <div className="value num">{fmt(p.volume.rush_tds, 1)}</div>
+                <div className="label">Targets</div>
+                <div className="value num">{fmtInt(p.volume.targets)}</div>
+              </div>
+              <div className="stat">
+                <div className="label">Receptions</div>
+                <div className="value num">{fmtInt(p.volume.receptions)}</div>
               </div>
             </>
           ) : null}
@@ -329,7 +563,7 @@ export default async function PlayerCardPage({
                 <div className="value num">{fmtInt(p.volume.receptions)}</div>
               </div>
               <div className="stat">
-                <div className="label">Receiving yards</div>
+                <div className="label">Rec yards</div>
                 <div className="value num">{fmtInt(p.volume.rec_yards)}</div>
               </div>
               <div className="stat">
@@ -338,165 +572,24 @@ export default async function PlayerCardPage({
               </div>
             </>
           ) : null}
-          {p.position === "RB" ? (
+          {p.position === "QB" ? (
             <>
               <div className="stat">
-                <div className="label">Rush attempts</div>
+                <div className="label">Pass att</div>
+                <div className="value num">{fmtInt(p.volume.pass_attempts)}</div>
+              </div>
+              <div className="stat">
+                <div className="label">Pass yards</div>
+                <div className="value num">{fmtInt(p.volume.pass_yards)}</div>
+              </div>
+              <div className="stat">
+                <div className="label">Rush att</div>
                 <div className="value num">{fmtInt(p.volume.rush_att)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Rush yards</div>
-                <div className="value num">{fmtInt(p.volume.rush_yards)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Rush TDs</div>
-                <div className="value num">{fmt(p.volume.rush_tds, 1)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Targets</div>
-                <div className="value num">{fmtInt(p.volume.targets)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Receptions</div>
-                <div className="value num">{fmtInt(p.volume.receptions)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Receiving yards</div>
-                <div className="value num">{fmtInt(p.volume.rec_yards)}</div>
-              </div>
-              <div className="stat">
-                <div className="label">Rec TDs</div>
-                <div className="value num">{fmt(p.volume.rec_tds, 1)}</div>
               </div>
             </>
           ) : null}
         </div>
-        <p className="faint" style={{ fontSize: "0.85rem" }}>
-          Last year: {fmt(p.fp.ly_fp, 1)} FP · Mechanical floor–ceil{" "}
-          {fmt(p.fp.floor_fp, 0)}–{fmt(p.fp.ceiling_fp, 0)} (rate×GP haircut,
-          not the judgment band).
-          {p.draft.no_pos1 ? ` · note: ${p.draft.no_pos1}` : ""}
-        </p>
       </details>
-
-      {piePeers.length > 0 && showTgt ? (
-        <details className="details-block">
-          <summary>{p.team} target pie (teammates)</summary>
-          <div className="table-wrap" style={{ marginTop: "0.75rem" }}>
-            <table className="data tight">
-              <thead>
-                <tr>
-                  <th>Player</th>
-                  <th className="right">Low</th>
-                  <th className="right">Expected</th>
-                  <th className="right">High</th>
-                </tr>
-              </thead>
-              <tbody>
-                {piePeers.map((s) => (
-                  <tr
-                    key={s.player_id ?? s.name}
-                    className={
-                      s.player_id === p.player_id ? "proj" : undefined
-                    }
-                  >
-                    <td>
-                      {s.player_id === p.player_id ? (
-                        <strong>{s.name}</strong>
-                      ) : s.player_id ? (
-                        <Link href={`/players/${s.player_id}`}>{s.name}</Link>
-                      ) : (
-                        s.name
-                      )}
-                      <span className="faint"> · {s.position}</span>
-                    </td>
-                    <td className="right num">{fmt(s.share_dn, 1)}%</td>
-                    <td className="right num">{fmt(s.share, 1)}%</td>
-                    <td className="right num">{fmt(s.share_ceil, 1)}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </details>
-      ) : null}
-      {rushPeers.length > 0 && showRush ? (
-        <details className="details-block">
-          <summary>{p.team} rush pie (teammates)</summary>
-          <div className="table-wrap" style={{ marginTop: "0.75rem" }}>
-            <table className="data tight">
-              <thead>
-                <tr>
-                  <th>Player</th>
-                  <th className="right">Low</th>
-                  <th className="right">Expected</th>
-                  <th className="right">High</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rushPeers.map((s) => (
-                  <tr
-                    key={s.player_id ?? s.name}
-                    className={
-                      s.player_id === p.player_id ? "proj" : undefined
-                    }
-                  >
-                    <td>
-                      {s.player_id === p.player_id ? (
-                        <strong>{s.name}</strong>
-                      ) : s.player_id ? (
-                        <Link href={`/players/${s.player_id}`}>{s.name}</Link>
-                      ) : (
-                        s.name
-                      )}
-                      <span className="faint"> · {s.position}</span>
-                    </td>
-                    <td className="right num">{fmt(s.share_dn, 1)}%</td>
-                    <td className="right num">{fmt(s.share, 1)}%</td>
-                    <td className="right num">{fmt(s.share_ceil, 1)}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </details>
-      ) : null}
-
-      <h2>Disagree?</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Challenge inputs — not locked fantasy-point totals. Accepted edits and
-        outlook notes update the board on daily republish.
-      </p>
-
-      <CommunityOutlook
-        grain="player"
-        subjectId={p.player_id}
-        subjectLabel={p.name}
-        communityNote={p.community_note}
-      />
-
-      <h3 style={{ fontSize: "0.95rem", margin: "1.25rem 0 0.5rem" }}>
-        Adjust his share (team pie)
-      </h3>
-      <p style={{ marginBottom: "0.75rem" }}>
-        <Link href={`/teams/${p.team}#share-pies`} className="btn primary">
-          Edit shares on {p.team} pie
-        </Link>
-      </p>
-      <p className="muted" style={{ fontSize: "0.85rem" }}>
-        Low / expected / high are proposed next to teammates so the pie can sum
-        near 100%.
-      </p>
-
-      <h3 style={{ fontSize: "0.95rem", margin: "1.25rem 0 0.5rem" }}>
-        Efficiency &amp; TD rates
-      </h3>
-      <ClaimableTable
-        grain="player"
-        subjectId={p.player_id}
-        subjectLabel={p.name}
-        rows={claimRows}
-      />
     </>
   );
 }

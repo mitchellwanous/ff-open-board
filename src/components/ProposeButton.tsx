@@ -12,6 +12,7 @@ type Props = {
   officialValue: number | null;
   onSubmitted?: () => void;
   buttonLabel?: string;
+  buttonClassName?: string;
 };
 
 function isShareField(field: ClaimableField) {
@@ -45,8 +46,12 @@ export function ProposeButton(props: Props) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button type="button" className="btn primary" onClick={() => setOpen(true)}>
-        {props.buttonLabel ?? "Propose"}
+      <button
+        type="button"
+        className={props.buttonClassName ?? "btn primary"}
+        onClick={() => setOpen(true)}
+      >
+        {props.buttonLabel ?? "Contribute"}
       </button>
       {open ? (
         <ProposeModal {...props} onClose={() => setOpen(false)} />
@@ -136,7 +141,7 @@ function ProposeModal({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submit failed");
-      setOk("Edit submitted.");
+      setOk("Contribution submitted.");
       onSubmitted?.();
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -162,7 +167,7 @@ function ProposeModal({
         aria-modal="true"
         aria-labelledby="propose-title"
       >
-        <h2 id="propose-title">Propose edit</h2>
+        <h2 id="propose-title">Contribute an input</h2>
         <p className="modal-meta">
           {subjectLabel} · {field.label}
         </p>
@@ -212,7 +217,7 @@ function ProposeModal({
               id="propose-rationale"
               value={rationale}
               onChange={(e) => setRationale(e.target.value)}
-              placeholder="Why should this input change?"
+              placeholder="Why should this input change for the collective model?"
             />
           </div>
           <div className="field">
@@ -230,15 +235,15 @@ function ProposeModal({
               onChange={(e) => setDoctrineOk(e.target.checked)}
             />
             <span>
-              I read the description — this is a full-season projection with
-              the depth chart mostly healthy (not a short injury spike).
+              I read the description — I&apos;m contributing a full-season input
+              with the depth chart mostly healthy (not a short injury spike).
             </span>
           </label>
           {error ? <p className="err">{error}</p> : null}
           {ok ? <p className="ok">{ok}</p> : null}
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <button type="submit" className="btn primary" disabled={busy}>
-              {busy ? "Saving…" : "Submit edit"}
+              {busy ? "Saving…" : "Submit contribution"}
             </button>
             <button type="button" className="btn" onClick={onClose}>
               Cancel

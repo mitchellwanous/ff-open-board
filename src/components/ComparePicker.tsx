@@ -10,9 +10,12 @@ const MAX = 4;
 export function ComparePicker({
   allPlayers,
   selectedIds,
+  basePath = "/compare",
 }: {
   allPlayers: Option[];
   selectedIds: string[];
+  /** Compare route prefix, e.g. `/compare`. */
+  basePath?: string;
 }) {
   const router = useRouter();
   const [q, setQ] = useState("");
@@ -41,7 +44,7 @@ export function ComparePicker({
 
   function setIds(ids: string[]) {
     const qs = ids.length ? `?ids=${ids.map(encodeURIComponent).join(",")}` : "";
-    router.push(`/compare${qs}`);
+    router.push(`${basePath}${qs}`);
   }
 
   function add(id: string) {
