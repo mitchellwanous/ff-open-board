@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useState } from "react";
+import {
+  BRAND_CONTRIBUTE_SUCCESS,
+  BRAND_PLAYER_CONTRIBUTE_LOOP,
+} from "@/lib/brand";
 import type { ClaimableField } from "@/lib/types";
 import { displayClaimValue, fmt, fmtInt } from "@/lib/format";
 
@@ -384,8 +388,8 @@ function useEditDrafts(rows: BucketRow[]) {
       }
       setOk(
         changed.length === 1
-          ? "Contribution submitted."
-          : `${changed.length} edits submitted.`,
+          ? BRAND_CONTRIBUTE_SUCCESS
+          : `${changed.length} contributions submitted — we review and republish daily.`,
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -431,6 +435,13 @@ export function EditProjectionBuckets(props: Props) {
         Three pieces behind the projection. Open a sheet, contribute only what you
         disagree with, and leave a short reason. We review and republish daily.
       </p>
+      <ol className="contribute-loop">
+        {BRAND_PLAYER_CONTRIBUTE_LOOP.map((step) => (
+          <li key={step.title}>
+            <strong>{step.title}</strong> — {step.body}
+          </li>
+        ))}
+      </ol>
 
       <div className="share-stack" style={{ marginTop: "1rem" }}>
         <div className="panel edit-bucket-card">
@@ -708,8 +719,8 @@ function OffenseBucketSheet({
       }
       setOk(
         changed.length === 1
-          ? "Contribution submitted."
-          : `${changed.length} edits submitted.`,
+          ? BRAND_CONTRIBUTE_SUCCESS
+          : `${changed.length} contributions submitted — we review and republish daily.`,
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -1647,8 +1658,8 @@ function BucketSheet({
       }
       setOk(
         changed.length === 1
-          ? "Contribution submitted."
-          : `${changed.length} edits submitted.`,
+          ? BRAND_CONTRIBUTE_SUCCESS
+          : `${changed.length} contributions submitted — we review and republish daily.`,
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(

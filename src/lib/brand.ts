@@ -16,3 +16,30 @@ export const BRAND_CONTRIBUTE_CALLOUT =
   "Disagree with an input? Open the page, inspect the pieces, and contribute a better number with a short reason. We review contributions and republish daily so the collective model improves.";
 
 export const BRAND_CONTRIBUTE_LOOP_LABEL = "How contributing works";
+
+/** Player-card contribute loop (same shape as home, scoped to one projection). */
+export const BRAND_PLAYER_CONTRIBUTE_LOOP: ReadonlyArray<{
+  title: string;
+  body: string;
+}> = [
+  {
+    title: "Inspect the pieces",
+    body: "team offense, player share, and player efficiency behind this fantasy total.",
+  },
+  {
+    title: "Contribute an input",
+    body: "change only what you disagree with and leave a short reason.",
+  },
+  {
+    title: "We review and republish",
+    body: "accepted inputs update the collective model for everyone.",
+  },
+];
+
+/** After a successful contribution submit (sheets + contribute modal). */
+export const BRAND_CONTRIBUTE_SUCCESS =
+  "Contribution submitted — we review and republish daily.";
+
+/** Team pie intro — named shares are collective inputs. */
+export const BRAND_TEAM_PIE_INTRO =
+  "Named target and rush shares are collective inputs — contribute downside / expected / upside on each claimant. Named + Other should sum near 100% on expected.";

@@ -121,11 +121,11 @@ export function SharePieEditor({
     <div className="panel">
       <h3 style={{ marginTop: 0 }}>{title}</h3>
       <p className="muted" style={{ fontSize: "0.85rem", marginTop: 0 }}>
-        Contribute downside / expected / upside shares on named players
-        {pieKind === "rush" ? " (QB always listed)" : ""}. Everyone else rolls
-        into <strong>Other</strong>. <strong>Expected</strong> (named + Other)
-        should sum ≈ 100%. Upside shares do not — they can&apos;t all hit
-        together.
+        These named shares are collective inputs
+        {pieKind === "rush" ? " (QB always listed)" : ""}. Contribute downside /
+        expected / upside; everyone else rolls into <strong>Other</strong>.{" "}
+        <strong>Expected</strong> (named + Other) should sum ≈ 100%. Upside
+        shares do not — they can&apos;t all hit together.
       </p>
       <div className="table-wrap">
         <table className="data">

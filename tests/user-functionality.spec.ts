@@ -175,6 +175,7 @@ test.describe("5 · Player card", () => {
 
     await expect(page.getByRole("heading", { name: "Season outlook" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Contribute to this projection" })).toBeVisible();
+    await expect(page.getByText("Inspect the pieces").first()).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Contribute to team offense" }),
     ).toBeVisible();

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { ClaimableField } from "@/lib/types";
+import { BRAND_CONTRIBUTE_SUCCESS } from "@/lib/brand";
 import { displayClaimValue } from "@/lib/format";
 
 type Props = {
@@ -141,7 +142,7 @@ function ProposeModal({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submit failed");
-      setOk("Contribution submitted.");
+      setOk(BRAND_CONTRIBUTE_SUCCESS);
       onSubmitted?.();
       if (typeof window !== "undefined") {
         window.dispatchEvent(

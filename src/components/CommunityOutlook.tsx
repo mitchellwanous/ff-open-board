@@ -90,8 +90,8 @@ export function CommunityOutlook({
           {editHref
             ? "Contribute to the projection below or add a season take"
             : "Contribute numbers below or add a season take"}{" "}
-          — the next republish will distill a plain-language why for this{" "}
-          {isTeam ? "team" : "player"}.
+          — we review contributions and republish daily with a plain-language
+          why for this {isTeam ? "team" : "player"}.
         </p>
       )}
 

@@ -10,6 +10,7 @@ import {
   getTeam,
   getTeams,
 } from "@/lib/data";
+import { BRAND_TEAM_PIE_INTRO } from "@/lib/brand";
 import { fmt, fmtInt } from "@/lib/format";
 import {
   compareNullable,
@@ -174,10 +175,8 @@ export default async function TeamPage({
 
       {/* 2 · Player share */}
       <h2 id="share-pies">Who gets the ball</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Player share — how targets and rushes are split. Contribute downside /
-        expected / upside on each claimant. Named + Other should sum near 100%
-        on expected.
+      <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "40rem" }}>
+        {BRAND_TEAM_PIE_INTRO}
       </p>
       <div className="share-stack">
         <SharePieEditor

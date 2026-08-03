@@ -724,7 +724,8 @@ table.data.players-board .row-actions a {
   max-width: 40rem;
 }
 
-.home-loop {
+.home-loop,
+.contribute-loop {
   margin: 0;
   padding-left: 1.2rem;
   display: grid;
@@ -735,8 +736,13 @@ table.data.players-board .row-actions a {
   max-width: 40rem;
 }
 
-.home-loop strong {
+.home-loop strong,
+.contribute-loop strong {
   color: var(--text);
+}
+
+.contribute-loop {
+  margin: 0.75rem 0 0;
 }
 
 .home-do--secondary {
