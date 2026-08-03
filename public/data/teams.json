@@ -50,7 +50,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1229.2,
+    "board_fp": 1289.6,
     "board_rk": 18,
     "newcomers": [
       "Jeremiyah Love (RB1, Rookie)",
@@ -326,7 +326,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1034.3,
+    "board_fp": 1166.9,
     "board_rk": 27,
     "newcomers": [
       "Tua Tagovailoa (QB1, new)",
@@ -611,7 +611,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1183.3,
+    "board_fp": 1196.8,
     "board_rk": 6,
     "newcomers": [
       "Durham Smythe (TE2, from CHI)",
@@ -897,7 +897,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.039; eff_cv=0.116; regime=franchise_hist"
     },
-    "board_fp": 1302.6,
+    "board_fp": 1312.3,
     "board_rk": 5,
     "newcomers": [
       "DJ Moore (WR1, from CHI)",
@@ -1191,7 +1191,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.027; pass_std=0.032; eff_cv=0.109; regime=same_hc:Dave Canales"
     },
-    "board_fp": 1017.7,
+    "board_fp": 1003.7,
     "board_rk": 25,
     "newcomers": [
       "Kenny Pickett (QB2, new)",
@@ -1486,7 +1486,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.040; pass_std=0.048; eff_cv=0.138; regime=franchise_hist"
     },
-    "board_fp": 1245.2,
+    "board_fp": 1258.6,
     "board_rk": 17,
     "newcomers": [
       "Case Keenum (QB3, new)",
@@ -1771,7 +1771,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.035; pass_std=0.031; eff_cv=0.115; regime=same_hc:Zac Taylor"
     },
-    "board_fp": 1326.5,
+    "board_fp": 1342.7,
     "board_rk": 2,
     "newcomers": [
       "Josh Johnson (QB3, new)",
@@ -2056,7 +2056,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.049; pass_std=0.043; eff_cv=0.146; regime=franchise_hist"
     },
-    "board_fp": 953.5,
+    "board_fp": 989.6,
     "board_rk": 32,
     "newcomers": [
       "Deshaun Watson (QB1, new)",
@@ -2314,7 +2314,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.029; pass_std=0.035; eff_cv=0.138; regime=franchise_hist"
     },
-    "board_fp": 1358.2,
+    "board_fp": 1369.1,
     "board_rk": 4,
     "newcomers": [
       "Sam Howell (QB3, new)",
@@ -2590,7 +2590,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.034; pass_std=0.025; eff_cv=0.144; regime=franchise_hist"
     },
-    "board_fp": 1346.5,
+    "board_fp": 1346.3,
     "board_rk": 14,
     "newcomers": [
       "Jarrett Stidham (QB2, new)",
@@ -2866,7 +2866,7 @@
       "source": "override",
       "notes": "Cap upside ~29.5 PPG (26.35\u00d71.03\u00d71.10) \u2014 31+ PPG is ~1\u20132 team-seasons in 2021\u201325 (DET 2024 unicorn); don't price that as standard upside"
     },
-    "board_fp": 1406.5,
+    "board_fp": 1414.9,
     "board_rk": 1,
     "newcomers": [
       "Teddy Bridgewater (QB2, new)",
@@ -3142,7 +3142,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.031; pass_std=0.040; eff_cv=0.119; regime=same_hc:Matt LaFleur"
     },
-    "board_fp": 1175.6,
+    "board_fp": 1192.4,
     "board_rk": 21,
     "newcomers": [
       "Tyrod Taylor (QB2, new)",
@@ -3409,7 +3409,7 @@
       "source": "formula_regime_cv",
       "notes": "n=3; vol_cv=0.028; pass_std=0.025; eff_cv=0.086; regime=same_hc:DeMeco Ryans"
     },
-    "board_fp": 1159.5,
+    "board_fp": 1242.8,
     "board_rk": 24,
     "newcomers": [
       "David Montgomery (RB1, from DET)",
@@ -3694,7 +3694,7 @@
       "source": "formula_regime_cv",
       "notes": "n=3; vol_cv=0.038; pass_std=0.031; eff_cv=0.139; regime=same_hc:Shane Steichen"
     },
-    "board_fp": 1233.0,
+    "board_fp": 1231.5,
     "board_rk": 15,
     "newcomers": [
       "Seth McGowan (RB3, Rookie)",
@@ -3716,19 +3716,19 @@
       },
       {
         "kind": "player",
-        "player_id": "00-0040128",
-        "name": "Tyler Warren",
-        "position": "TE",
-        "share_dn": 20.1,
+        "player_id": "00-0037664",
+        "name": "Alec Pierce",
+        "position": "WR",
+        "share_dn": 17.4,
         "share": 20.6,
         "share_ceil": 24.0
       },
       {
         "kind": "player",
-        "player_id": "00-0037664",
-        "name": "Alec Pierce",
-        "position": "WR",
-        "share_dn": 17.4,
+        "player_id": "00-0040128",
+        "name": "Tyler Warren",
+        "position": "TE",
+        "share_dn": 20.1,
         "share": 20.6,
         "share_ceil": 24.0
       },
@@ -3962,7 +3962,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.020; pass_std=0.019; eff_cv=0.089; regime=staff_donors:TB2024,JAX2025"
     },
-    "board_fp": 1219.0,
+    "board_fp": 1214.5,
     "board_rk": 11,
     "newcomers": [
       "Nick Mullens (QB2, new)",
@@ -4238,7 +4238,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.026; eff_cv=0.137; regime=franchise_hist"
     },
-    "board_fp": 1148.1,
+    "board_fp": 1162.9,
     "board_rk": 12,
     "newcomers": [
       "Kenneth Walker III (RB1, from SEA)",
@@ -4523,7 +4523,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.038; pass_std=0.027; eff_cv=0.157; regime=franchise_hist"
     },
-    "board_fp": 1406.6,
+    "board_fp": 1417.0,
     "board_rk": 3,
     "newcomers": [
       "Stetson Bennett (QB2, new)",
@@ -4800,7 +4800,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.043; pass_std=0.039; eff_cv=0.130; regime=franchise_hist"
     },
-    "board_fp": 1248.3,
+    "board_fp": 1256.4,
     "board_rk": 9,
     "newcomers": [
       "David Njoku (TE2, from CLE)",
@@ -5095,7 +5095,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 787.7,
+    "board_fp": 1022.9,
     "board_rk": 30,
     "newcomers": [
       "Kirk Cousins (QB1, new)",
@@ -5371,7 +5371,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.049; pass_std=0.032; eff_cv=0.157; regime=franchise_hist"
     },
-    "board_fp": 963.8,
+    "board_fp": 976.0,
     "board_rk": 29,
     "newcomers": [
       "Malik Willis (QB1, new)",
@@ -5647,7 +5647,7 @@
       "source": "formula_regime_cv",
       "notes": "n=4; vol_cv=0.053; pass_std=0.036; eff_cv=0.120; regime=same_hc:Kevin O'Connell"
     },
-    "board_fp": 1202.8,
+    "board_fp": 1209.7,
     "board_rk": 19,
     "newcomers": [
       "Kyler Murray (QB1, new)",
@@ -5914,7 +5914,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.029; pass_std=0.031; eff_cv=0.211; regime=franchise_hist"
     },
-    "board_fp": 1312.4,
+    "board_fp": 1341.3,
     "board_rk": 7,
     "newcomers": [
       "A.J. Brown (WR1, from PHI)",
@@ -6208,7 +6208,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.033; pass_std=0.070; eff_cv=0.201; regime=staff_donors:PHI2024,NO2025"
     },
-    "board_fp": 1081.9,
+    "board_fp": 1119.4,
     "board_rk": 26,
     "newcomers": [
       "Noah Fant (TE2, from CIN)",
@@ -6494,7 +6494,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1204.4,
+    "board_fp": 1359.3,
     "board_rk": 23,
     "newcomers": [
       "Isaiah Likely (TE1, from BAL)",
@@ -6779,7 +6779,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.037; eff_cv=0.119; regime=franchise_hist"
     },
-    "board_fp": 876.4,
+    "board_fp": 909.4,
     "board_rk": 31,
     "newcomers": [
       "Geno Smith (QB1, new)",
@@ -7047,7 +7047,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.042; pass_std=0.037; eff_cv=0.094; regime=franchise_hist"
     },
-    "board_fp": 1127.9,
+    "board_fp": 1129.2,
     "board_rk": 20,
     "newcomers": [
       "Andy Dalton (QB2, new)",
@@ -7324,7 +7324,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.046; pass_std=0.043; eff_cv=0.146; regime=franchise_hist"
     },
-    "board_fp": 1148.5,
+    "board_fp": 1149.3,
     "board_rk": 22,
     "newcomers": [
       "Rico Dowdle (RB2, from CAR)",
@@ -7609,7 +7609,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.037; pass_std=0.044; eff_cv=0.127; regime=franchise_hist"
     },
-    "board_fp": 1254.0,
+    "board_fp": 1250.3,
     "board_rk": 10,
     "newcomers": [
       "Jadarian Price (RB2, Rookie)",
@@ -7885,7 +7885,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.028; eff_cv=0.115; regime=same_hc:Kyle Shanahan"
     },
-    "board_fp": 1369.3,
+    "board_fp": 1382.0,
     "board_rk": 8,
     "newcomers": [
       "Mike Evans (WR1, from TB)",
@@ -8162,7 +8162,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.046; eff_cv=0.177; regime=franchise_hist"
     },
-    "board_fp": 1273.0,
+    "board_fp": 1275.2,
     "board_rk": 16,
     "newcomers": [
       "Jake Browning (QB2, new)",
@@ -8447,7 +8447,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1000.8,
+    "board_fp": 1065.0,
     "board_rk": 28,
     "newcomers": [
       "Carnell Tate (WR1, Rookie)",
@@ -8460,21 +8460,21 @@
     "tgt_segs": [
       {
         "kind": "player",
-        "player_id": "00-0038117",
-        "name": "Wan'Dale Robinson",
-        "position": "WR",
-        "share_dn": 13.0,
-        "share": 18.5,
-        "share_ceil": 21.5
-      },
-      {
-        "kind": "player",
         "player_id": "00-0041438",
         "name": "Carnell Tate",
         "position": "WR",
         "share_dn": 13.0,
         "share": 18.5,
         "share_ceil": 23.0
+      },
+      {
+        "kind": "player",
+        "player_id": "00-0038117",
+        "name": "Wan'Dale Robinson",
+        "position": "WR",
+        "share_dn": 13.0,
+        "share": 18.5,
+        "share_ceil": 21.5
       },
       {
         "kind": "player",
@@ -8714,7 +8714,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.046; pass_std=0.048; eff_cv=0.163; regime=franchise_hist"
     },
-    "board_fp": 1225.4,
+    "board_fp": 1224.4,
     "board_rk": 13,
     "newcomers": [
       "Chig Okonkwo (TE1, from TEN)",

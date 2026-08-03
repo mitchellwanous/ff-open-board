@@ -155,7 +155,7 @@
   {
     "field": "catch_pct",
     "grain": "player",
-    "label": "Catch %",
+    "label": "Catch rate",
     "unit": "share",
     "min": 0.4,
     "max": 0.95,
@@ -183,7 +183,7 @@
   {
     "field": "cay_per_rec",
     "grain": "player",
-    "label": "Completed air yards / catch",
+    "label": "Yards in the air per catch",
     "unit": "yp",
     "min": 0.0,
     "max": 20.0,
@@ -192,12 +192,12 @@
       "TE",
       "RB"
     ],
-    "doctrine": "How deep catches are completed (before YAC)."
+    "doctrine": "How deep catches are completed (before yards after the catch)."
   },
   {
     "field": "yac_per_rec",
     "grain": "player",
-    "label": "Yards after catch / reception",
+    "label": "Yards after catch",
     "unit": "yp",
     "min": 0.0,
     "max": 12.0,
@@ -206,12 +206,12 @@
       "TE",
       "RB"
     ],
-    "doctrine": "YAC per catch \u2014 design + talent after the catch."
+    "doctrine": "Yards after the catch \u2014 design + talent once the ball is secured."
   },
   {
     "field": "rec_td_rate",
     "grain": "player",
-    "label": "Rec TD rate (per target)",
+    "label": "Touchdowns per target",
     "unit": "share",
     "min": 0.0,
     "max": 0.2,
@@ -220,7 +220,7 @@
       "TE",
       "RB"
     ],
-    "doctrine": "Receiving TDs \u00f7 targets. Noisy \u2014 pin a season rate, not one hot streak."
+    "doctrine": "Receiving touchdowns \u00f7 targets. Noisy \u2014 pin a season rate, not one hot streak."
   },
   {
     "field": "ypc",
@@ -238,7 +238,7 @@
   {
     "field": "rush_td_rate",
     "grain": "player",
-    "label": "Rush TD rate (per carry)",
+    "label": "Touchdowns per carry",
     "unit": "share",
     "min": 0.0,
     "max": 0.2,
@@ -246,12 +246,12 @@
       "RB",
       "QB"
     ],
-    "doctrine": "Rush TDs \u00f7 rush attempts. Heavily shrunk in the model \u2014 don\u2019t overfit goal-line spikes."
+    "doctrine": "Rush touchdowns \u00f7 rush attempts. Heavily shrunk in the model \u2014 don\u2019t overfit goal-line spikes."
   },
   {
     "field": "pass_ypa",
     "grain": "player",
-    "label": "Pass yards per attempt",
+    "label": "Yards per pass attempt",
     "unit": "yp",
     "min": 5.0,
     "max": 10.0,
@@ -263,19 +263,19 @@
   {
     "field": "pass_td_rate",
     "grain": "player",
-    "label": "Pass TD rate (per attempt)",
+    "label": "Touchdowns per pass attempt",
     "unit": "share",
     "min": 0.02,
     "max": 0.09,
     "positions": [
       "QB"
     ],
-    "doctrine": "Pass TDs \u00f7 attempts."
+    "doctrine": "Pass touchdowns \u00f7 attempts."
   },
   {
     "field": "int_rate",
     "grain": "player",
-    "label": "Interception rate",
+    "label": "Interceptions per pass attempt",
     "unit": "share",
     "min": 0.005,
     "max": 0.05,
