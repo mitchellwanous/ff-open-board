@@ -1526,21 +1526,21 @@
         "rank": 33
       },
       {
-        "id": "00-0041438",
-        "label": "Carnell Tate",
-        "team": "TEN",
-        "position": "WR",
-        "value": 0.185,
-        "href": "/players/00-0041438",
-        "rank": 34
-      },
-      {
         "id": "00-0038117",
         "label": "Wan'Dale Robinson",
         "team": "TEN",
         "position": "WR",
         "value": 0.185,
         "href": "/players/00-0038117",
+        "rank": 34
+      },
+      {
+        "id": "00-0041438",
+        "label": "Carnell Tate",
+        "team": "TEN",
+        "position": "WR",
+        "value": 0.185,
+        "href": "/players/00-0041438",
         "rank": 35
       },
       {
@@ -1724,22 +1724,13 @@
         "rank": 55
       },
       {
-        "id": "00-0034753",
-        "label": "Mark Andrews",
-        "team": "BAL",
-        "position": "TE",
-        "value": 0.16,
-        "href": "/players/00-0034753",
-        "rank": 56
-      },
-      {
         "id": "00-0034383",
         "label": "Dalton Schultz",
         "team": "HOU",
         "position": "TE",
         "value": 0.16,
         "href": "/players/00-0034383",
-        "rank": 57
+        "rank": 56
       },
       {
         "id": "00-0040735",
@@ -1748,6 +1739,15 @@
         "position": "WR",
         "value": 0.16,
         "href": "/players/00-0040735",
+        "rank": 57
+      },
+      {
+        "id": "00-0034753",
+        "label": "Mark Andrews",
+        "team": "BAL",
+        "position": "TE",
+        "value": 0.16,
+        "href": "/players/00-0034753",
         "rank": 58
       },
       {
@@ -2021,21 +2021,21 @@
         "rank": 88
       },
       {
-        "id": "00-0036259",
-        "label": "Jauan Jennings",
-        "team": "MIN",
-        "position": "WR",
-        "value": 0.13,
-        "href": "/players/00-0036259",
-        "rank": 89
-      },
-      {
         "id": "00-0040130",
         "label": "Jayden Higgins",
         "team": "HOU",
         "position": "WR",
         "value": 0.13,
         "href": "/players/00-0040130",
+        "rank": 89
+      },
+      {
+        "id": "00-0036259",
+        "label": "Jauan Jennings",
+        "team": "MIN",
+        "position": "WR",
+        "value": 0.13,
+        "href": "/players/00-0036259",
         "rank": 90
       },
       {
@@ -3110,21 +3110,21 @@
         "rank": 209
       },
       {
-        "id": "00-0037112",
-        "label": "Jake Tonges",
-        "team": "SF",
-        "position": "TE",
-        "value": 0.045,
-        "href": "/players/00-0037112",
-        "rank": 210
-      },
-      {
         "id": "00-0032104",
         "label": "Ameer Abdullah",
         "team": "JAX",
         "position": "RB",
         "value": 0.045,
         "href": "/players/00-0032104",
+        "rank": 210
+      },
+      {
+        "id": "00-0037112",
+        "label": "Jake Tonges",
+        "team": "SF",
+        "position": "TE",
+        "value": 0.045,
+        "href": "/players/00-0037112",
         "rank": 211
       },
       {
@@ -6084,21 +6084,21 @@
         "rank": 130
       },
       {
-        "id": "00-0039066",
-        "label": "Michael Mayer",
-        "team": "LV",
-        "position": "TE",
-        "value": 7.1,
-        "href": "/players/00-0039066",
-        "rank": 131
-      },
-      {
         "id": "00-0036244",
         "label": "Colby Parkinson",
         "team": "LA",
         "position": "TE",
         "value": 7.1,
         "href": "/players/00-0036244",
+        "rank": 131
+      },
+      {
+        "id": "00-0039066",
+        "label": "Michael Mayer",
+        "team": "LV",
+        "position": "TE",
+        "value": 7.1,
+        "href": "/players/00-0039066",
         "rank": 132
       },
       {
@@ -6174,21 +6174,21 @@
         "rank": 140
       },
       {
-        "id": "00-0041035",
-        "label": "De'Zhaun Stribling",
-        "team": "SF",
-        "position": "WR",
-        "value": 6.9,
-        "href": "/players/00-0041035",
-        "rank": 141
-      },
-      {
         "id": "00-0041040",
         "label": "Antonio Williams",
         "team": "WAS",
         "position": "WR",
         "value": 6.9,
         "href": "/players/00-0041040",
+        "rank": 141
+      },
+      {
+        "id": "00-0041035",
+        "label": "De'Zhaun Stribling",
+        "team": "SF",
+        "position": "WR",
+        "value": 6.9,
+        "href": "/players/00-0041035",
         "rank": 142
       },
       {
@@ -6381,21 +6381,21 @@
         "rank": 163
       },
       {
-        "id": "00-0038618",
-        "label": "Xavier Hutchinson",
-        "team": "HOU",
-        "position": "WR",
-        "value": 6.62,
-        "href": "/players/00-0038618",
-        "rank": 164
-      },
-      {
         "id": "00-0035537",
         "label": "Ty Johnson",
         "team": "BUF",
         "position": "RB",
         "value": 6.62,
         "href": "/players/00-0035537",
+        "rank": 164
+      },
+      {
+        "id": "00-0038618",
+        "label": "Xavier Hutchinson",
+        "team": "HOU",
+        "position": "WR",
+        "value": 6.62,
+        "href": "/players/00-0038618",
         "rank": 165
       },
       {
@@ -7026,7 +7026,7 @@
         "label": "Josh Allen",
         "team": "BUF",
         "position": "QB",
-        "value": 346.3,
+        "value": 352.5,
         "href": "/players/00-0034857",
         "rank": 1
       },
@@ -9119,21 +9119,21 @@
         "rank": 233
       },
       {
-        "id": "00-0035021",
-        "label": "Ashton Dulin",
-        "team": "IND",
-        "position": "WR",
-        "value": 54.3,
-        "href": "/players/00-0035021",
-        "rank": 234
-      },
-      {
         "id": "00-0036849",
         "label": "Tutu Atwell",
         "team": "MIA",
         "position": "WR",
         "value": 54.3,
         "href": "/players/00-0036849",
+        "rank": 234
+      },
+      {
+        "id": "00-0035021",
+        "label": "Ashton Dulin",
+        "team": "IND",
+        "position": "WR",
+        "value": 54.3,
+        "href": "/players/00-0035021",
         "rank": 235
       },
       {
@@ -9443,21 +9443,21 @@
         "rank": 269
       },
       {
-        "id": "00-0039751",
-        "label": "Jordan Whittington",
-        "team": "LA",
-        "position": "WR",
-        "value": 41.8,
-        "href": "/players/00-0039751",
-        "rank": 270
-      },
-      {
         "id": "00-0035644",
         "label": "Noah Fant",
         "team": "NO",
         "position": "TE",
         "value": 41.8,
         "href": "/players/00-0035644",
+        "rank": 270
+      },
+      {
+        "id": "00-0039751",
+        "label": "Jordan Whittington",
+        "team": "LA",
+        "position": "WR",
+        "value": 41.8,
+        "href": "/players/00-0039751",
         "rank": 271
       },
       {
@@ -11506,21 +11506,21 @@
         "rank": 186
       },
       {
-        "id": "00-0037545",
-        "label": "Rashid Shaheed",
-        "team": "SEA",
-        "position": "WR",
-        "value": 59.0,
-        "href": "/players/00-0037545",
-        "rank": 187
-      },
-      {
         "id": "00-0038977",
         "label": "Tank Dell",
         "team": "HOU",
         "position": "WR",
         "value": 59.0,
         "href": "/players/00-0038977",
+        "rank": 187
+      },
+      {
+        "id": "00-0037545",
+        "label": "Rashid Shaheed",
+        "team": "SEA",
+        "position": "WR",
+        "value": 59.0,
+        "href": "/players/00-0037545",
         "rank": 188
       },
       {
@@ -11920,21 +11920,21 @@
         "rank": 232
       },
       {
-        "id": "00-0039901",
-        "label": "Keon Coleman",
-        "team": "BUF",
-        "position": "WR",
-        "value": 45.2,
-        "href": "/players/00-0039901",
-        "rank": 233
-      },
-      {
         "id": "00-0039875",
         "label": "Ray Davis",
         "team": "BUF",
         "position": "RB",
         "value": 45.2,
         "href": "/players/00-0039875",
+        "rank": 233
+      },
+      {
+        "id": "00-0039901",
+        "label": "Keon Coleman",
+        "team": "BUF",
+        "position": "WR",
+        "value": 45.2,
+        "href": "/players/00-0039901",
         "rank": 234
       },
       {
@@ -12316,21 +12316,21 @@
         "rank": 276
       },
       {
-        "id": "00-0039751",
-        "label": "Jordan Whittington",
-        "team": "LA",
-        "position": "WR",
-        "value": 34.9,
-        "href": "/players/00-0039751",
-        "rank": 277
-      },
-      {
         "id": "00-0040208",
         "label": "Tahj Brooks",
         "team": "CIN",
         "position": "RB",
         "value": 34.9,
         "href": "/players/00-0040208",
+        "rank": 277
+      },
+      {
+        "id": "00-0039751",
+        "label": "Jordan Whittington",
+        "team": "LA",
+        "position": "WR",
+        "value": 34.9,
+        "href": "/players/00-0039751",
         "rank": 278
       },
       {
@@ -12646,7 +12646,7 @@
         "label": "Josh Allen",
         "team": "BUF",
         "position": "QB",
-        "value": 427.4,
+        "value": 447.6,
         "href": "/players/00-0034857",
         "rank": 1
       },
@@ -15288,21 +15288,21 @@
         "rank": 294
       },
       {
-        "id": "00-0038115",
-        "label": "Daniel Bellinger",
-        "team": "TEN",
-        "position": "TE",
-        "value": 39.8,
-        "href": "/players/00-0038115",
-        "rank": 295
-      },
-      {
         "id": "00-0039407",
         "label": "Dylan Laube",
         "team": "LV",
         "position": "RB",
         "value": 39.8,
         "href": "/players/00-0039407",
+        "rank": 295
+      },
+      {
+        "id": "00-0038115",
+        "label": "Daniel Bellinger",
+        "team": "TEN",
+        "position": "TE",
+        "value": 39.8,
+        "href": "/players/00-0038115",
         "rank": 296
       },
       {

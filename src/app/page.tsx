@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AppFeedbackButton } from "@/components/AppFeedbackButton";
 import { LiveCollectivePanel } from "@/components/LiveCollectivePanel";
 import {
-  BRAND_CATCHPHRASE,
   BRAND_FORMULA,
   BRAND_NAME,
   BRAND_TAGLINE,
@@ -25,9 +24,6 @@ export default async function HomePage() {
       <p className="brand-kicker">{BRAND_TAGLINE}</p>
       <h1>{BRAND_NAME}</h1>
       <p className="lede">
-        <strong>{BRAND_CATCHPHRASE}</strong>
-      </p>
-      <p className="lede" style={{ marginTop: "0.85rem" }}>
         We&apos;re building the best half-PPR projections in public. Anyone can
         contribute a better input with a short reason — the board gets sharper
         together.

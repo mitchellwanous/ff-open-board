@@ -197,10 +197,14 @@ function valuesDiffer(
   return Math.abs(next - official) > tol;
 }
 
-/** Hist shares/rates may be stored as 0–1 or already as percent. */
+/**
+ * Hist shares/rates from the freeze are usually already percent (`_pct` in export).
+ * Only scale true fractions (< 1). Do NOT use ≤1.5 — elite INT rates like 1.2%
+ * were shown as 120%.
+ */
 function histPct(v: number | null | undefined, digits = 0): string {
   if (v == null || Number.isNaN(v)) return "—";
-  const pct = Math.abs(v) <= 1.5 ? v * 100 : v;
+  const pct = Math.abs(v) < 1 ? v * 100 : v;
   return `${pct.toFixed(digits)}%`;
 }
 
@@ -932,7 +936,7 @@ export function TeamOffenseContributeSheet({
 
   function histPassRate(v: number | null | undefined): string {
     if (v == null || Number.isNaN(v)) return "—";
-    const pct = Math.abs(v) <= 1.5 ? v * 100 : v;
+    const pct = Math.abs(v) < 1 ? v * 100 : v;
     return `${Math.round(pct)}%`;
   }
 

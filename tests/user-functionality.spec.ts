@@ -27,9 +27,6 @@ test.describe("1 · Home", () => {
     await page.goto("/");
     await expect(page.getByRole("heading", { name: "The FF Collective" })).toBeVisible();
     await expect(
-      page.getByText(/The collective is stronger than one/i).first(),
-    ).toBeVisible();
-    await expect(
       page.getByText(/Crowdsourced fantasy football projections/i).first(),
     ).toBeVisible();
     await expect(page.getByText(/last update 2026-08-02/i)).toBeVisible();

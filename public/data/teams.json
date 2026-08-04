@@ -897,7 +897,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.039; eff_cv=0.116; regime=franchise_hist"
     },
-    "board_fp": 1290.2,
+    "board_fp": 1296.4,
     "board_rk": 5,
     "newcomers": [
       "DJ Moore (WR1, from CHI)",
@@ -8451,21 +8451,21 @@
     "tgt_segs": [
       {
         "kind": "player",
-        "player_id": "00-0041438",
-        "name": "Carnell Tate",
-        "position": "WR",
-        "share_dn": 13.0,
-        "share": 18.5,
-        "share_ceil": 23.0
-      },
-      {
-        "kind": "player",
         "player_id": "00-0038117",
         "name": "Wan'Dale Robinson",
         "position": "WR",
         "share_dn": 13.0,
         "share": 18.5,
         "share_ceil": 21.5
+      },
+      {
+        "kind": "player",
+        "player_id": "00-0041438",
+        "name": "Carnell Tate",
+        "position": "WR",
+        "share_dn": 13.0,
+        "share": 18.5,
+        "share_ceil": 23.0
       },
       {
         "kind": "player",
