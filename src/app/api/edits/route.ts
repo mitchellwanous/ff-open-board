@@ -203,7 +203,16 @@ export async function POST(req: NextRequest) {
       author: String(body.author || "anonymous").slice(0, 64),
     });
 
-    return NextResponse.json({ edit });
+    const community = await communityMap(body.grain, String(body.subject_id));
+    const fieldCommunity = community[fieldDef.field];
+    const { contributeOutcomeMessage } = await import("@/lib/liveBoard");
+    const board_message = contributeOutcomeMessage(fieldCommunity?.n ?? 1);
+
+    return NextResponse.json({
+      edit,
+      community: fieldCommunity ?? null,
+      board_message,
+    });
   } catch (err) {
     return NextResponse.json(
       { error: err instanceof Error ? err.message : "Server error" },

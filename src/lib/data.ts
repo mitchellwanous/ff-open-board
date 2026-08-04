@@ -1,7 +1,8 @@
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import path from "path";
 import { pointsPerPlay } from "./format";
 import type {
+  BoardChangeLogEntry,
   ClaimableField,
   Meta,
   Player,
@@ -47,6 +48,18 @@ export function getRankings(): RankingsPayload {
 
 export function getClaimableFields(): ClaimableField[] {
   return readJson("claimable_fields.json");
+}
+
+/** Published board pin changes from the lab export (may be empty). */
+export function getBoardChangeLog(): BoardChangeLogEntry[] {
+  const pathName = path.join(DATA_DIR, "board_change_log.json");
+  if (!existsSync(pathName)) return [];
+  try {
+    const raw = JSON.parse(readFileSync(pathName, "utf8")) as BoardChangeLogEntry[];
+    return Array.isArray(raw) ? raw : [];
+  } catch {
+    return [];
+  }
 }
 
 function asShare(n: number | null | undefined): number | null {

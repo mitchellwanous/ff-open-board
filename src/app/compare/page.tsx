@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ComparePicker } from "@/components/ComparePicker";
 import { BRAND_CONTRIBUTE_CALLOUT } from "@/lib/brand";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
-import { getPlayer, getPlayers } from "@/lib/data";
+import { getLivePlayers, type LivePlayer } from "@/lib/liveBoard";
 import { fmt, fmtInt } from "@/lib/format";
 import type { Player } from "@/lib/types";
 
@@ -61,11 +61,13 @@ export default async function ComparePage({
 }) {
   const sp = await searchParams;
   const ids = parseIds(sp.ids);
+  const live = await getLivePlayers();
+  const byId = new Map(live.map((p) => [p.player_id, p]));
   const players = ids
-    .map((id) => getPlayer(id))
-    .filter((p): p is Player => Boolean(p));
+    .map((id) => byId.get(id))
+    .filter((p): p is LivePlayer => Boolean(p));
 
-  const allPlayers = getPlayers().map((p) => ({
+  const allPlayers = live.map((p) => ({
     id: p.player_id,
     name: p.name,
     position: p.position,

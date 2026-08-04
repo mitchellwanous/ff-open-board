@@ -1,19 +1,22 @@
 import Link from "next/link";
 import { AppFeedbackButton } from "@/components/AppFeedbackButton";
+import { LiveCollectivePanel } from "@/components/LiveCollectivePanel";
 import {
   BRAND_CATCHPHRASE,
   BRAND_FORMULA,
   BRAND_NAME,
   BRAND_TAGLINE,
 } from "@/lib/brand";
-import { getMeta, getPlayer, getTeam } from "@/lib/data";
+import { getMeta, getTeam } from "@/lib/data";
+import { buildLiveBoard } from "@/lib/liveBoard";
 import { fmt, fmtInt } from "@/lib/format";
 
 const ACHANE_ID = "00-0039040";
 
-export default function HomePage() {
+export default async function HomePage() {
   const meta = getMeta();
-  const achane = getPlayer(ACHANE_ID);
+  const board = await buildLiveBoard();
+  const achane = board.players.find((p) => p.player_id === ACHANE_ID);
   const mia = getTeam("MIA");
   const pos = achane?.position ?? "RB";
 
@@ -25,8 +28,8 @@ export default function HomePage() {
         <strong>{BRAND_CATCHPHRASE}</strong>
       </p>
       <p className="lede" style={{ marginTop: "0.85rem" }}>
-        We&apos;re building the best half-PPR projections in public — by letting
-        anyone contribute better inputs, then refining and republishing
+        We&apos;re building the best half-PPR projections in public. Anyone can
+        contribute a better input with a short reason — the board gets sharper
         together.
       </p>
       <p className="lede" style={{ marginTop: "0.75rem" }}>
@@ -35,8 +38,7 @@ export default function HomePage() {
         better one with a short reason.
       </p>
       <div className="callout">
-        Updated daily · last update {meta.exported_on} · {meta.n_players}{" "}
-        players · half PPR
+        Updated {meta.exported_on} · {meta.n_players} players · half PPR
       </div>
 
       <section className="home-section">
@@ -44,8 +46,8 @@ export default function HomePage() {
         <div className="panel home-contribute">
           <p className="home-contribute__lead">
             You&apos;re not filing a ticket — you&apos;re feeding the collective
-            model. Strong reasons get reviewed; accepted inputs update the board
-            for everyone.
+            model. After 3 people contribute on the same input, the board uses
+            the middle number. We still reject spam.
           </p>
           <ol className="home-loop">
             <li>
@@ -57,8 +59,8 @@ export default function HomePage() {
               with and leave a short reason.
             </li>
             <li>
-              <strong>We review and republish</strong> — the public model gets
-              better over time.
+              <strong>The board updates</strong> — after 3 takes on an input,
+              fantasy points move for everyone; we audit for spam.
             </li>
           </ol>
           <div className="home-actions" style={{ margin: "1.1rem 0 0" }}>
@@ -169,6 +171,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <LiveCollectivePanel needsLook={board.needsLook} />
 
       <footer className="home-footer">
         <AppFeedbackButton />

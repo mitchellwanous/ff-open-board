@@ -8,7 +8,9 @@ Half-PPR projections built in public: **team offense + player share + player eff
 
 Brand / UI copy source of truth: [`src/lib/brand.ts`](src/lib/brand.ts). Agent doctrine: [`.cursor/rules/ff-collective-brand.mdc`](.cursor/rules/ff-collective-brand.mdc).
 
-Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`). The projection engine is not re-run in this app. Visitors contribute number inputs and outlook notes; you review daily in the lab, update pins + distilled community outlook notes, then republish.
+Data is a **frozen export** from the Fantasy Football lab (`scripts/export_open_board_payload.py`) that **seeds** the board. Live consensus on claimable inputs (min 3 agreeing votes, weighted median) becomes **Expected immediately**. When a base share unlocks, the team pie **hybrid-renorms to 100%** (same-position unlocked → Other/depth → other positions), then half-PPR FP and ranks recompute from identity. Lab review pins overrides into the next freeze — spam/audit + outlook, not the gate for live Expected.
+
+Visitors contribute number inputs and outlook notes; rejected edits are excluded from consensus.
 
 
 ## Run locally

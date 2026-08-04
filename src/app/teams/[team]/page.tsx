@@ -4,11 +4,11 @@ import { CommunityOutlook } from "@/components/CommunityOutlook";
 import type { BucketRow, OffenseBoard } from "@/components/EditProjectionBuckets";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
 import { SharePieEditor } from "@/components/SharePieEditor";
+import { SubjectChangeLog } from "@/components/SubjectChangeLog";
 import { TeamOffenseContributeButton } from "@/components/TeamOffenseContributeButton";
+import { buildLiveBoard } from "@/lib/liveBoard";
 import {
   getClaimableFields,
-  getPlayersByTeam,
-  getTeam,
   getTeams,
 } from "@/lib/data";
 import { BRAND_TEAM_PIE_INTRO } from "@/lib/brand";
@@ -36,11 +36,16 @@ export default async function TeamPage({
 }) {
   const { team: raw } = await params;
   const sp = await searchParams;
-  const team = getTeam(raw);
+  const board = await buildLiveBoard();
+  const team = board.teams.find(
+    (t) => t.team.toUpperCase() === raw.toUpperCase(),
+  );
   if (!team) notFound();
   const teamAbbr = team.team;
 
-  const players = getPlayersByTeam(teamAbbr);
+  const players = board.players
+    .filter((p) => p.team === teamAbbr)
+    .sort((a, b) => (b.fp.season_fp ?? 0) - (a.fp.season_fp ?? 0));
   const allClaimable = getClaimableFields();
   const claimable = allClaimable.filter(
     (c) => c.grain === "team" && !c.field.includes("other"),
@@ -380,6 +385,12 @@ export default async function TeamPage({
           </table>
         </div>
       </details>
+
+      <SubjectChangeLog
+        grain="team"
+        subjectId={team.team}
+        subjectLabel={team.team}
+      />
     </>
   );
 }

@@ -3,11 +3,20 @@
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import {
+  BRAND_CONTRIBUTE_CHOOSER_SUB,
+  BRAND_CONTRIBUTE_CHOOSER_TITLE,
+  BRAND_CONTRIBUTE_CTA,
+  BRAND_CONTRIBUTE_PIECES,
   BRAND_CONTRIBUTE_SUCCESS,
+  BRAND_CONTRIBUTE_SUCCESS_LIVE,
   BRAND_PLAYER_CONTRIBUTE_LOOP,
 } from "@/lib/brand";
 import type { ClaimableField } from "@/lib/types";
 import { displayClaimValue, fmt, fmtInt } from "@/lib/format";
+import {
+  TeamShareContributeSheet,
+  type ShareClaimantRow,
+} from "./TeamShareContributeSheet";
 
 export type BucketRow = {
   field: ClaimableField;
@@ -119,6 +128,19 @@ type Props = {
   pieHref: string;
   /** Link to classic inventory UI for revert. */
   classicHref: string;
+  /**
+   * `always` (default) — three sheets visible on the page.
+   * `gated` — math-first cards: one CTA → piece chooser → sheet modal.
+   */
+  entry?: "always" | "gated";
+  /**
+   * When set (gated flow), "Player share" opens the team target pie sheet
+   * instead of this player's share bands alone.
+   */
+  targetPie?: {
+    years: number[];
+    rows: ShareClaimantRow[];
+  };
 };
 
 function isShareField(field: ClaimableField) {
@@ -368,6 +390,7 @@ function useEditDrafts(rows: BucketRow[]) {
 
     setBusy(true);
     try {
+      let lastBoardMessage: string | null = null;
       for (const r of changed) {
         const value = parseInput(r.field, drafts[r.field.field] ?? "")!;
         const res = await fetch("/api/edits", {
@@ -389,11 +412,15 @@ function useEditDrafts(rows: BucketRow[]) {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Submit failed");
+        if (typeof data.board_message === "string") {
+          lastBoardMessage = data.board_message;
+        }
       }
       setOk(
-        changed.length === 1
-          ? BRAND_CONTRIBUTE_SUCCESS
-          : `${changed.length} contributions submitted — we review and republish daily.`,
+        lastBoardMessage ??
+          (changed.length === 1
+            ? BRAND_CONTRIBUTE_SUCCESS
+            : `${changed.length} inputs in — ${BRAND_CONTRIBUTE_SUCCESS_LIVE}`),
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -430,14 +457,130 @@ function useEditDrafts(rows: BucketRow[]) {
 }
 
 export function EditProjectionBuckets(props: Props) {
+  const gated = props.entry === "gated";
+  const [phase, setPhase] = useState<"closed" | "chooser">(
+    gated ? "closed" : "chooser",
+  );
   const [sheet, setSheet] = useState<BucketKind | null>(null);
+
+  const sheets = (
+    <>
+      {sheet === "offense" ? (
+        <TeamOffenseContributeSheet
+          team={props.team}
+          rows={props.offenseRows}
+          board={props.offenseBoard}
+          onClose={() => setSheet(null)}
+        />
+      ) : null}
+      {sheet === "share" ? (
+        props.targetPie ? (
+          <TeamShareContributeSheet
+            team={props.team}
+            pieKind="target"
+            years={props.targetPie.years}
+            rows={props.targetPie.rows}
+            onClose={() => setSheet(null)}
+          />
+        ) : (
+          <ShareBucketSheet
+            playerId={props.playerId}
+            playerName={props.playerName}
+            team={props.team}
+            rows={props.shareRows}
+            board={props.shareBoard}
+            pieHref={props.pieHref}
+            onClose={() => setSheet(null)}
+          />
+        )
+      ) : null}
+      {sheet === "efficiency" ? (
+        <EfficiencyBucketSheet
+          playerId={props.playerId}
+          playerName={props.playerName}
+          rows={props.efficiencyRows}
+          board={props.efficiencyBoard}
+          onClose={() => setSheet(null)}
+        />
+      ) : null}
+    </>
+  );
+
+  if (gated && phase === "closed") {
+    return (
+      <div id="suggest" className="contribute-entry">
+        <button
+          type="button"
+          className="btn primary contribute-entry__cta"
+          onClick={() => setPhase("chooser")}
+        >
+          {BRAND_CONTRIBUTE_CTA}
+        </button>
+        {sheets}
+      </div>
+    );
+  }
+
+  if (gated) {
+    return (
+      <div id="suggest" className="contribute-entry contribute-entry--open">
+        <div className="contribute-chooser">
+          <div className="contribute-chooser__head">
+            <h2 className="contribute-chooser__title">
+              {BRAND_CONTRIBUTE_CHOOSER_TITLE}
+            </h2>
+            <p className="contribute-chooser__sub">
+              {BRAND_CONTRIBUTE_CHOOSER_SUB}
+            </p>
+          </div>
+          <div className="contribute-chooser__pieces">
+            {BRAND_CONTRIBUTE_PIECES.map((piece) => (
+              <button
+                key={piece.id}
+                type="button"
+                className="contribute-chooser__piece"
+                onClick={() => setSheet(piece.id)}
+              >
+                <span className="contribute-chooser__piece-title">
+                  {piece.id === "offense"
+                    ? `${piece.title} (${props.team})`
+                    : piece.title}
+                </span>
+                <span className="contribute-chooser__piece-body">
+                  {piece.body}
+                </span>
+              </button>
+            ))}
+          </div>
+          <p className="contribute-chooser__back">
+            <button
+              type="button"
+              className="text-link"
+              onClick={() => {
+                setSheet(null);
+                setPhase("closed");
+              }}
+            >
+              Back to player math
+            </button>
+            <span className="faint"> · </span>
+            <Link href={props.classicHref} className="text-link">
+              Classic field list
+            </Link>
+          </p>
+        </div>
+        {sheets}
+      </div>
+    );
+  }
 
   return (
     <div id="suggest">
       <h2>Contribute to this projection</h2>
       <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "36rem" }}>
         Three pieces behind the projection. Open a sheet, contribute only what you
-        disagree with, and leave a short reason. We review and republish daily.
+        disagree with, and leave a short reason. After 3 contributions on a
+        field, the board uses the crowd median; we audit for spam.
       </p>
       <ol className="contribute-loop">
         {BRAND_PLAYER_CONTRIBUTE_LOOP.map((step) => (
@@ -553,34 +696,7 @@ export function EditProjectionBuckets(props: Props) {
         </Link>
       </p>
 
-      {sheet === "offense" ? (
-        <TeamOffenseContributeSheet
-          team={props.team}
-          rows={props.offenseRows}
-          board={props.offenseBoard}
-          onClose={() => setSheet(null)}
-        />
-      ) : null}
-      {sheet === "share" ? (
-        <ShareBucketSheet
-          playerId={props.playerId}
-          playerName={props.playerName}
-          team={props.team}
-          rows={props.shareRows}
-          board={props.shareBoard}
-          pieHref={props.pieHref}
-          onClose={() => setSheet(null)}
-        />
-      ) : null}
-      {sheet === "efficiency" ? (
-        <EfficiencyBucketSheet
-          playerId={props.playerId}
-          playerName={props.playerName}
-          rows={props.efficiencyRows}
-          board={props.efficiencyBoard}
-          onClose={() => setSheet(null)}
-        />
-      ) : null}
+      {sheets}
     </div>
   );
 }
@@ -705,6 +821,7 @@ export function TeamOffenseContributeSheet({
 
     setBusy(true);
     try {
+      let lastBoardMessage: string | null = null;
       for (const r of changed) {
         const value = parseInput(r.field, drafts[r.field.field] ?? "")!;
         const res = await fetch("/api/edits", {
@@ -726,11 +843,15 @@ export function TeamOffenseContributeSheet({
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Submit failed");
+        if (typeof data.board_message === "string") {
+          lastBoardMessage = data.board_message;
+        }
       }
       setOk(
-        changed.length === 1
-          ? BRAND_CONTRIBUTE_SUCCESS
-          : `${changed.length} contributions submitted — we review and republish daily.`,
+        lastBoardMessage ??
+          (changed.length === 1
+            ? BRAND_CONTRIBUTE_SUCCESS
+            : `${changed.length} inputs in — ${BRAND_CONTRIBUTE_SUCCESS_LIVE}`),
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -1659,6 +1780,7 @@ function BucketSheet({
 
     setBusy(true);
     try {
+      let lastBoardMessage: string | null = null;
       for (const r of changed) {
         const value = parseInput(r.field, drafts[r.field.field] ?? "")!;
         const res = await fetch("/api/edits", {
@@ -1680,11 +1802,15 @@ function BucketSheet({
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Submit failed");
+        if (typeof data.board_message === "string") {
+          lastBoardMessage = data.board_message;
+        }
       }
       setOk(
-        changed.length === 1
-          ? BRAND_CONTRIBUTE_SUCCESS
-          : `${changed.length} contributions submitted — we review and republish daily.`,
+        lastBoardMessage ??
+          (changed.length === 1
+            ? BRAND_CONTRIBUTE_SUCCESS
+            : `${changed.length} inputs in — ${BRAND_CONTRIBUTE_SUCCESS_LIVE}`),
       );
       if (typeof window !== "undefined") {
         window.dispatchEvent(

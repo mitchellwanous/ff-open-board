@@ -2,9 +2,11 @@ import Link from "next/link";
 import {
   BRAND_CATCHPHRASE,
   BRAND_FORMULA,
+  BRAND_LIVE_RULE,
   BRAND_NAME,
   BRAND_TAGLINE,
 } from "@/lib/brand";
+import { CONSENSUS_MIN_N } from "@/lib/consensusConstants";
 
 export default function HelpPage() {
   return (
@@ -16,10 +18,12 @@ export default function HelpPage() {
       <p className="lede" style={{ marginTop: "0.85rem" }}>
         We&apos;re building half-PPR projections in public. How every player is
         built: <strong>{BRAND_FORMULA}</strong>. If you disagree with an
-        input, contribute a better one with a short reason — we review and
-        republish so the collective model improves.
+        input, contribute a better one with a short reason — after 3
+        contributions on a field, the board uses the crowd median; we audit for
+        spam.
       </p>
 
+      <div className="callout">{BRAND_LIVE_RULE}</div>
       <div className="callout">
         Start on <Link href="/">Home</Link> or{" "}
         <Link href="/players">Players</Link>. Read the projection first.
@@ -46,7 +50,10 @@ export default function HelpPage() {
       <ol className="guide-list">
         <li>Inspect the pieces behind the fantasy total</li>
         <li>Contribute the input you disagree with — and a short reason</li>
-        <li>We review and republish; accepted inputs update the board for everyone</li>
+        <li>
+          After {CONSENSUS_MIN_N} contributions on a field, fantasy points use
+          the crowd median; we still reject spam and distill outlook
+        </li>
       </ol>
 
       <p className="muted" style={{ marginTop: "1.5rem" }}>

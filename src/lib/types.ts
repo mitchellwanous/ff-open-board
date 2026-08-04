@@ -276,6 +276,19 @@ export type Meta = {
   notes: string;
 };
 
+/** Published pin/review row from lab board_change_log.csv export. */
+export type BoardChangeLogEntry = {
+  logged_at: string;
+  grain: "team" | "player" | string;
+  subject_id: string;
+  field: string;
+  old_value: number | string | null;
+  new_value: number | string | null;
+  source?: string;
+  note?: string;
+  edit_ids?: string;
+};
+
 export type EditStatus = "pending" | "reviewed" | "rejected";
 
 /** team/player = projection inbox; app = site/product feedback (not pins/outlook). */

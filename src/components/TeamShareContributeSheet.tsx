@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BRAND_CONTRIBUTE_SUCCESS } from "@/lib/brand";
-import type { ClaimableField, PieSegment } from "@/lib/types";
+import { BRAND_CONTRIBUTE_SUCCESS, BRAND_CONTRIBUTE_SUCCESS_LIVE } from "@/lib/brand";
+import type { ClaimableField } from "@/lib/types";
 import { fmt } from "@/lib/format";
+import {
+  buildShareHistForSeg,
+  type ShareHistCell,
+} from "@/lib/sharePie";
 
-export type ShareHistCell = {
-  pct: number | null;
-  /** Team that season — null if unknown. */
-  team: string | null;
-};
+export type { ShareHistCell };
+export { buildShareHistForSeg };
 
 export type ShareClaimantRow = {
   key: string;
@@ -217,6 +218,7 @@ export function TeamShareContributeSheet({
 
     setBusy(true);
     try {
+      let lastBoardMessage: string | null = null;
       for (const job of jobs) {
         const res = await fetch("/api/edits", {
           method: "POST",
@@ -237,11 +239,15 @@ export function TeamShareContributeSheet({
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Submit failed");
+        if (typeof data.board_message === "string") {
+          lastBoardMessage = data.board_message;
+        }
       }
       setOk(
-        jobs.length === 1
-          ? BRAND_CONTRIBUTE_SUCCESS
-          : `${jobs.length} contributions submitted — we review and republish daily.`,
+        lastBoardMessage ??
+          (jobs.length === 1
+            ? BRAND_CONTRIBUTE_SUCCESS
+            : `${jobs.length} inputs in — ${BRAND_CONTRIBUTE_SUCCESS_LIVE}`),
       );
       onSubmitted?.();
       if (typeof window !== "undefined") {
@@ -251,7 +257,7 @@ export function TeamShareContributeSheet({
           }),
         );
       }
-      setTimeout(onClose, 700);
+      setTimeout(onClose, 2200);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submit failed");
     } finally {
@@ -499,42 +505,4 @@ export function TeamShareContributeSheet({
 function toShare(pctOrShare: number | null | undefined): number | null {
   if (pctOrShare == null || Number.isNaN(pctOrShare)) return null;
   return Math.abs(pctOrShare) > 1.5 ? pctOrShare / 100 : pctOrShare;
-}
-
-/** Build hist map for a pie segment — include other-team seasons as context. */
-export function buildShareHistForSeg(
-  seg: PieSegment,
-  pieKind: "target" | "rush",
-  team: string,
-  playerHist: Record<
-    string,
-    Array<{
-      season: number;
-      kind: string;
-      team: string | null;
-      target_share: number | null;
-      rush_share: number | null;
-    }>
-  >,
-  years: number[],
-): Record<number, ShareHistCell> {
-  const out: Record<number, ShareHistCell> = {};
-  for (const y of years) out[y] = { pct: null, team: null };
-  if (seg.kind !== "player" || !seg.player_id) return out;
-  const hist = playerHist[seg.player_id] ?? [];
-  const key = pieKind === "target" ? "target_share" : "rush_share";
-  for (const h of hist) {
-    if (h.kind !== "actual") continue;
-    if (!years.includes(h.season)) continue;
-    const raw = h[key];
-    if (raw == null || Number.isNaN(raw)) continue;
-    const pct = Math.abs(raw) <= 1.5 ? raw * 100 : raw;
-    const prev = out[h.season];
-    const isHome = !h.team || h.team === team;
-    // Prefer a season spent on the current team when both exist.
-    if (prev.pct != null && prev.team === team) continue;
-    if (prev.pct != null && !isHome) continue;
-    out[h.season] = { pct, team: h.team };
-  }
-  return out;
 }

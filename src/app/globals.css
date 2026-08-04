@@ -69,6 +69,23 @@ a.text-link:hover {
   color: var(--accent-dim);
 }
 
+button.text-link {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+button.text-link:hover {
+  color: var(--accent-dim);
+}
+
 .num {
   font-family: var(--font-mono), ui-monospace, monospace;
   font-variant-numeric: tabular-nums;
@@ -1270,6 +1287,445 @@ input.edit-hist-table__input:focus {
   line-height: 1.5;
   color: var(--text);
   white-space: pre-wrap;
+}
+
+.player-math {
+  margin: 1.25rem 0 1.5rem;
+  padding: 0.95rem 1rem 1.05rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--stroke);
+}
+
+.player-math-head {
+  margin-bottom: 0.95rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--stroke);
+}
+
+.player-math-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.player-math-sub {
+  margin: 0.2rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.player-math-block {
+  margin-top: 1.05rem;
+}
+
+.player-math-block:first-of-type {
+  margin-top: 0.15rem;
+}
+
+.player-math-block--limits {
+  margin-top: 1.15rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--stroke);
+}
+
+.player-math-h {
+  margin: 0 0 0.45rem;
+  font-size: 0.88rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.player-math-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.player-math-list,
+.player-math-ol {
+  margin: 0;
+  padding-left: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.player-math-list li,
+.player-math-ol li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.player-math-list--muted li {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.player-math-p {
+  margin: 0 0 0.55rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.player-math-p:last-child {
+  margin-bottom: 0;
+}
+
+.player-math-p--lead {
+  margin-bottom: 0.35rem;
+}
+
+.player-math-pie {
+  margin: 0.65rem 0 0.75rem;
+}
+
+.player-math-pie-note {
+  margin: 0 0 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.player-math-pie-table {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.player-math-pie-table th {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.player-math-pie-row--hl td {
+  color: var(--text);
+}
+
+.player-math-pie-row--hl td.num {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.player-math-verdict {
+  margin: 0.85rem 0 0;
+  padding: 0.65rem 0 0;
+  border-top: 1px solid var(--stroke);
+}
+
+.player-math-verdict--up {
+  border-top-color: color-mix(in srgb, var(--accent) 40%, var(--stroke));
+}
+
+.player-math-verdict-value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.player-math-verdict--up .player-math-verdict-value {
+  color: var(--accent);
+}
+
+.player-math-cta {
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--stroke);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.contribute-entry {
+  margin: 1.15rem 0 1.75rem;
+}
+
+.contribute-entry__cta {
+  width: 100%;
+  max-width: 22rem;
+  justify-content: center;
+}
+
+.contribute-chooser {
+  margin-top: 0.25rem;
+  padding: 0.95rem 1rem 1.05rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--stroke);
+}
+
+.contribute-chooser__head {
+  margin-bottom: 0.85rem;
+}
+
+.contribute-chooser__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.contribute-chooser__sub {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 36rem;
+}
+
+.contribute-chooser__pieces {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.contribute-chooser__piece {
+  appearance: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 0.85rem;
+  background: var(--bg);
+  border: 1px solid var(--stroke);
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.contribute-chooser__piece:hover {
+  border-color: var(--accent);
+}
+
+.contribute-chooser__piece-title {
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.contribute-chooser__piece-body {
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.contribute-chooser__back {
+  margin: 0.85rem 0 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* —— Player math (story cards) —— */
+.pm2 {
+  margin: 1.5rem 0 1.75rem;
+}
+
+.pm2-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pm2 strong {
+  font-weight: 650;
+  color: var(--text);
+}
+
+/* Summary lede */
+.pm2-summary-list {
+  margin: 0.55rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pm2-summary-list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.pm2-summary-list li + li {
+  margin-top: 0.4rem;
+}
+
+.pm2-summary-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.32rem;
+  height: 0.32rem;
+  border-radius: 50%;
+  background: var(--accent-dim, var(--accent));
+}
+
+/* Base / Upside cards */
+.pm2-cases {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin-top: 1.15rem;
+}
+
+@media (max-width: 700px) {
+  .pm2-cases {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pm2-card {
+  border: 1px solid var(--stroke);
+  background: var(--bg-elev);
+  padding: 0.95rem 1.05rem 1.05rem;
+}
+
+.pm2-card--up {
+  border-top: 2px solid color-mix(in srgb, var(--accent) 55%, var(--stroke));
+}
+
+.pm2-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pm2-fp {
+  margin: 0.45rem 0 0;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.pm2-fp.accent {
+  color: var(--accent);
+}
+
+.pm2-fp-unit {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.pm2-verdict {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.pm2-points,
+.pm2-limits-list {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--stroke);
+  list-style: none;
+}
+
+.pm2-points li,
+.pm2-limits-list li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.pm2-points li + li,
+.pm2-limits-list li + li {
+  margin-top: 0.5rem;
+}
+
+.pm2-points li::before,
+.pm2-limits-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--stroke);
+}
+
+/* Upside path (numbered) */
+.pm2-path-lead {
+  margin: 0.75rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--stroke);
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.pm2-path {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pm2step;
+}
+
+.pm2-path li {
+  position: relative;
+  padding-left: 1.55rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--muted);
+  counter-increment: pm2step;
+}
+
+.pm2-path li + li {
+  margin-top: 0.5rem;
+}
+
+.pm2-path li::before {
+  content: counter(pm2step);
+  position: absolute;
+  left: 0;
+  top: 0.14em;
+  width: 1.05rem;
+  height: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  font-weight: 650;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--stroke));
+  border-radius: 50%;
+}
+
+/* Limits footer */
+.pm2-limits {
+  margin-top: 1.15rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--stroke);
+}
+
+.pm2-limits-list {
+  margin-top: 0.55rem;
+  padding-top: 0;
+  border-top: 0;
 }
 
 .modal h2 {

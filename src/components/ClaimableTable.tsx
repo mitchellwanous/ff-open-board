@@ -5,14 +5,17 @@ import type { ClaimableField } from "@/lib/types";
 import { displayClaimValue } from "@/lib/format";
 import { ProposeButton } from "./ProposeButton";
 
-type Community = Record<string, { median: number; n: number }>;
+type Community = Record<
+  string,
+  { median: number; n: number; unlocked?: boolean }
+>;
 
 type Row = {
   field: ClaimableField;
   official: number | null;
 };
 
-/** Open-source board: community median *is* the live value when present. */
+/** Live collective: unlocked consensus (n≥min) is the board value. */
 export function ClaimableTable({
   grain,
   subjectId,
@@ -38,7 +41,15 @@ export function ClaimableTable({
   }, [grain, subjectId]);
 
   useEffect(() => {
-    void refresh();
+    const t = window.setTimeout(() => {
+      void refresh();
+    }, 0);
+    const onUp = () => void refresh();
+    window.addEventListener("ff-edits-updated", onUp);
+    return () => {
+      window.clearTimeout(t);
+      window.removeEventListener("ff-edits-updated", onUp);
+    };
   }, [refresh]);
 
   return (
@@ -54,7 +65,12 @@ export function ClaimableTable({
         <tbody>
           {rows.map(({ field, official }) => {
             const c = community[field.field];
-            const live = c?.median ?? official;
+            const display =
+              c?.unlocked && c.median != null ? c.median : official;
+            const proposeFrom =
+              c?.unlocked && c.median != null
+                ? c.median
+                : (c?.median ?? official);
             return (
               <tr key={field.field}>
                 <td className="field-cell">
@@ -62,10 +78,12 @@ export function ClaimableTable({
                   <span className="field-note">{field.doctrine}</span>
                 </td>
                 <td className="right num">
-                  {displayClaimValue(field.field, live, field.unit)}
-                  {c ? (
+                  {displayClaimValue(field.field, display, field.unit)}
+                  {c && c.n > 0 ? (
                     <span className="faint" style={{ marginLeft: 4 }}>
-                      ({c.n})
+                      {c.unlocked
+                        ? `· live (${c.n})`
+                        : `· ${c.n} of 3`}
                     </span>
                   ) : null}
                 </td>
@@ -75,7 +93,7 @@ export function ClaimableTable({
                     subjectId={subjectId}
                     subjectLabel={subjectLabel}
                     field={field}
-                    officialValue={live}
+                    officialValue={proposeFrom}
                     buttonLabel="Contribute"
                     onSubmitted={refresh}
                   />

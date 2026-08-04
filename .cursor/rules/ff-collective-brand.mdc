@@ -15,8 +15,13 @@ This app is **The FF Collective** (not “Open Board” in user-facing copy).
 Best half-PPR projections **because** the public contributes inputs; we review and republish together.  
 Formula: **team offense + player share + player efficiency = fantasy points**.
 
-Prefer **contribute / input / collective model / review & republish** (ownership).  
+Prefer **contribute / input / collective model** (ownership).  
+Live numbers: after **3 contributions** on a field, the board uses the **middle number** (median); spam still gets rejected.  
 Avoid ticket language: “looks wrong,” “submit a bug,” “propose edit,” “edit projection” as the primary CTA.
+
+## Plain language (required)
+
+Follow `.cursor/skills/plain-language-ui/SKILL.md`. Never show field keys or lab shorthand in UI (`cay_per_rec`, “lab freeze”, “seed”). Use claimable `label` text visitors would say out loud.
 
 ## Verb map (UI)
 
@@ -32,9 +37,10 @@ Keep **Community outlook / Add player|team outlook** as the written-take lane (n
 ## When changing UI
 
 1. Reuse `BRAND_*` from `brand.ts` for callouts, loops, success, pie intros.
-2. Preserve the contribute loop: inspect pieces → contribute input → review & republish.
+2. Preserve the contribute loop: inspect pieces → contribute input → board updates (3 takes → middle number); we audit spam.
 3. Don’t rename internal IDs (`open_board`, API `edits`, code symbols) unless asked — only user-facing labels.
 4. Mockups under `/preview` are optional; live `/` must stay on-brand.
+5. Don’t put jargon stamps or task-queue chrome above the board unless they clearly help someone contribute.
 
 ## External / marketing copy
 

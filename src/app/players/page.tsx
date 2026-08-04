@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
 import { BRAND_CONTRIBUTE_CALLOUT } from "@/lib/brand";
-import { getPlayers } from "@/lib/data";
+import { getLivePlayers } from "@/lib/liveBoard";
 import {
   compareNullable,
   nextSortDir,
@@ -19,7 +19,7 @@ export default async function PlayersIndexPage({
 }) {
   const sp = await searchParams;
   const pos = sp.pos?.toUpperCase();
-  let players = getPlayers();
+  let players = await getLivePlayers();
   if (pos && ["QB", "RB", "WR", "TE"].includes(pos)) {
     players = players.filter((p) => p.position === pos);
   }

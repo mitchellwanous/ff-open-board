@@ -142,7 +142,11 @@ function ProposeModal({
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Submit failed");
-      setOk(BRAND_CONTRIBUTE_SUCCESS);
+      setOk(
+        typeof data.board_message === "string"
+          ? data.board_message
+          : BRAND_CONTRIBUTE_SUCCESS,
+      );
       onSubmitted?.();
       if (typeof window !== "undefined") {
         window.dispatchEvent(
@@ -151,7 +155,7 @@ function ProposeModal({
           }),
         );
       }
-      setTimeout(onClose, 600);
+      setTimeout(onClose, 2200);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Submit failed");
     } finally {

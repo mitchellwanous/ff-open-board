@@ -1,7 +1,24 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getRankings } from "@/lib/data";
+import { getLivePlayers } from "@/lib/liveBoard";
 import { fmt, fmtShare } from "@/lib/format";
+import type { RankingRow } from "@/lib/types";
+
+const LIVE_FP_STATS: Record<
+  string,
+  (p: {
+    live: {
+      season_fp: number | null;
+      downside_fp: number | null;
+      scenario_fp: number | null;
+    };
+  }) => number | null
+> = {
+  "player-season-fp": (p) => p.live.season_fp,
+  "player-downside-fp": (p) => p.live.downside_fp,
+  "player-upside-fp": (p) => p.live.scenario_fp,
+};
 
 export default async function RankingTablePage({
   params,
@@ -11,9 +28,35 @@ export default async function RankingTablePage({
   const { stat } = await params;
   const { defs, tables } = getRankings();
   const def = defs.find((d) => d.id === stat);
-  const rows = tables[stat];
-  if (!def || !rows) notFound();
+  const freezeRows = tables[stat];
+  if (!def || !freezeRows) notFound();
   const ranking = def;
+
+  let rows = freezeRows;
+  const valueOf = LIVE_FP_STATS[stat];
+  if (valueOf) {
+    const players = await getLivePlayers();
+    const filtered = ranking.positions?.length
+      ? players.filter((p) => ranking.positions!.includes(p.position))
+      : players;
+    const scored = filtered
+      .map((p) => ({ p, value: valueOf(p) }))
+      .filter((x): x is { p: (typeof filtered)[0]; value: number } => x.value != null)
+      .sort((a, b) =>
+        ranking.higher_is_better ? b.value - a.value : a.value - b.value,
+      );
+    rows = scored.map(
+      (x, i): RankingRow => ({
+        rank: i + 1,
+        id: x.p.player_id,
+        label: x.p.name,
+        team: x.p.team,
+        position: x.p.position,
+        value: x.value,
+        href: `/players/${x.p.player_id}`,
+      }),
+    );
+  }
 
   const isShare =
     ranking.format === "pct" ||

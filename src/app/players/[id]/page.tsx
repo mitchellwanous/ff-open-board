@@ -3,12 +3,13 @@ import { notFound } from "next/navigation";
 import { ClaimableTable } from "@/components/ClaimableTable";
 import { CommunityOutlook } from "@/components/CommunityOutlook";
 import { EditProjectionBuckets } from "@/components/EditProjectionBuckets";
+import { SubjectChangeLog } from "@/components/SubjectChangeLog";
 import {
   getClaimableFields,
   getOfficialValue,
-  getPlayer,
   getTeam,
 } from "@/lib/data";
+import { getLivePlayer } from "@/lib/liveBoard";
 import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 
 const SHARE_FIELDS = new Set([
@@ -58,7 +59,7 @@ export default async function PlayerPage({
   const { id } = await params;
   const sp = await searchParams;
   const classicEdit = sp.edit === "classic";
-  const p = getPlayer(id);
+  const p = await getLivePlayer(id);
   if (!p) notFound();
   const team = getTeam(p.team);
   const allClaimable = getClaimableFields();
@@ -70,10 +71,16 @@ export default async function PlayerPage({
       if (c.positions && !c.positions.includes(p.position)) return false;
       return true;
     })
-    .map((field) => ({
-      field,
-      official: getOfficialValue("player", p.player_id, field.field),
-    }))
+    .map((field) => {
+      const liveVal = (p as unknown as Record<string, number | null>)[field.field];
+      return {
+        field,
+        official:
+          typeof liveVal === "number"
+            ? liveVal
+            : getOfficialValue("player", p.player_id, field.field),
+      };
+    })
     .sort((a, b) => {
       if (p.position !== "RB") return 0;
       const ia = EFF_ORDER_RB.indexOf(a.field.field);
@@ -88,11 +95,17 @@ export default async function PlayerPage({
       if (c.positions && !c.positions.includes(p.position)) return false;
       return true;
     })
-    .map((field) => ({
-      field,
-      official: getOfficialValue("player", p.player_id, field.field),
-      displayLabel: SHARE_LABELS[field.field],
-    }))
+    .map((field) => {
+      const liveVal = (p as unknown as Record<string, number | null>)[field.field];
+      return {
+        field,
+        official:
+          typeof liveVal === "number"
+            ? liveVal
+            : getOfficialValue("player", p.player_id, field.field),
+        displayLabel: SHARE_LABELS[field.field],
+      };
+    })
     .sort(
       (a, b) =>
         SHARE_ORDER.indexOf(a.field.field) - SHARE_ORDER.indexOf(b.field.field),
@@ -350,6 +363,7 @@ export default async function PlayerPage({
         subjectId={p.player_id}
         subjectLabel={p.name}
         communityNote={p.community_note}
+        editHref="#suggest"
       />
 
       {/* 1 Verdict */}
@@ -601,6 +615,12 @@ export default async function PlayerPage({
           ) : null}
         </div>
       </details>
+
+      <SubjectChangeLog
+        grain="player"
+        subjectId={p.player_id}
+        subjectLabel={p.name}
+      />
     </>
   );
 }

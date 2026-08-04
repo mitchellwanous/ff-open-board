@@ -242,30 +242,35 @@ export async function markEdits(
   return n;
 }
 
-/** Pending numeric edits only — for community medians on Propose tables. */
+/**
+ * Live consensus map for a subject (pending + reviewed; rejected excluded).
+ * Unlocked when n >= CONSENSUS_MIN_N — that median drives the board.
+ */
 export async function communityMap(
   grain: string,
   subjectId: string,
-): Promise<Record<string, { median: number; n: number }>> {
+): Promise<Record<string, { median: number; n: number; unlocked: boolean }>> {
+  const { consensusMapForSubject, toCommunityShape } = await import(
+    "./consensus"
+  );
+  const { getOfficialValue, getClaimableFields } = await import("./data");
+
   const rows = await listEdits({
     grain,
     subject_id: subjectId,
-    status: "pending",
+    status: ["pending", "reviewed"],
   });
-  const byField: Record<string, number[]> = {};
-  for (const r of rows) {
-    if (r.value == null || Number.isNaN(r.value)) continue;
-    (byField[r.field] ??= []).push(r.value);
+
+  const seeds: Record<string, number | null> = {};
+  if (grain === "team" || grain === "player") {
+    for (const f of getClaimableFields().filter((c) => c.grain === grain)) {
+      seeds[f.field] = getOfficialValue(
+        grain,
+        subjectId,
+        f.field,
+      );
+    }
   }
-  const out: Record<string, { median: number; n: number }> = {};
-  for (const [field, vals] of Object.entries(byField)) {
-    const sorted = [...vals].sort((a, b) => a - b);
-    const mid = Math.floor(sorted.length / 2);
-    const median =
-      sorted.length % 2 === 0
-        ? (sorted[mid - 1] + sorted[mid]) / 2
-        : sorted[mid];
-    out[field] = { median, n: vals.length };
-  }
-  return out;
+  const map = consensusMapForSubject(rows, seeds);
+  return toCommunityShape(map);
 }
