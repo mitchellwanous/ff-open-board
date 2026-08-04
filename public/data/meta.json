@@ -5,6 +5,6 @@
   "source": "Fantasy Football lab freeze",
   "n_teams": 32,
   "n_players": 312,
-  "edit_backend": "supabase",
+  "edit_backend": "local",
   "notes": "Frozen snapshot for Open Board. Open-source edits live in Supabase when configured; community outlook notes are distilled on republish."
 }

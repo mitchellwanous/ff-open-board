@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Fragment, useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   BRAND_CONTRIBUTE_CHOOSER_SUB,
   BRAND_CONTRIBUTE_CHOOSER_TITLE,
@@ -133,6 +134,14 @@ type Props = {
    * `gated` — math-first cards: one CTA → piece chooser → sheet modal.
    */
   entry?: "always" | "gated";
+  /**
+   * Gated closed state: plain button (default) or a card beside Summary.
+   */
+  gatedLayout?: "button" | "card";
+  /**
+   * When gated + card, also mount a second CTA into this element id (same open action).
+   */
+  gatedBottomAnchorId?: string;
   /**
    * When set (gated flow), "Player share" opens the team target pie sheet
    * instead of this player's share bands alone.
@@ -458,10 +467,38 @@ function useEditDrafts(rows: BucketRow[]) {
 
 export function EditProjectionBuckets(props: Props) {
   const gated = props.entry === "gated";
+  const gatedCard = gated && props.gatedLayout === "card";
   const [phase, setPhase] = useState<"closed" | "chooser">(
     gated ? "closed" : "chooser",
   );
   const [sheet, setSheet] = useState<BucketKind | null>(null);
+  const [bottomAnchor, setBottomAnchor] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!props.gatedBottomAnchorId) {
+      setBottomAnchor(null);
+      return;
+    }
+    setBottomAnchor(document.getElementById(props.gatedBottomAnchorId));
+  }, [props.gatedBottomAnchorId]);
+
+  const openChooser = () => setPhase("chooser");
+
+  const bottomCta =
+    gatedCard && phase === "closed" && bottomAnchor
+      ? createPortal(
+          <div className="contribute-entry pm2-contribute-bottom">
+            <button
+              type="button"
+              className="btn primary contribute-entry__cta"
+              onClick={openChooser}
+            >
+              {BRAND_CONTRIBUTE_CTA}
+            </button>
+          </div>,
+          bottomAnchor,
+        )
+      : null;
 
   const sheets = (
     <>
@@ -507,12 +544,34 @@ export function EditProjectionBuckets(props: Props) {
   );
 
   if (gated && phase === "closed") {
+    if (gatedCard) {
+      return (
+        <>
+          <aside id="suggest" className="pm2-contribute pm2-box">
+            <span className="pm2-eyebrow">Contribute</span>
+            <p className="pm2-contribute-body">
+              Fantasy points come from team offense, player share, and player
+              efficiency. Add your take on any piece.
+            </p>
+            <button
+              type="button"
+              className="btn primary contribute-entry__cta"
+              onClick={openChooser}
+            >
+              {BRAND_CONTRIBUTE_CTA}
+            </button>
+          </aside>
+          {bottomCta}
+          {sheets}
+        </>
+      );
+    }
     return (
       <div id="suggest" className="contribute-entry">
         <button
           type="button"
           className="btn primary contribute-entry__cta"
-          onClick={() => setPhase("chooser")}
+          onClick={openChooser}
         >
           {BRAND_CONTRIBUTE_CTA}
         </button>
@@ -523,7 +582,10 @@ export function EditProjectionBuckets(props: Props) {
 
   if (gated) {
     return (
-      <div id="suggest" className="contribute-entry contribute-entry--open">
+      <div
+        id="suggest"
+        className={`contribute-entry contribute-entry--open${gatedCard ? " contribute-entry--from-card" : ""}`}
+      >
         <div className="contribute-chooser">
           <div className="contribute-chooser__head">
             <h2 className="contribute-chooser__title">

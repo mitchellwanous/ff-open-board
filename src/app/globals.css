@@ -1452,8 +1452,8 @@ input.edit-hist-table__input:focus {
 }
 
 .contribute-entry__cta {
-  width: 100%;
-  max-width: 22rem;
+  width: fit-content;
+  max-width: 100%;
   justify-content: center;
 }
 
@@ -1528,8 +1528,19 @@ input.edit-hist-table__input:focus {
 }
 
 /* —— Player math (story cards) —— */
+.pm2-player-name {
+  margin-bottom: 0.35rem;
+}
+
+.pm2-player-meta {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.85rem;
+}
+
 .pm2 {
-  margin: 1.5rem 0 1.75rem;
+  margin: 0 0 1.75rem;
 }
 
 .pm2-eyebrow {
@@ -1546,14 +1557,67 @@ input.edit-hist-table__input:focus {
   color: var(--text);
 }
 
-/* Summary lede */
-.pm2-summary-list {
+.pm2-box {
+  border: 1px solid var(--stroke);
+  background: var(--bg-elev);
+  padding: 0.95rem 1.05rem 1.05rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Summary + Contribute */
+.pm2-top {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 0.85rem;
+  align-items: stretch;
+  margin-bottom: 0.85rem;
+}
+
+@media (max-width: 700px) {
+  .pm2-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pm2-top:has(.contribute-entry--open) {
+  grid-template-columns: 1fr;
+}
+
+.pm2-top:has(.contribute-entry--open) .pm2-summary {
+  display: none;
+}
+
+.pm2-contribute {
+  gap: 0.75rem;
+}
+
+.pm2-contribute-body {
+  margin: 0;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.pm2-contribute .contribute-entry__cta {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* Prose lists — accent dots (Summary, Base, Limits) */
+.pm2-summary-list,
+.pm2-points,
+.pm2-limits-list {
   margin: 0.55rem 0 0;
   padding: 0;
   list-style: none;
 }
 
-.pm2-summary-list li {
+.pm2-summary-list li,
+.pm2-points li,
+.pm2-limits-list li {
   position: relative;
   padding-left: 1rem;
   font-size: 0.95rem;
@@ -1561,11 +1625,25 @@ input.edit-hist-table__input:focus {
   color: var(--muted);
 }
 
-.pm2-summary-list li + li {
+.pm2-points li,
+.pm2-limits-list li {
+  font-size: 0.88rem;
+}
+
+.pm2-summary-list li + li,
+.pm2-points li + li,
+.pm2-limits-list li + li {
   margin-top: 0.4rem;
 }
 
-.pm2-summary-list li::before {
+.pm2-points li + li,
+.pm2-limits-list li + li {
+  margin-top: 0.5rem;
+}
+
+.pm2-summary-list li::before,
+.pm2-points li::before,
+.pm2-limits-list li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -1576,17 +1654,25 @@ input.edit-hist-table__input:focus {
   background: var(--accent-dim, var(--accent));
 }
 
-/* Base / Upside cards */
+.pm2-points li::before,
+.pm2-limits-list li::before {
+  width: 0.28rem;
+  height: 0.28rem;
+}
+
+/* Base / Upside cards — equal height when side by side */
 .pm2-cases {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.85rem;
-  margin-top: 1.15rem;
+  margin-top: 0;
+  align-items: stretch;
 }
 
 @media (max-width: 700px) {
   .pm2-cases {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -1594,6 +1680,9 @@ input.edit-hist-table__input:focus {
   border: 1px solid var(--stroke);
   background: var(--bg-elev);
   padding: 0.95rem 1.05rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
 .pm2-card--up {
@@ -1634,47 +1723,28 @@ input.edit-hist-table__input:focus {
   color: var(--text);
 }
 
-.pm2-points,
-.pm2-limits-list {
+.pm2-verdict--after {
   margin: 0.75rem 0 0;
-  padding: 0.75rem 0 0;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--stroke);
-  list-style: none;
+  margin-top: auto;
 }
 
-.pm2-points li,
-.pm2-limits-list li {
-  position: relative;
-  padding-left: 1rem;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
-.pm2-points li + li,
-.pm2-limits-list li + li {
-  margin-top: 0.5rem;
-}
-
-.pm2-points li::before,
-.pm2-limits-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.62em;
-  width: 0.28rem;
-  height: 0.28rem;
-  border-radius: 50%;
-  background: var(--stroke);
-}
-
-/* Upside path (numbered) */
 .pm2-path-lead {
   margin: 0.75rem 0 0;
   padding-top: 0.75rem;
   border-top: 1px solid var(--stroke);
-  font-size: 0.88rem;
-  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.pm2-points {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--stroke);
+  list-style: none;
+  flex: 1;
 }
 
 .pm2-path {
@@ -1682,6 +1752,7 @@ input.edit-hist-table__input:focus {
   padding: 0;
   list-style: none;
   counter-reset: pm2step;
+  flex: 1;
 }
 
 .pm2-path li {
@@ -1717,8 +1788,8 @@ input.edit-hist-table__input:focus {
 
 /* Limits footer */
 .pm2-limits {
-  margin-top: 1.15rem;
-  padding-top: 0.9rem;
+  margin-top: 1.35rem;
+  padding-top: 1.05rem;
   border-top: 1px solid var(--stroke);
 }
 
@@ -1726,6 +1797,15 @@ input.edit-hist-table__input:focus {
   margin-top: 0.55rem;
   padding-top: 0;
   border-top: 0;
+}
+
+.pm2-contribute-bottom {
+  margin: 1.15rem 0 0;
+}
+
+.pm2-contribute-bottom .contribute-entry__cta {
+  width: fit-content;
+  max-width: 100%;
 }
 
 .modal h2 {

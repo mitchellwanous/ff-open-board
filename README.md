@@ -84,6 +84,14 @@ In the Fantasy Football lab:
   --grain player --subject-id 00-0037261 \
   --note "Plain-language season expectation and why the board numbers look like this."
 
+# 4b. Refresh condensed Player math (Summary / Base / Upside / Limits) when
+#     freeze numbers moved — source of truth:
+#     data/context/2026/player_math_condensed.json
+#     Upsert one polished writeup:
+#       .venv/bin/python scripts/upsert_player_math.py --player-id … --from-file … --status reviewed
+#     Or regenerate scaffolds for missing/draft rows:
+#       .venv/bin/python scripts/generate_player_math_drafts.py --overwrite-drafts
+
 # 5. Mark inbox rows reviewed
 .venv/bin/python scripts/mark_open_board_reviewed.py \
   --grain player --subject-id 00-0037261 --status reviewed

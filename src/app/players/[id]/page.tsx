@@ -3,14 +3,21 @@ import { notFound } from "next/navigation";
 import { ClaimableTable } from "@/components/ClaimableTable";
 import { CommunityOutlook } from "@/components/CommunityOutlook";
 import { EditProjectionBuckets } from "@/components/EditProjectionBuckets";
+import {
+  PlayerMathCases,
+  PlayerMathLimits,
+  PlayerMathSummary,
+} from "@/components/PlayerMathStory";
 import { SubjectChangeLog } from "@/components/SubjectChangeLog";
+import type { ShareClaimantRow } from "@/components/TeamShareContributeSheet";
 import {
   getClaimableFields,
   getOfficialValue,
   getTeam,
 } from "@/lib/data";
-import { getLivePlayer } from "@/lib/liveBoard";
+import { getLivePlayer, getLivePlayers } from "@/lib/liveBoard";
 import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
+import { buildShareHistForSeg } from "@/lib/sharePie";
 
 const SHARE_FIELDS = new Set([
   "target_share_dn",
@@ -332,14 +339,163 @@ export default async function PlayerPage({
 
   const bucketsHref = `/players/${p.player_id}`;
   const classicHref = `/players/${p.player_id}?edit=classic`;
+  const math = p.player_math ?? null;
+  const useMathLayout = Boolean(math);
+
+  let targetPie: { years: number[]; rows: ShareClaimantRow[] } | undefined;
+  if (useMathLayout && team && ["WR", "TE"].includes(p.position)) {
+    const teammates = (await getLivePlayers()).filter((x) => x.team === p.team);
+    const playerHist: Record<
+      string,
+      Array<{
+        season: number;
+        kind: string;
+        team: string | null;
+        target_share: number | null;
+        rush_share: number | null;
+      }>
+    > = {};
+    const seasonSet = new Set<number>();
+    for (const mate of teammates) {
+      playerHist[mate.player_id] = (mate.hist ?? []).map((h) => ({
+        season: h.season,
+        kind: h.kind,
+        team: h.team,
+        target_share: h.target_share,
+        rush_share: h.rush_share,
+      }));
+      for (const h of mate.hist ?? []) {
+        if (h.kind === "actual" && h.team === p.team) seasonSet.add(h.season);
+      }
+    }
+    const pieYears = [...seasonSet].sort((a, b) => a - b).slice(-3);
+    const baseDef =
+      allClaimable.find((c) => c.field === "target_share") ?? null;
+    const dnDef =
+      allClaimable.find((c) => c.field === "target_share_dn") ?? null;
+    const ceilDef =
+      allClaimable.find((c) => c.field === "target_share_ceil") ?? null;
+    const depthDef =
+      allClaimable.find((c) => c.field === "target_share_other") ?? null;
+    const tgtSegs = [...team.tgt_segs].sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === "depth" ? 1 : -1;
+      return (b.share ?? 0) - (a.share ?? 0);
+    });
+    targetPie = {
+      years: pieYears,
+      rows: tgtSegs.map((s) => {
+        const key = s.kind === "player" ? s.player_id! : "depth:OTHER";
+        return {
+          key,
+          kind: s.kind,
+          playerId: s.player_id,
+          name: s.name,
+          position: s.position,
+          histBySeason: buildShareHistForSeg(
+            s,
+            "target",
+            p.team,
+            playerHist,
+            pieYears,
+          ),
+          shareDn: s.share_dn,
+          share: s.share,
+          shareCeil: s.share_ceil,
+          dnField: s.kind === "player" ? dnDef : null,
+          baseField: s.kind === "player" ? baseDef : depthDef,
+          ceilField: s.kind === "player" ? ceilDef : null,
+        };
+      }),
+    };
+  }
+
+  const mathOutlook = {
+    position: p.position,
+    expectedFp: p.fp.season_fp ?? 0,
+    expectedRank: p.draft.pos_rank,
+    upsideFp: p.draft.scenario_fp ?? 0,
+    upsideRank: p.draft.pos_upside_rank,
+  };
+
+  const classicContribute = (
+    <>
+      <h2 id="suggest">Contribute to this projection</h2>
+      <p className="muted" style={{ fontSize: "0.9rem" }}>
+        Classic field-by-field inventory.{" "}
+        <Link href={bucketsHref} className="text-link">
+          Back to guided sheets
+        </Link>
+      </p>
+      <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+        Team offense ({p.team})
+      </h3>
+      <p className="muted" style={{ fontSize: "0.85rem" }}>
+        Includes pace, pass rate, and upside volume/efficiency boosts.
+      </p>
+      <ClaimableTable
+        grain="team"
+        subjectId={p.team}
+        subjectLabel={p.team}
+        rows={teamRows}
+      />
+      <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+        Player share (team pie)
+      </h3>
+      <p style={{ marginBottom: "0.5rem" }}>
+        <Link href={`/teams/${p.team}#share-pies`} className="btn primary">
+          Contribute on {p.team} pie
+        </Link>
+      </p>
+      <ClaimableTable
+        grain="player"
+        subjectId={p.player_id}
+        subjectLabel={p.name}
+        rows={shareRows}
+      />
+      <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
+        Efficiency &amp; TD rates
+      </h3>
+      <ClaimableTable
+        grain="player"
+        subjectId={p.player_id}
+        subjectLabel={p.name}
+        rows={rateRows}
+      />
+    </>
+  );
+
+  const bucketsProps = {
+    playerId: p.player_id,
+    playerName: p.name,
+    team: p.team,
+    position: p.position,
+    offenseRows: teamRows,
+    shareRows,
+    efficiencyRows: rateRows,
+    offenseSnapshot,
+    shareBands,
+    efficiencyGroups,
+    offenseBoard,
+    shareBoard,
+    efficiencyBoard,
+    pieHref: `/teams/${p.team}#share-pies`,
+    classicHref,
+  };
 
   return (
     <>
       <p className="faint" style={{ marginTop: "1.25rem" }}>
         <Link href="/players">Players</Link> / {p.name}
       </p>
-      <h1>{p.name}</h1>
-      <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+      <h1 className={useMathLayout ? "pm2-player-name" : undefined}>{p.name}</h1>
+      <div
+        className={useMathLayout ? "pm2-player-meta" : undefined}
+        style={
+          useMathLayout
+            ? undefined
+            : { display: "flex", gap: "0.4rem", flexWrap: "wrap" }
+        }
+      >
         <span className="badge accent">{p.position}</span>
         <span className="badge">
           <Link href={`/teams/${p.team}`}>{p.team}</Link>
@@ -358,151 +514,117 @@ export default async function PlayerPage({
         </Link>
       </div>
 
-      <CommunityOutlook
-        grain="player"
-        subjectId={p.player_id}
-        subjectLabel={p.name}
-        communityNote={p.community_note}
-        editHref="#suggest"
-      />
-
-      {/* 1 Verdict */}
-      <h2>Season outlook</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Half PPR fantasy points from team offense + player share + player
-        efficiency. Totals come from those pieces. To change them, contribute
-        below.
-      </p>
-      <div className="stat-grid">
-        <div className="stat">
-          <div className="label">Downside</div>
-          <div className="value num warn">{fmt(p.draft.downside_fp, 1)}</div>
-          {p.draft.pos_downside_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_downside_rank}
-            </div>
-          ) : null}
-        </div>
-        <div className="stat">
-          <div className="label">Expected</div>
-          <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
-          {p.draft.pos_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_rank}
-            </div>
-          ) : null}
-        </div>
-        <div className="stat">
-          <div className="label">Upside</div>
-          <div className="value num accent">{fmt(p.draft.scenario_fp, 1)}</div>
-          {p.draft.pos_upside_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_upside_rank}
-            </div>
-          ) : null}
-        </div>
-        <div className="stat">
-          <div className="label">FP / G · games</div>
-          <div className="value num" style={{ fontSize: "1rem" }}>
-            {fmt(p.fp.fp_per_game, 2)} · {fmt(p.fp.games_played_proj, 1)}
-          </div>
-        </div>
-      </div>
-      {(p.draft.downside_blurb ||
-        p.draft.base_blurb ||
-        p.draft.upside_blurb) && (
-        <div className="scenario-blurbs">
-          {p.draft.downside_blurb ? (
-            <p>
-              <span className="scenario-blurbs__tag warn">Downside</span>
-              {p.draft.downside_blurb}
-            </p>
-          ) : null}
-          {p.draft.base_blurb ? (
-            <p>
-              <span className="scenario-blurbs__tag">Expected</span>
-              {p.draft.base_blurb}
-            </p>
-          ) : null}
-          {p.draft.upside_blurb ? (
-            <p>
-              <span className="scenario-blurbs__tag accent">Upside</span>
-              {p.draft.upside_blurb}
-            </p>
-          ) : null}
-        </div>
-      )}
-
-      {/* 2 Interact with the projection */}
-      {classicEdit ? (
+      {useMathLayout && math ? (
         <>
-          <h2 id="suggest">Contribute to this projection</h2>
-          <p className="muted" style={{ fontSize: "0.9rem" }}>
-            Classic field-by-field inventory.{" "}
-            <Link href={bucketsHref} className="text-link">
-              Back to guided sheets
-            </Link>
-          </p>
-          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
-            Team offense ({p.team})
-          </h3>
-          <p className="muted" style={{ fontSize: "0.85rem" }}>
-            Includes pace, pass rate, and upside volume/efficiency boosts.
-          </p>
-          <ClaimableTable
-            grain="team"
-            subjectId={p.team}
-            subjectLabel={p.team}
-            rows={teamRows}
-          />
-          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
-            Player share (team pie)
-          </h3>
-          <p style={{ marginBottom: "0.5rem" }}>
-            <Link
-              href={`/teams/${p.team}#share-pies`}
-              className="btn primary"
-            >
-              Contribute on {p.team} pie
-            </Link>
-          </p>
-          <ClaimableTable
-            grain="player"
-            subjectId={p.player_id}
-            subjectLabel={p.name}
-            rows={shareRows}
-          />
-          <h3 style={{ fontSize: "0.95rem", marginTop: "1.25rem" }}>
-            Efficiency &amp; TD rates
-          </h3>
-          <ClaimableTable
-            grain="player"
-            subjectId={p.player_id}
-            subjectLabel={p.name}
-            rows={rateRows}
-          />
+          <div className="pm2">
+            {classicEdit ? null : (
+              <div className="pm2-top">
+                <PlayerMathSummary summary={math.summary} />
+                <EditProjectionBuckets
+                  {...bucketsProps}
+                  entry="gated"
+                  gatedLayout="card"
+                  gatedBottomAnchorId="pm2-contribute-bottom"
+                  targetPie={targetPie}
+                />
+              </div>
+            )}
+            {classicEdit ? (
+              <PlayerMathSummary summary={math.summary} />
+            ) : null}
+            <PlayerMathCases content={math} outlook={mathOutlook} />
+            <PlayerMathLimits limits={math.limits} />
+            {classicEdit ? null : <div id="pm2-contribute-bottom" />}
+          </div>
+          {classicEdit ? classicContribute : null}
         </>
       ) : (
-        <EditProjectionBuckets
-          playerId={p.player_id}
-          playerName={p.name}
-          team={p.team}
-          position={p.position}
-          offenseRows={teamRows}
-          shareRows={shareRows}
-          efficiencyRows={rateRows}
-          offenseSnapshot={offenseSnapshot}
-          shareBands={shareBands}
-          efficiencyGroups={efficiencyGroups}
-          offenseBoard={offenseBoard}
-          shareBoard={shareBoard}
-          efficiencyBoard={efficiencyBoard}
-          pieHref={`/teams/${p.team}#share-pies`}
-          classicHref={classicHref}
-        />
+        <>
+          <CommunityOutlook
+            grain="player"
+            subjectId={p.player_id}
+            subjectLabel={p.name}
+            communityNote={p.community_note}
+            editHref="#suggest"
+          />
+
+          <h2>Season outlook</h2>
+          <p className="muted" style={{ fontSize: "0.9rem" }}>
+            Half PPR fantasy points from team offense + player share + player
+            efficiency. Totals come from those pieces. To change them, contribute
+            below.
+          </p>
+          <div className="stat-grid">
+            <div className="stat">
+              <div className="label">Downside</div>
+              <div className="value num warn">{fmt(p.draft.downside_fp, 1)}</div>
+              {p.draft.pos_downside_rank != null ? (
+                <div className="sub">
+                  {p.position}
+                  {p.draft.pos_downside_rank}
+                </div>
+              ) : null}
+            </div>
+            <div className="stat">
+              <div className="label">Expected</div>
+              <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
+              {p.draft.pos_rank != null ? (
+                <div className="sub">
+                  {p.position}
+                  {p.draft.pos_rank}
+                </div>
+              ) : null}
+            </div>
+            <div className="stat">
+              <div className="label">Upside</div>
+              <div className="value num accent">
+                {fmt(p.draft.scenario_fp, 1)}
+              </div>
+              {p.draft.pos_upside_rank != null ? (
+                <div className="sub">
+                  {p.position}
+                  {p.draft.pos_upside_rank}
+                </div>
+              ) : null}
+            </div>
+            <div className="stat">
+              <div className="label">FP / G · games</div>
+              <div className="value num" style={{ fontSize: "1rem" }}>
+                {fmt(p.fp.fp_per_game, 2)} · {fmt(p.fp.games_played_proj, 1)}
+              </div>
+            </div>
+          </div>
+          {(p.draft.downside_blurb ||
+            p.draft.base_blurb ||
+            p.draft.upside_blurb) && (
+            <div className="scenario-blurbs">
+              {p.draft.downside_blurb ? (
+                <p>
+                  <span className="scenario-blurbs__tag warn">Downside</span>
+                  {p.draft.downside_blurb}
+                </p>
+              ) : null}
+              {p.draft.base_blurb ? (
+                <p>
+                  <span className="scenario-blurbs__tag">Expected</span>
+                  {p.draft.base_blurb}
+                </p>
+              ) : null}
+              {p.draft.upside_blurb ? (
+                <p>
+                  <span className="scenario-blurbs__tag accent">Upside</span>
+                  {p.draft.upside_blurb}
+                </p>
+              ) : null}
+            </div>
+          )}
+
+          {classicEdit ? (
+            classicContribute
+          ) : (
+            <EditProjectionBuckets {...bucketsProps} />
+          )}
+        </>
       )}
 
       <h2>Recent history</h2>

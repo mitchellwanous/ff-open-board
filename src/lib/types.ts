@@ -30,6 +30,28 @@ export type PieSegment = {
   share_ceil: number | null;
 };
 
+/** Condensed public writeup — matches PlayerMathContent + publish meta. */
+export type PlayerMathPayload = {
+  status?: "draft" | "reviewed" | string | null;
+  updated_on?: string | null;
+  summary: string[];
+  base: {
+    paras: string[];
+    verdict: string;
+    pie?: Array<{
+      name: string;
+      share: string;
+      highlight?: boolean;
+    }> | null;
+    pieNote?: string | null;
+  };
+  upside: {
+    path: string[];
+    verdict: string;
+  };
+  limits: string[];
+};
+
 export type Team = {
   team: string;
   summary?: string | null;
@@ -111,6 +133,8 @@ export type Player = {
   prev_team: string | null;
   /** Published distilled “why” outlook (from lab community_notes). */
   community_note?: string | null;
+  /** Condensed Summary / Base / Upside / Limits (lab player_math_condensed). */
+  player_math?: PlayerMathPayload | null;
   team_pack: {
     team: string;
     implied_ppg: number | null;

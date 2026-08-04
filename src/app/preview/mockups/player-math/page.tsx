@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EditProjectionBuckets } from "@/components/EditProjectionBuckets";
-import { PlayerMathDesignOptions } from "@/components/PlayerMathDesignOptions";
+import {
+  PlayerMathCases,
+  PlayerMathLimits,
+  PlayerMathSummary,
+} from "@/components/PlayerMathStory";
 import type { ShareClaimantRow } from "@/components/TeamShareContributeSheet";
 import {
   getClaimableFields,
@@ -9,19 +13,10 @@ import {
   getTeam,
 } from "@/lib/data";
 import { getLivePlayer, getLivePlayers } from "@/lib/liveBoard";
-import { BRAND_FORMULA } from "@/lib/brand";
 import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 import { buildShareHistForSeg } from "@/lib/sharePie";
-import type { PieSegment } from "@/lib/types";
 
 const PUKA_ID = "00-0039075";
-
-/** Share-only pin for the contribute pie demo. Outlook FP/ranks come from live. */
-const PIN = {
-  targetShare: 0.27,
-  targetShareCeil: 0.295,
-  targetShareFloor: 0.24,
-};
 
 const SHARE_FIELDS = new Set([
   "target_share_dn",
@@ -50,15 +45,10 @@ const SHARE_ORDER = [
   "target_share_ceil",
 ];
 
-const PIN_SHARE_OFFICIAL: Record<string, number> = {
-  target_share_dn: PIN.targetShareFloor,
-  target_share: PIN.targetShare,
-  target_share_ceil: PIN.targetShareCeil,
-};
-
 export default async function PlayerMathOptionsMockPage() {
   const p = await getLivePlayer(PUKA_ID);
-  if (!p) notFound();
+  if (!p?.player_math) notFound();
+  const math = p.player_math;
   const team = getTeam(p.team);
   if (!team) notFound();
   const allClaimable = getClaimableFields();
@@ -98,22 +88,10 @@ export default async function PlayerMathOptionsMockPage() {
   const depthDef =
     allClaimable.find((c) => c.field === "target_share_other") ?? null;
 
-  const pinSeg = (s: PieSegment): PieSegment => {
-    if (s.player_id !== PUKA_ID) return s;
-    return {
-      ...s,
-      share_dn: PIN.targetShareFloor * 100,
-      share: PIN.targetShare * 100,
-      share_ceil: PIN.targetShareCeil * 100,
-    };
-  };
-
-  const tgtSegs = [...team.tgt_segs]
-    .map(pinSeg)
-    .sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind === "depth" ? 1 : -1;
-      return (b.share ?? 0) - (a.share ?? 0);
-    });
+  const tgtSegs = [...team.tgt_segs].sort((a, b) => {
+    if (a.kind !== b.kind) return a.kind === "depth" ? 1 : -1;
+    return (b.share ?? 0) - (a.share ?? 0);
+  });
 
   const targetPieRows: ShareClaimantRow[] = tgtSegs.map((s) => {
     const key = s.kind === "player" ? s.player_id! : "depth:OTHER";
@@ -166,15 +144,12 @@ export default async function PlayerMathOptionsMockPage() {
     })
     .map((field) => {
       const liveVal = (p as unknown as Record<string, number | null>)[field.field];
-      const pinned = PIN_SHARE_OFFICIAL[field.field];
       return {
         field,
         official:
-          pinned != null
-            ? pinned
-            : typeof liveVal === "number"
-              ? liveVal
-              : getOfficialValue("player", p.player_id, field.field),
+          typeof liveVal === "number"
+            ? liveVal
+            : getOfficialValue("player", p.player_id, field.field),
         displayLabel: SHARE_LABELS[field.field],
       };
     })
@@ -246,9 +221,9 @@ export default async function PlayerMathOptionsMockPage() {
   const shareBands = [
     {
       group: "Target share",
-      downside: `${fmt(PIN.targetShareFloor * 100, 0)}%`,
-      expected: `${fmt(PIN.targetShare * 100, 0)}%`,
-      upside: `${fmt(PIN.targetShareCeil * 100, 0)}%`,
+      downside: `${fmt(p.usage.target_share_floor, 0)}%`,
+      expected: `${fmt(p.usage.target_share, 0)}%`,
+      upside: `${fmt(p.usage.target_share_ceil, 0)}%`,
     },
   ];
 
@@ -354,6 +329,13 @@ export default async function PlayerMathOptionsMockPage() {
   };
 
   const liveHref = `/players/${p.player_id}`;
+  const outlook = {
+    position: p.position,
+    expectedFp: p.fp.season_fp ?? 0,
+    expectedRank: p.draft.pos_rank,
+    upsideFp: p.draft.scenario_fp ?? 0,
+    upsideRank: p.draft.pos_upside_rank,
+  };
 
   return (
     <>
@@ -362,16 +344,19 @@ export default async function PlayerMathOptionsMockPage() {
       </p>
 
       <div className="callout" style={{ marginTop: "0.85rem" }}>
-        <strong>Design v2 — story cards.</strong> Summary lede, Base/Upside
-        cards anchored by the FP numbers, quiet Limits footer. Full writeup
-        kept; outlook FP/ranks from live board.
+        <strong>Design preview — same story cards as live.</strong> Uses{" "}
+        <code>player_math</code> + board FP for {p.name}.{" "}
+        <Link href={liveHref} className="text-link">
+          Open live card
+        </Link>
+        .
       </div>
 
       <p className="faint" style={{ marginTop: "1.25rem" }}>
         <Link href="/players">Players</Link> / {p.name}
       </p>
-      <h1>{p.name}</h1>
-      <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
+      <h1 className="pm2-player-name">{p.name}</h1>
+      <div className="pm2-player-meta">
         <span className="badge accent">{p.position}</span>
         <span className="badge">
           <Link href={`/teams/${p.team}`}>{p.team}</Link>
@@ -384,78 +369,36 @@ export default async function PlayerMathOptionsMockPage() {
         ) : null}
       </div>
 
-      <h2>Season outlook</h2>
-      <p className="muted" style={{ fontSize: "0.9rem" }}>
-        Half PPR fantasy points from {BRAND_FORMULA}.
-      </p>
-      <div className="stat-grid">
-        <div className="stat">
-          <div className="label">Downside</div>
-          <div className="value num warn">{fmt(p.draft.downside_fp, 1)}</div>
-          {p.draft.pos_downside_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_downside_rank}
-            </div>
-          ) : null}
+      <div className="pm2">
+        <div className="pm2-top">
+          <PlayerMathSummary summary={math.summary} />
+          <EditProjectionBuckets
+            entry="gated"
+            gatedLayout="card"
+            gatedBottomAnchorId="pm2-contribute-bottom"
+            playerId={p.player_id}
+            playerName={p.name}
+            team={p.team}
+            position={p.position}
+            offenseRows={teamRows}
+            shareRows={shareRows}
+            efficiencyRows={rateRows}
+            offenseSnapshot={offenseSnapshot}
+            shareBands={shareBands}
+            efficiencyGroups={efficiencyGroups}
+            offenseBoard={offenseBoard}
+            shareBoard={shareBoard}
+            efficiencyBoard={efficiencyBoard}
+            pieHref={`/teams/${p.team}#share-pies`}
+            classicHref={`${liveHref}?edit=classic`}
+            targetPie={{ years: pieYears, rows: targetPieRows }}
+          />
         </div>
-        <div className="stat">
-          <div className="label">Expected</div>
-          <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
-          {p.draft.pos_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_rank}
-            </div>
-          ) : null}
-        </div>
-        <div className="stat">
-          <div className="label">Upside</div>
-          <div className="value num accent">{fmt(p.draft.scenario_fp, 1)}</div>
-          {p.draft.pos_upside_rank != null ? (
-            <div className="sub">
-              {p.position}
-              {p.draft.pos_upside_rank}
-            </div>
-          ) : null}
-        </div>
-        <div className="stat">
-          <div className="label">FP / G · games</div>
-          <div className="value num" style={{ fontSize: "1rem" }}>
-            {fmt(p.fp.fp_per_game, 2)} · {fmt(p.fp.games_played_proj, 1)}
-          </div>
-        </div>
+
+        <PlayerMathCases content={math} outlook={outlook} />
+        <PlayerMathLimits limits={math.limits} />
+        <div id="pm2-contribute-bottom" />
       </div>
-
-      <PlayerMathDesignOptions
-        outlook={{
-          position: p.position,
-          expectedFp: p.fp.season_fp ?? 0,
-          expectedRank: p.draft.pos_rank,
-          upsideFp: p.draft.scenario_fp ?? 0,
-          upsideRank: p.draft.pos_upside_rank,
-        }}
-      />
-
-      <EditProjectionBuckets
-        entry="gated"
-        playerId={p.player_id}
-        playerName={p.name}
-        team={p.team}
-        position={p.position}
-        offenseRows={teamRows}
-        shareRows={shareRows}
-        efficiencyRows={rateRows}
-        offenseSnapshot={offenseSnapshot}
-        shareBands={shareBands}
-        efficiencyGroups={efficiencyGroups}
-        offenseBoard={offenseBoard}
-        shareBoard={shareBoard}
-        efficiencyBoard={efficiencyBoard}
-        pieHref={`/teams/${p.team}#share-pies`}
-        classicHref={`${liveHref}?edit=classic`}
-        targetPie={{ years: pieYears, rows: targetPieRows }}
-      />
     </>
   );
 }
