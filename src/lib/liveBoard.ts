@@ -443,6 +443,16 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
     const passTd = eff(cmap, "pass_td_rate", seeds.pass_td_rate) ?? 0;
     const intRate = eff(cmap, "int_rate", seeds.int_rate) ?? 0;
 
+    const ratesSeed = {
+      catchPct: seeds.catch_pct ?? 0,
+      ypt: seeds.ypt ?? 0,
+      recTd: seeds.rec_td_rate ?? 0,
+      ypc: seeds.ypc ?? 0,
+      rushTd: seeds.rush_td_rate ?? 0,
+      passYpa: seeds.pass_ypa ?? 0,
+      passTd: seeds.pass_td_rate ?? 0,
+      intRate: seeds.int_rate ?? 0,
+    };
     const ratesLive = {
       catchPct,
       ypt,
@@ -454,20 +464,30 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
       intRate,
     };
 
+    const seedTgt = seeds.target_share ?? 0;
+    const seedRush = seeds.rush_share ?? 0;
+    const seedTgtDn = seeds.target_share_dn ?? seedTgt;
+    const seedRushDn = seeds.rush_share_dn ?? seedRush;
+    const seedTgtCeil = seeds.target_share_ceil ?? seedTgt;
+    const seedRushCeil = seeds.rush_share_ceil ?? seedRush;
+
+    // Pair each FP band with its own seed identity so we don't double-count
+    // freeze downside/upside share packs already baked into draft.*_fp.
     const seedId = identityFrom(
       p,
-      {
-        tgt: seeds.target_share ?? 0,
-        rush: seeds.rush_share ?? 0,
-        catchPct: seeds.catch_pct ?? 0,
-        ypt: seeds.ypt ?? 0,
-        recTd: seeds.rec_td_rate ?? 0,
-        ypc: seeds.ypc ?? 0,
-        rushTd: seeds.rush_td_rate ?? 0,
-        passYpa: seeds.pass_ypa ?? 0,
-        passTd: seeds.pass_td_rate ?? 0,
-        intRate: seeds.int_rate ?? 0,
-      },
+      { tgt: seedTgt, rush: seedRush, ...ratesSeed },
+      seedTargets,
+      seedRushAtt,
+    );
+    const seedDnId = identityFrom(
+      p,
+      { tgt: seedTgtDn, rush: seedRushDn, ...ratesSeed },
+      seedTargets,
+      seedRushAtt,
+    );
+    const seedUpId = identityFrom(
+      p,
+      { tgt: seedTgtCeil, rush: seedRushCeil, ...ratesSeed },
       seedTargets,
       seedRushAtt,
     );
@@ -494,15 +514,16 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
     const seedEffUp = seedTeam?.scenario.eff_up ?? 1;
     const liveVolUp = liveTeam?.scenario.vol_up ?? seedVolUp ?? 1;
     const liveEffUp = liveTeam?.scenario.eff_up ?? seedEffUp ?? 1;
+    // Only the *delta* vs freeze packs — scenario_fp already includes seed packs.
     const upPackScale =
       ((seedVolUp ?? 1) > 0 ? (liveVolUp ?? 1) / (seedVolUp ?? 1) : 1) *
       ((seedEffUp ?? 1) > 0 ? (liveEffUp ?? 1) / (seedEffUp ?? 1) : 1);
 
     const season_fp = scaleFpByIdentity(p.fp.season_fp, seedId, liveId);
-    const downside_fp = scaleFpByIdentity(p.draft.downside_fp, seedId, dnId);
+    const downside_fp = scaleFpByIdentity(p.draft.downside_fp, seedDnId, dnId);
     const scenario_fp = scaleFpByIdentity(
       p.draft.scenario_fp,
-      seedId,
+      seedUpId,
       upId * (Number.isFinite(upPackScale) ? upPackScale : 1),
     );
 

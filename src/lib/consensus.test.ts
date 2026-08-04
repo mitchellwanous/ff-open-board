@@ -115,6 +115,33 @@ const hotter = seasonFpIdentity({
 const scaled = scaleFpByIdentity(266.6, seed.seasonFp, hotter.seasonFp);
 assert.ok(scaled != null && scaled > 266.6);
 
+// Band FP must scale vs its own seed identity (not base), or freeze
+// downside/upside get double-counted.
+const baseId = seed.seasonFp;
+const dnSeed = seasonFpIdentity({
+  ...{
+    position: "RB",
+    gamesPlayed: 15,
+    teamTargets: 516,
+    teamRushAtt: 400,
+    targetShare: 0.15,
+    rushShare: 0.45,
+    catchPct: 0.67,
+    ypt: 6.5,
+    recTdRate: 0.054,
+    ypc: 5.1,
+    rushTdRate: 0.033,
+    passYpa: 0,
+    passTdRate: 0,
+    intRate: 0,
+  },
+}).seasonFp;
+const dnLive = dnSeed; // no consensus change
+const dnScaled = scaleFpByIdentity(103.8, dnSeed, dnLive);
+assert.ok(dnScaled != null && Math.abs(dnScaled - 103.8) < 0.05);
+const dnWrong = scaleFpByIdentity(103.8, baseId, dnSeed);
+assert.ok(dnWrong != null && dnWrong < 100); // old bug path
+
 // hybrid share renorm
 const pie = hybridRenormPie([
   { id: "odunze", position: "WR", kind: "player", share: 0.28, locked: true },
