@@ -21812,19 +21812,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "ARI is projected 18.6 PPG, 31st-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 Jeremiyah Love at about 46.0% of rushes and ~6.7% of targets.",
-        "Upside is ARI clearing that 31st-ranked ~18.6 PPG line and rushes 46.0% \u2192 55.0%."
+        "Arizona is projected 18.6 PPG, 31st-highest scoring offense in the NFL.",
+        "Base case is that soft offense with a real committee \u2014 Love, the #3 pick, projects into the lead at 46% of rushes and about 6.7% of targets.",
+        "Upside is Arizona clearing that dead-near-bottom ~18.6 PPG line and rushes about 46% \u2192 55% \u2014 still short of a workhorse wipe while Tyler Allgeier stays healthy."
       ],
       "base": {
         "paras": [
-          "We project about 46.0% of rushes and ~6.7% of targets.",
-          "Around Love that leaves: Tyler Allgeier (24.0% of rushes), James Conner (17.0% of rushes), Bam Knight (7.2% of rushes), Jacoby Brissett (5.8% of rushes) \u2014 then remaining depth."
+          "Love has no NFL prior. Michael Carter\u2019s old ~25% of rushes and a messy ARI backfield leave a lead seat open; we project Love at 46% of rushes and 6.7% of targets \u2014 clear RB1 capital inside a committee, not a 55%+ monopoly.",
+          "Around Love that leaves: Tyler Allgeier (24.0% of rushes), James Conner (17.0%), Bam Knight (7.2%), Jacoby Brissett (5.8%) \u2014 then RB depth."
         ],
-        "verdict": "This is 162 half-PPR \u2192 RB28.",
+        "verdict": "This is 162 half-PPR \u2192 RB24. The lead role is real; the offense and the committee are the drag.",
         "pie": [
           {
             "name": "Jeremiyah Love",
@@ -21855,15 +21855,16 @@
       },
       "upside": {
         "path": [
-          "ARI clears the ~18.6 PPG line",
-          "Rushes 46.0% \u2192 55.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 46% \u2192 55% from Conner / Bam crumbs \u2014 nothing material from Allgeier",
+          "Receiving holds near 6.7% of targets",
+          "Arizona clears the ~18.6 PPG line"
         ],
-        "verdict": "That lands about 228 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 228 half-PPR \u2192 high-RB2 / soft-RB1 territory \u2014 useful ceiling that still needs the 31st-ranked offense to wake up."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 31st-ranked ~18.6 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 228 half-PPR \u2014 RB2 territory."
+        "A 31st-ranked scoring environment is the primary ceiling. Clearing ~18.6 PPG is stacked with any rush bump and Year-1 finishing \u2014 the path to ~228 needs Arizona to run hot.",
+        "Tyler Allgeier stays paid at about 24% of rushes, and James Conner still owns ~17%. We cap Love at 55% of rushes, not a 60%+ season-long wipe while Allgeier is healthy.",
+        "The pass-game leap is not his. Marvin Harrison Jr., Trey McBride, and Michael Wilson own the targets; Love stays near 6.7%."
       ]
     },
     "depth_rank": 1,
@@ -23543,19 +23544,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "WAS is projected 23.3 PPG, 17th-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 Jacory Croskey-Merritt at about 42.0% of rushes and ~3.0% of targets.",
-        "Upside is WAS clearing that 17th-ranked ~23.3 PPG line and rushes 42.0% \u2192 48.0%."
+        "Washington is projected 23.3 PPG, 17th-highest scoring offense in the NFL.",
+        "Base case is that offense with a real committee \u2014 Croskey-Merritt bumps from about 37.1% \u2192 42% of rushes, while targets hold near 3%.",
+        "Upside is Washington clearing that 17th-ranked ~23.3 PPG line and a thin rush bump from Croskey-Merritt: about 42% \u2192 48% of rushes \u2014 still not wiping Rachaad White."
       ],
       "base": {
         "paras": [
-          "Last year: 140 half-PPR. We project about 42.0% of rushes and ~3.0% of targets.",
-          "Around Croskey-Merritt that leaves: Rachaad White (27.0% of rushes), Jayden Daniels (26.0% of rushes), Jeremy McNichols (5.0% of rushes) \u2014 then remaining depth."
+          "Last year Croskey-Merritt had about 37.1% of rushes, about 3.0% of targets, and 140 half-PPR. Chris Rodriguez Jr. (~23.6% of rushes) is gone; that leftover mostly lands in the base. We project Croskey-Merritt at 42% of rushes and 3% of targets \u2014 feature lead, not a pass-catching dual threat.",
+          "Around Croskey-Merritt that leaves: Rachaad White (27.0% of rushes), Jayden Daniels (26.0%), Jeremy McNichols (5.0%) \u2014 then RB depth."
         ],
-        "verdict": "This is 150 half-PPR \u2192 RB32.",
+        "verdict": "This is 158 half-PPR \u2192 RB25. The lead role is real; White and Daniels still own huge rush slices, and the receiving is dead.",
         "pie": [
           {
             "name": "Jacory Croskey-Merritt",
@@ -23581,15 +23582,16 @@
       },
       "upside": {
         "path": [
-          "WAS clears the ~23.3 PPG line",
-          "Rushes 42.0% \u2192 48.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 42% \u2192 48% from McNichols / White rush pennies \u2014 nothing material from Daniels",
+          "Receiving holds near 3% of targets (White keeps the pass-down work)",
+          "Washington clears the ~23.3 PPG line"
         ],
-        "verdict": "That lands about 199 half-PPR \u2192 flex / RB3 territory."
+        "verdict": "That lands about 199 half-PPR \u2192 mid/high-RB2 territory \u2014 not a workhorse wipe while White is healthy."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 17th-ranked ~23.3 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 199 half-PPR \u2014 flex / RB3 territory."
+        "Rachaad White stays paid at about 27% of rushes, and Jayden Daniels keeps ~26%. We cap Croskey-Merritt at 48% of rushes, not a ~53% season-long wipe.",
+        "The pass-game leap is not his. White owns about 9% of targets; Croskey-Merritt stays near 3%.",
+        "Offense and share are stacked asks. Clearing a 17th-ranked scoring offense plus 48% of rushes gets him to about 199 half-PPR \u2014 useful RB2 ceiling, not an elite dual-threat seat."
       ]
     },
     "depth_rank": 1,
