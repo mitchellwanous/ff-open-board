@@ -21036,16 +21036,16 @@
     "community_note": null,
     "player_math": {
       "status": "reviewed",
-      "updated_on": "2026-08-04",
+      "updated_on": "2026-08-05",
       "summary": [
         "Chicago is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
         "Burden bumps from a rookie ~11.2% of targets to 18.5% after DJ Moore and Olamide Zaccheaus leave \u2014 real WR2 seat under Rome Odunze.",
-        "Upside is Chicago clearing that top-10 ~25.1 PPG line plus a Year-2 leap to about 26% of targets with rates that actually finish \u2014 still short of owning the room alone."
+        "Upside is Chicago clearing that top-10 ~25.1 PPG line plus a Year-2 leap to about 26% of targets with rates that actually finish \u2014 still a contested leftover with Rome Odunze (up to ~24.5%) and Colston Loveland (up to ~21.5%), not a room wipe."
       ],
       "base": {
         "paras": [
           "2025: ~11.2% of targets, 60 targets, 2 TDs, 104 half-PPR in 15 games \u2014 productive on a thin seat. DJ Moore (~16% of targets) and Olamide Zaccheaus (~12%) are gone; that leftover splits across Rome Odunze, Burden, and Colston Loveland. We project Burden at 18.5% of targets.",
-          "Around Burden that leaves: Rome Odunze (21.0% of targets), Colston Loveland (17.0%), D'Andre Swift (8.7%), Cole Kmet (6.0%), plus Kalif Raymond (5.5%) \u2014 then WR depth (~13%), Kyle Monangai / RB depth, and TE depth."
+          "Around Burden that leaves: Rome Odunze (21.0% of targets), Colston Loveland (17.0%), D'Andre Swift (8.7%), Cole Kmet (6.0%), plus Kalif Raymond (5.5%) \u2014 then WR depth (~12.8%), Kyle Monangai / RB depth, and TE depth."
         ],
         "verdict": "This is 173 half-PPR \u2192 WR21. The Year-2 role is real; Odunze and Loveland still own real target paths.",
         "pie": [
@@ -21096,7 +21096,6 @@
       },
       "limits": [
         "Odunze (up to ~24.5% of targets) and Loveland (up to ~21.5%) pull from the same Moore/Zaccheaus leftover. They cannot all hit those highs together. Burden caps at 26% of targets, not a 28%+ season-long wipe.",
-        "That leftover is real but contested \u2014 not an empty WR1 vacuum under Odunze.",
         "Scoring has to show up. Last year: 60 targets, two TDs, 104 fantasy points. More targets without better catch rate, yards per target, and TD rate still leave him short of the smash.",
         "Offense, share, and Year-2 rates are stacked asks. Clearing a 9th-ranked scoring offense plus targets to 26% gets him to about 321 half-PPR \u2014 true WR1 ceiling only if the leap lands while Odunze and Loveland stay healthy underneath."
       ]
@@ -72322,19 +72321,19 @@
     "position": "TE",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "CHI is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
-        "Base case is that offense with Cole Kmet at 7.0% of targets.",
-        "Upside is CHI clearing that 9th-ranked ~25.1 PPG line with the offense running hotter."
+        "Chicago is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
+        "Kmet is cut to 6.0% of targets behind Colston Loveland in a crowded Odunze / Burden room.",
+        "Upside is mostly Chicago clearing that 9th-ranked ~25.1 PPG line \u2014 share stays thin."
       ],
       "base": {
         "paras": [
-          "Last year: 62 half-PPR. We project 7.0% of targets.",
-          "Around Kmet that leaves: Rome Odunze (22.0% of targets), Colston Loveland (17.0% of targets), Luther Burden III (16.0% of targets), D'Andre Swift (8.9% of targets), plus Kyle Monangai (6.0% of targets) \u2014 then remaining depth."
+          "Last year: 62 half-PPR. We project 6.0% of targets as the TE2 behind Loveland.",
+          "Around Kmet that leaves: Rome Odunze (21.0% of targets), Luther Burden III (18.5%), Colston Loveland (17.0%), D'Andre Swift (8.7%), plus Kalif Raymond (5.5%) \u2014 then WR depth / RB depth / TE depth."
         ],
-        "verdict": "This is 61 half-PPR \u2192 TE35.",
+        "verdict": "This is 54 half-PPR \u2192 TE39. The TE2 seat is real; it is not a fantasy starter path.",
         "pie": [
           {
             "name": "Rome Odunze",
@@ -72375,15 +72374,15 @@
       },
       "upside": {
         "path": [
-          "CHI clears the ~25.1 PPG line",
-          "Finishing holds while the offense runs hot \u2014 share stays near the base seat"
+          "Chicago clears the ~25.1 PPG line",
+          "Finishing holds while the offense runs hot \u2014 share stays near 6% of targets"
         ],
-        "verdict": "That lands about 77 half-PPR \u2192 TE2 / streamer territory."
+        "verdict": "That lands about 68 half-PPR \u2192 depth / streamer territory."
       },
       "limits": [
-        "The offense has to hit. A 9th-ranked ~25.1 PPG environment means a large share of the jump is CHI scoring more, not inventing a new usage tier.",
-        "Share upside is thin (7.0% \u2192 7.0% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 9th-ranked offense lands about 77 half-PPR \u2014 TE2 / streamer territory."
+        "Loveland owns the TE1 seat. Kmet is the backup slice, not a reclaim path while Loveland is healthy.",
+        "Odunze and Burden still own the bigger WR leftovers. There is no empty TE vacuum above 6%.",
+        "Offense has to hit. Clearing a 9th-ranked ~25.1 PPG line gets him to the high 60s \u2014 not a TE1 season."
       ]
     },
     "depth_rank": 2,
@@ -98126,19 +98125,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "CHI is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
-        "Base case is that offense on a new team (DET \u2192 CHI) with Kalif Raymond at 5.5% of targets.",
-        "Upside is CHI clearing that 9th-ranked ~25.1 PPG line with the offense running hotter."
+        "Chicago is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
+        "Raymond holds a thin 5.5% of targets in a new Chicago room behind Rome Odunze and Luther Burden III.",
+        "Upside is mostly Chicago clearing that 9th-ranked ~25.1 PPG line \u2014 share stays near the base seat."
       ],
       "base": {
         "paras": [
           "Last year: 49 half-PPR. We project 5.5% of targets on a new team (DET \u2192 CHI).",
-          "Around Raymond that leaves: Rome Odunze (22.0% of targets), Colston Loveland (17.0% of targets), Luther Burden III (16.0% of targets), D'Andre Swift (8.9% of targets), plus Cole Kmet (7.0% of targets) \u2014 then remaining depth."
+          "Around Raymond that leaves: Rome Odunze (21.0% of targets), Luther Burden III (18.5%), Colston Loveland (17.0%), D'Andre Swift (8.7%), plus Cole Kmet (6.0%) \u2014 then WR depth / RB depth / TE depth."
         ],
-        "verdict": "This is 53 half-PPR \u2192 WR97.",
+        "verdict": "This is 54 half-PPR \u2192 WR97. Depth seat only.",
         "pie": [
           {
             "name": "Rome Odunze",
@@ -98179,15 +98178,15 @@
       },
       "upside": {
         "path": [
-          "CHI clears the ~25.1 PPG line",
-          "Finishing holds while the offense runs hot \u2014 share stays near the base seat"
+          "Chicago clears the ~25.1 PPG line",
+          "Finishing holds while the offense runs hot \u2014 share stays near 5.5% of targets"
         ],
         "verdict": "That lands about 69 half-PPR \u2192 depth / dart-throw territory."
       },
       "limits": [
-        "The offense has to hit. A 9th-ranked ~25.1 PPG environment means a large share of the jump is CHI scoring more, not inventing a new usage tier.",
-        "Share upside is thin (5.5% \u2192 5.5% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 9th-ranked offense lands about 69 half-PPR \u2014 depth / dart-throw territory."
+        "Odunze, Burden, and Loveland own the leftover. Raymond is a depth plug, not a share climber.",
+        "Share upside is thin (ceil equals base at 5.5% of targets).",
+        "Offense has to hit. Clearing a 9th-ranked ~25.1 PPG line gets him to the high 60s \u2014 still a dart throw."
       ]
     },
     "depth_rank": 3,
