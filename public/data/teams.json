@@ -1486,7 +1486,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.040; pass_std=0.048; eff_cv=0.138; regime=franchise_hist"
     },
-    "board_fp": 1229.7,
+    "board_fp": 1236.7,
     "board_rk": 17,
     "newcomers": [
       "Case Keenum (QB3, new)",
@@ -1502,54 +1502,54 @@
         "player_id": "00-0039919",
         "name": "Rome Odunze",
         "position": "WR",
-        "share_dn": 19.0,
-        "share": 22.0,
-        "share_ceil": 26.5
-      },
-      {
-        "kind": "player",
-        "player_id": "00-0040126",
-        "name": "Colston Loveland",
-        "position": "TE",
-        "share_dn": 16.0,
-        "share": 17.0,
-        "share_ceil": 21.5
+        "share_dn": 17.6,
+        "share": 21.0,
+        "share_ceil": 24.5
       },
       {
         "kind": "player",
         "player_id": "00-0040735",
         "name": "Luther Burden III",
         "position": "WR",
-        "share_dn": 16.0,
-        "share": 16.0,
-        "share_ceil": 24.0
+        "share_dn": 15.7,
+        "share": 18.5,
+        "share_ceil": 26.0
+      },
+      {
+        "kind": "player",
+        "player_id": "00-0040126",
+        "name": "Colston Loveland",
+        "position": "TE",
+        "share_dn": 16.2,
+        "share": 17.0,
+        "share_ceil": 21.5
       },
       {
         "kind": "player",
         "player_id": "00-0036275",
         "name": "D'Andre Swift",
         "position": "RB",
-        "share_dn": 8.9,
-        "share": 8.9,
-        "share_ceil": 8.9
+        "share_dn": 8.7,
+        "share": 8.7,
+        "share_ceil": 8.7
       },
       {
         "kind": "player",
         "player_id": "00-0036290",
         "name": "Cole Kmet",
         "position": "TE",
-        "share_dn": 7.0,
-        "share": 7.0,
-        "share_ceil": 7.0
+        "share_dn": 6.0,
+        "share": 6.0,
+        "share_ceil": 6.0
       },
       {
         "kind": "player",
         "player_id": "00-0040236",
         "name": "Kyle Monangai",
         "position": "RB",
-        "share_dn": 6.0,
-        "share": 6.0,
-        "share_ceil": 6.0
+        "share_dn": 5.8,
+        "share": 5.8,
+        "share_ceil": 5.8
       },
       {
         "kind": "player",
@@ -1567,7 +1567,7 @@
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 17.6,
+        "share": 17.5,
         "share_ceil": null
       }
     ],
@@ -1610,7 +1610,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.176,
+      "target_share_other": 0.175,
       "rush_share_other": 0.0
     },
     "hist": [
@@ -2590,7 +2590,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.034; pass_std=0.025; eff_cv=0.144; regime=franchise_hist"
     },
-    "board_fp": 1229.2,
+    "board_fp": 1235.8,
     "board_rk": 14,
     "newcomers": [
       "Jarrett Stidham (QB2, new)",
@@ -2606,7 +2606,7 @@
         "player_id": "00-0036613",
         "name": "Jaylen Waddle",
         "position": "WR",
-        "share_dn": 14.3,
+        "share_dn": 18.0,
         "share": 20.5,
         "share_ceil": 23.5
       },
@@ -2615,18 +2615,27 @@
         "player_id": "00-0034348",
         "name": "Courtland Sutton",
         "position": "WR",
-        "share_dn": 8.0,
-        "share": 15.4,
-        "share_ceil": 15.4
+        "share_dn": 12.0,
+        "share": 18.0,
+        "share_ceil": 20.0
       },
       {
         "kind": "player",
         "player_id": "00-0039868",
         "name": "Troy Franklin",
         "position": "WR",
-        "share_dn": 10.9,
-        "share": 10.9,
+        "share_dn": 9.5,
+        "share": 9.5,
         "share_ceil": 14.0
+      },
+      {
+        "kind": "player",
+        "player_id": "00-0040134",
+        "name": "Pat Bryant",
+        "position": "WR",
+        "share_dn": 8.7,
+        "share": 8.7,
+        "share_ceil": 10.0
       },
       {
         "kind": "player",
@@ -2634,26 +2643,17 @@
         "name": "Evan Engram",
         "position": "TE",
         "share_dn": 8.0,
-        "share": 9.9,
-        "share_ceil": 9.9
+        "share": 8.6,
+        "share_ceil": 12.0
       },
       {
         "kind": "player",
         "player_id": "00-0040730",
         "name": "RJ Harvey",
         "position": "RB",
-        "share_dn": 6.6,
-        "share": 6.6,
-        "share_ceil": 6.6
-      },
-      {
-        "kind": "player",
-        "player_id": "00-0040134",
-        "name": "Pat Bryant",
-        "position": "WR",
         "share_dn": 5.7,
         "share": 5.7,
-        "share_ceil": 8.7
+        "share_ceil": 5.7
       },
       {
         "kind": "depth",
@@ -2662,7 +2662,7 @@
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 31.0,
+        "share": 29.0,
         "share_ceil": null
       }
     ],
@@ -2705,7 +2705,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.31,
+      "target_share_other": 0.29,
       "rush_share_other": 0.0
     },
     "hist": [
@@ -5335,12 +5335,12 @@
     },
     "hub": {
       "plays_pg": 54.8,
-      "pass_rate": 56.0,
-      "rush_rate": 44.0,
-      "pass_yards": 3367.0,
-      "rush_yards": 1971.0,
-      "team_targets": 516.0,
-      "designed_rush_attempts": 386.0,
+      "pass_rate": 53.0,
+      "rush_rate": 47.0,
+      "pass_yards": 3193.0,
+      "rush_yards": 2101.0,
+      "team_targets": 490.0,
+      "designed_rush_attempts": 412.0,
       "sack_rate": 5.9,
       "pressure_proxy": 18.5,
       "pass_ypa_used": 6.52,
@@ -5362,7 +5362,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.049; pass_std=0.032; eff_cv=0.157; regime=franchise_hist"
     },
-    "board_fp": 1017.3,
+    "board_fp": 997.6,
     "board_rk": 29,
     "newcomers": [
       "Malik Willis (QB1, new)",
@@ -5379,7 +5379,7 @@
         "name": "Malik Washington",
         "position": "WR",
         "share_dn": 15.6,
-        "share": 19.2,
+        "share": 19.1,
         "share_ceil": 24.0
       },
       {
@@ -5388,7 +5388,7 @@
         "name": "Jalen Tolbert",
         "position": "WR",
         "share_dn": 11.9,
-        "share": 17.0,
+        "share": 16.9,
         "share_ceil": 19.5
       },
       {
@@ -5405,9 +5405,9 @@
         "player_id": "00-0039040",
         "name": "De'Von Achane",
         "position": "RB",
-        "share_dn": 14.9,
-        "share": 14.9,
-        "share_ceil": 14.9
+        "share_dn": 12.0,
+        "share": 15.0,
+        "share_ceil": 17.0
       },
       {
         "kind": "player",
@@ -5434,7 +5434,7 @@
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 17.0,
+        "share": 17.1,
         "share_ceil": null
       }
     ],
@@ -5477,7 +5477,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.17,
+      "target_share_other": 0.171,
       "rush_share_other": 0.0
     },
     "hist": [
@@ -5566,11 +5566,11 @@
         "kind": "proj",
         "ppg": 19.1,
         "plays_pg": 54.8,
-        "pass_rate": 56.0,
-        "pass_yards": 3367.0,
-        "rush_yards": 1971.0,
-        "team_targets": 516.0,
-        "designed_rush_attempts": 386.0,
+        "pass_rate": 53.0,
+        "pass_yards": 3193.0,
+        "rush_yards": 2101.0,
+        "team_targets": 490.0,
+        "designed_rush_attempts": 412.0,
         "sack_rate": 5.9,
         "pressure_proxy": 18.5,
         "pass_ypa": 6.52,
@@ -5580,9 +5580,9 @@
     ],
     "implied_ppg": 19.1,
     "plays_pg": 54.8,
-    "pass_rate": 56.0,
-    "pass_yards": 3367.0,
-    "rush_yards": 1971.0,
+    "pass_rate": 53.0,
+    "pass_yards": 3193.0,
+    "rush_yards": 2101.0,
     "volume_scale": 0.83,
     "vol_up": 1.049,
     "eff_up": 1.157
@@ -6743,12 +6743,12 @@
     },
     "hub": {
       "plays_pg": 57.5,
-      "pass_rate": 55.0,
-      "rush_rate": 45.0,
-      "pass_yards": 3546.0,
-      "rush_yards": 2018.0,
-      "team_targets": 537.0,
-      "designed_rush_attempts": 380.0,
+      "pass_rate": 57.0,
+      "rush_rate": 43.0,
+      "pass_yards": 3659.0,
+      "rush_yards": 1938.0,
+      "team_targets": 554.0,
+      "designed_rush_attempts": 365.0,
       "sack_rate": 9.7,
       "pressure_proxy": 28.4,
       "pass_ypa_used": 6.61,
@@ -6770,7 +6770,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.037; eff_cv=0.119; regime=franchise_hist"
     },
-    "board_fp": 865.3,
+    "board_fp": 915.1,
     "board_rk": 31,
     "newcomers": [
       "Geno Smith (QB1, new)",
@@ -6966,11 +6966,11 @@
         "kind": "proj",
         "ppg": 18.3,
         "plays_pg": 57.5,
-        "pass_rate": 55.0,
-        "pass_yards": 3546.0,
-        "rush_yards": 2018.0,
-        "team_targets": 537.0,
-        "designed_rush_attempts": 380.0,
+        "pass_rate": 57.0,
+        "pass_yards": 3659.0,
+        "rush_yards": 1938.0,
+        "team_targets": 554.0,
+        "designed_rush_attempts": 365.0,
         "sack_rate": 9.7,
         "pressure_proxy": 28.4,
         "pass_ypa": 6.61,
@@ -6980,9 +6980,9 @@
     ],
     "implied_ppg": 18.3,
     "plays_pg": 57.5,
-    "pass_rate": 55.0,
-    "pass_yards": 3546.0,
-    "rush_yards": 2018.0,
+    "pass_rate": 57.0,
+    "pass_yards": 3659.0,
+    "rush_yards": 1938.0,
     "volume_scale": 0.796,
     "vol_up": 1.032,
     "eff_up": 1.119
@@ -7876,7 +7876,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.028; eff_cv=0.115; regime=same_hc:Kyle Shanahan"
     },
-    "board_fp": 1256.0,
+    "board_fp": 1210.1,
     "board_rk": 8,
     "newcomers": [
       "Mike Evans (WR1, from TB)",
@@ -7901,7 +7901,7 @@
         "player_id": "00-0031408",
         "name": "Mike Evans",
         "position": "WR",
-        "share_dn": 11.5,
+        "share_dn": 12.7,
         "share": 17.0,
         "share_ceil": 17.0
       },
@@ -7925,6 +7925,15 @@
       },
       {
         "kind": "player",
+        "player_id": "00-0041052",
+        "name": "Kaelon Black",
+        "position": "RB",
+        "share_dn": 8.8,
+        "share": 8.8,
+        "share_ceil": 8.8
+      },
+      {
+        "kind": "player",
         "player_id": "00-0034775",
         "name": "Christian Kirk",
         "position": "WR",
@@ -7933,22 +7942,13 @@
         "share_ceil": 6.5
       },
       {
-        "kind": "player",
-        "player_id": "00-0039916",
-        "name": "Ricky Pearsall",
-        "position": "WR",
-        "share_dn": 5.0,
-        "share": 5.0,
-        "share_ceil": 9.0
-      },
-      {
         "kind": "depth",
         "player_id": null,
         "depth_key": "other",
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 27.5,
+        "share": 23.7,
         "share_ceil": null
       }
     ],
@@ -7992,7 +7992,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.275,
+      "target_share_other": 0.237,
       "rush_share_other": 0.02
     },
     "hist": [
@@ -8153,7 +8153,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.046; eff_cv=0.177; regime=franchise_hist"
     },
-    "board_fp": 1232.6,
+    "board_fp": 1232.1,
     "board_rk": 16,
     "newcomers": [
       "Jake Browning (QB2, new)",
@@ -8169,8 +8169,8 @@
         "player_id": "00-0040129",
         "name": "Emeka Egbuka",
         "position": "WR",
-        "share_dn": 16.7,
-        "share": 21.4,
+        "share_dn": 19.0,
+        "share": 21.3,
         "share_ceil": 26.5
       },
       {
@@ -8187,9 +8187,9 @@
         "player_id": "00-0038129",
         "name": "Cade Otton",
         "position": "TE",
-        "share_dn": 12.4,
-        "share": 12.4,
-        "share_ceil": 12.4
+        "share_dn": 13.0,
+        "share": 12.9,
+        "share_ceil": 15.4
       },
       {
         "kind": "player",
@@ -8214,18 +8214,18 @@
         "player_id": "00-0040237",
         "name": "Tez Johnson",
         "position": "WR",
-        "share_dn": 8.0,
-        "share": 8.0,
-        "share_ceil": 11.0
+        "share_dn": 7.9,
+        "share": 7.9,
+        "share_ceil": 10.9
       },
       {
         "kind": "player",
         "player_id": "00-0039361",
         "name": "Bucky Irving",
         "position": "RB",
-        "share_dn": 7.5,
-        "share": 7.5,
-        "share_ceil": 7.5
+        "share_dn": 7.4,
+        "share": 7.4,
+        "share_ceil": 7.4
       },
       {
         "kind": "depth",
@@ -8234,7 +8234,7 @@
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 13.0,
+        "share": 12.8,
         "share_ceil": null
       }
     ],
@@ -8277,7 +8277,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.13,
+      "target_share_other": 0.128,
       "rush_share_other": 0.0
     },
     "hist": [
