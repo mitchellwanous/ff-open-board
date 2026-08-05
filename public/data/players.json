@@ -33345,19 +33345,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "IND is projected 23.3 PPG, 16th-highest scoring offense in the NFL.",
-        "Base case is that offense with Josh Downs at 21.1% of targets.",
-        "Upside is IND clearing that 16th-ranked ~23.3 PPG line plus targets 21.1% \u2192 23.5%."
+        "Indianapolis is projected 23.3 PPG, 16th-highest scoring offense in the NFL.",
+        "Base case is a real bump after Michael Pittman leaves \u2014 Downs goes from about 16.4% \u2192 21.1% of targets, co-featured with Alec Pierce and Tyler Warren.",
+        "Upside is Indianapolis clearing that 16th-ranked ~23.3 PPG line plus a thin share bump to about 23.5% of targets from depth crumbs."
       ],
       "base": {
         "paras": [
-          "Last year: 109 half-PPR. We project 21.1% of targets.",
-          "Around Downs that leaves: Tyler Warren (20.6% of targets), Alec Pierce (20.6% of targets), Jonathan Taylor (11.3% of targets), Ashton Dulin (5.7% of targets), plus Mo Alie-Cox (3.6% of targets) \u2014 then remaining depth."
+          "2025: ~16.4% of targets, 109 half-PPR on 88 targets and 4 TDs. Michael Pittman (~21% of targets) is gone; we project Downs to 21.1% of targets \u2014 back near his 2024 featured seat (~22%), not a monopoly over Pierce and Warren.",
+          "Around Downs that leaves: Alec Pierce (20.6% of targets), Tyler Warren (20.6%), Jonathan Taylor (11.3%), plus Ashton Dulin (5.7%) \u2014 then WR depth (~12%), TE depth, and RB depth."
         ],
-        "verdict": "This is 148 half-PPR \u2192 WR35.",
+        "verdict": "This is 157 half-PPR \u2192 WR28. The bump is real; the room is still a three-way split.",
         "pie": [
           {
             "name": "Josh Downs",
@@ -33393,15 +33393,15 @@
       },
       "upside": {
         "path": [
-          "IND clears the ~23.3 PPG line",
-          "Targets 21.1% \u2192 23.5% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Targets go from 21.1% \u2192 23.5% from Ashton Dulin / WR depth \u2014 pennies only from Pierce and Warren",
+          "Indianapolis clears the ~23.3 PPG line"
         ],
-        "verdict": "That lands about 208 half-PPR \u2192 depth / dart-throw territory."
+        "verdict": "That lands about 208 half-PPR \u2192 high-WR3 / soft-WR2 territory \u2014 useful flex ceiling, not a locked WR1 while Pierce and Warren stay healthy."
       },
       "limits": [
-        "The offense has to hit. A 16th-ranked ~23.3 PPG environment means a large share of the jump is IND scoring more, not inventing a new usage tier.",
-        "Share upside is thin (21.1% \u2192 23.5% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 16th-ranked offense plus the share bump to 23.5% lands about 208 half-PPR \u2014 depth / dart-throw territory."
+        "Alec Pierce and Tyler Warren stay co-alphas. Pierce owns the outside WR1 edge; Warren is a healthy ~20% TE when available. We do not project Downs leapfrogging them into a 26%+ season-long seat \u2014 cap is 23.5% of targets.",
+        "The leftover above 21% is thin. Pittman\u2019s departure is mostly absorbed across Downs, Pierce, and Warren; there is not another alpha-sized hole.",
+        "Offense and share are stacked asks. Clearing a 16th-ranked scoring offense plus targets to 23.5% gets him to about 208 half-PPR \u2014 high-WR3 / soft-WR2, not elite WR1 while Pierce and Warren are healthy."
       ]
     },
     "depth_rank": 2,
@@ -33663,19 +33663,19 @@
     "position": "WR",
     "community_note": "Shakir is Buffalo\u2019s reliable slot option \u2014 expect a sturdy weekly floor on short and intermediate volume, not boom-bust deep-ball weeks. The board assumes the role holds with Moore present; upside is more pass rate, not a new archetype.",
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "BUF is projected 25.7 PPG, 6th-highest scoring offense in the NFL.",
-        "Base case is that offense with Khalil Shakir at 17.4% of targets.",
-        "Upside is BUF clearing that 6th-ranked ~25.7 PPG line plus targets 17.4% \u2192 19.5%."
+        "Buffalo is projected 25.7 PPG, 6th-highest scoring offense in the NFL.",
+        "Base case is a soft cut with DJ Moore arriving \u2014 Shakir holds from about 19.9% \u2192 17.4% of targets, still the volume WR seat.",
+        "Upside is Buffalo clearing that already-top-6 ~25.7 PPG line plus a thin reclaim to about 19.5% of targets toward his recent history."
       ],
       "base": {
         "paras": [
-          "Last year: 129 half-PPR. We project 17.4% of targets.",
-          "Around Shakir that leaves: DJ Moore (14.9% of targets), Dalton Kincaid (14.0% of targets), Keon Coleman (7.9% of targets), James Cook (7.5% of targets), plus Dawson Knox (6.5% of targets) \u2014 then remaining depth."
+          "2025: ~19.9% of targets, 129 half-PPR on 97 targets and 4 TDs \u2014 basically a hold of his 2024 ~20% seat. DJ Moore arrives as an investment WR; we project Shakir to 17.4% of targets, not a wipe.",
+          "Around Shakir that leaves: DJ Moore (14.9% of targets), Dalton Kincaid (14.0%), Keon Coleman (7.9%), James Cook (7.5%), plus Dawson Knox (6.5%) \u2014 then Josh Palmer (5.5%), Skyler Bell (5.0%), WR depth (~13.5%), TE depth, and RB depth."
         ],
-        "verdict": "This is 142 half-PPR \u2192 WR39.",
+        "verdict": "This is 152 half-PPR \u2192 WR33. The slot role is real; the pie got crowded.",
         "pie": [
           {
             "name": "Khalil Shakir",
@@ -33721,15 +33721,15 @@
       },
       "upside": {
         "path": [
-          "BUF clears the ~25.7 PPG line",
-          "Targets 17.4% \u2192 19.5% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Targets go from 17.4% \u2192 19.5% from WR depth / Josh Palmer / Skyler Bell crumbs \u2014 joint with Moore, nothing material from Kincaid",
+          "Buffalo clears the ~25.7 PPG line"
         ],
-        "verdict": "That lands about 207 half-PPR \u2192 depth / dart-throw territory."
+        "verdict": "That lands about 218 half-PPR \u2192 high-WR3 / soft-WR2 territory \u2014 useful in a smash Buffalo offense, not a locked WR1 while Moore is healthy."
       },
       "limits": [
-        "The offense has to hit. A 6th-ranked ~25.7 PPG environment means a large share of the jump is BUF scoring more, not inventing a new usage tier.",
-        "Share upside is thin (17.4% \u2192 19.5% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 6th-ranked offense plus the share bump to 19.5% lands about 207 half-PPR \u2014 depth / dart-throw territory."
+        "His share is already near historical. ~20% of targets is about where Shakir has lived the last two years; we cap him at 19.5%, not a 24% alpha wipe.",
+        "DJ Moore and Dalton Kincaid stay paid. Moore is the investment WR1 path (up to ~21.5%); Kincaid owns the TE seat. They cannot both max the same depth pool with Shakir.",
+        "Offense headroom is thin. Clearing an already-6th-ranked scoring offense plus a 19.5% reclaim gets him to the low 210s \u2014 not inventing a new usage tier."
       ]
     },
     "depth_rank": 2,
@@ -34581,19 +34581,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "DEN is projected 22.4 PPG, 21st-highest scoring offense in the NFL.",
-        "Base case is that offense with Courtland Sutton at 15.4% of targets.",
-        "Upside is DEN clearing that 21st-ranked ~22.4 PPG line with the offense running hotter."
+        "Denver is projected 22.4 PPG, 21st-highest scoring offense in the NFL.",
+        "Base case is a soft cut with Jaylen Waddle arriving \u2014 Sutton goes from about 21.2% \u2192 18.0% of targets as Waddle takes the 20.5% WR1 seat.",
+        "Upside is Denver clearing that soft 21st-ranked ~22.4 PPG line plus a thin reclaim to about 20% of targets."
       ],
       "base": {
         "paras": [
-          "Last year: 181 half-PPR. We project 15.4% of targets.",
-          "Around Sutton that leaves: Jaylen Waddle (20.5% of targets), Troy Franklin (10.9% of targets), Evan Engram (9.9% of targets), RJ Harvey (6.6% of targets), plus Pat Bryant (5.7% of targets) \u2014 then remaining depth."
+          "2025: ~21.2% of targets, 181 half-PPR on 125 targets and 7 TDs \u2014 still the clear WR1. Jaylen Waddle arrives; we project Sutton to 18.0% of targets underneath Waddle\u2019s 20.5%, not a return to his 2024 ~24.5% smash.",
+          "Around Sutton that leaves: Jaylen Waddle (20.5% of targets), Troy Franklin (9.5%), Pat Bryant (8.7%), Evan Engram (8.6%), plus RJ Harvey (5.7%) \u2014 then Marvin Mims Jr. (~3.9%), WR depth (~12%), TE depth, and RB depth."
         ],
-        "verdict": "This is 137 half-PPR \u2192 WR42.",
+        "verdict": "This is 141 half-PPR \u2192 WR39. The role is still featured; the alpha seat moved.",
         "pie": [
           {
             "name": "Jaylen Waddle",
@@ -34639,15 +34639,15 @@
       },
       "upside": {
         "path": [
-          "DEN clears the ~22.4 PPG line",
-          "Finishing holds while the offense runs hot \u2014 share stays near the base seat"
+          "Denver clears the ~22.4 PPG line (main lever)",
+          "Targets only 18.0% \u2192 20% from Troy Franklin / Pat Bryant / WR depth crumbs \u2014 nothing from Waddle"
         ],
-        "verdict": "That lands about 150 half-PPR \u2192 depth / dart-throw territory."
+        "verdict": "That lands about 192 half-PPR \u2192 mid/high-WR3 territory \u2014 useful if Denver runs hot, not a WR1 reclaim while Waddle is healthy."
       },
       "limits": [
-        "The offense has to hit. A 21st-ranked ~22.4 PPG environment means a large share of the jump is DEN scoring more, not inventing a new usage tier.",
-        "Share upside is thin (15.4% \u2192 15.4% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 21st-ranked offense lands about 150 half-PPR \u2014 depth / dart-throw territory."
+        "Jaylen Waddle owns the WR1 share. We do not project Sutton reclaiming a 21\u201325% alpha seat season-long while Waddle is healthy \u2014 cap is 20% of targets.",
+        "The leftover above 18% is thin. Franklin, Bryant, and Engram still have real paths; there is not another alpha-sized hole for Sutton to absorb.",
+        "Offense has to hit. A 21st-ranked scoring environment means the path to ~192 is Denver running hot and Sutton finishing \u2014 stacked with only a thin share reclaim."
       ]
     },
     "depth_rank": 1,
@@ -34971,19 +34971,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "NO is projected 21.6 PPG, 23rd-highest scoring offense in the NFL.",
-        "Base case is that offense on a new team (NO) with Jordyn Tyson at 19.0% of targets.",
-        "Upside is NO clearing that 23rd-ranked ~21.6 PPG line plus targets 19.0% \u2192 23.0%."
+        "New Orleans is projected 21.6 PPG, 23rd-highest scoring offense in the NFL.",
+        "Base case is a real Year-1 seat after Rashid Shaheed leaves \u2014 Tyson projects to 19.0% of targets as the WR2 under Chris Olave.",
+        "Upside is New Orleans clearing that soft 23rd-ranked ~21.6 PPG line plus Tyson to about 23% of targets with rookie rates that actually finish."
       ],
       "base": {
         "paras": [
-          "We project 19.0% of targets on a new team (NO).",
-          "Around Tyson that leaves: Chris Olave (20.7% of targets), Juwan Johnson (15.0% of targets), Devaughn Vele (8.9% of targets), Alvin Kamara (8.4% of targets), plus Devin Neal (5.4% of targets) \u2014 then remaining depth."
+          "Rookie \u2014 no NFL target history. Rashid Shaheed (~12% of targets) is gone; we project Tyson to 19.0% of targets as the capital consolidator of that leftover, not a leapfrog over Chris Olave.",
+          "Around Tyson that leaves: Chris Olave (20.7% of targets), Juwan Johnson (15.0%), Devaughn Vele (8.9%), Alvin Kamara (8.4%), plus Devin Neal (5.4%) \u2014 then Noah Fant (~4%), WR depth (~13%), TE depth, and RB depth."
         ],
-        "verdict": "This is 143 half-PPR \u2192 WR38.",
+        "verdict": "This is 143 half-PPR \u2192 WR38. The WR2 seat is real; Olave and Juwan still own the paid mouths above him.",
         "pie": [
           {
             "name": "Chris Olave",
@@ -35024,15 +35024,16 @@
       },
       "upside": {
         "path": [
-          "NO clears the ~21.6 PPG line",
-          "Targets 19.0% \u2192 23.0% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "New Orleans clears the ~21.6 PPG line",
+          "Targets 19.0% \u2192 23% from Devaughn Vele / WR depth \u2014 not an Olave wipe",
+          "Rookie catch rate, yards per target, and TD rate actually finish"
         ],
-        "verdict": "That lands about 241 half-PPR \u2192 WR3 / flex territory."
+        "verdict": "That lands about 241 half-PPR \u2192 high-WR2 / soft-WR1 territory \u2014 smash if the offense and rates both hit, not a locked alpha while Olave is healthy."
       },
       "limits": [
-        "The offense has to hit. A 23rd-ranked ~21.6 PPG environment means a large share of the jump is NO scoring more, not inventing a new usage tier.",
-        "Teammates stay paid on targets. We do not project a season-long wipe of the names above him in the pie.",
-        "Stacked asks: clearing a 23rd-ranked offense plus the share bump to 23.0% lands about 241 half-PPR \u2014 WR3 / flex territory."
+        "Soft Vegas offense is the stacked bottleneck. A 23rd-ranked scoring environment means the path to ~241 needs New Orleans to run hot \u2014 not inventing volume from a bottom-10 line alone.",
+        "Chris Olave and Juwan Johnson stay paid. Olave owns the WR1 edge (~21%); Juwan demands mid-teens when healthy. We do not project Tyson leapfrogging them for a season-long alpha share \u2014 cap is 23% of targets.",
+        "Devaughn Vele pulls from the same Shaheed / depth leftover. They cannot both max that pool. Offense, share, and rookie rates are three stacked asks to clear ~241."
       ]
     },
     "depth_rank": 2,
@@ -39051,19 +39052,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-05",
       "summary": [
-        "BUF is projected 25.7 PPG, 6th-highest scoring offense in the NFL.",
-        "Base case is that offense on a new team (CHI \u2192 BUF) with DJ Moore at 14.9% of targets.",
-        "Upside is BUF clearing that 6th-ranked ~25.7 PPG line plus targets 14.9% \u2192 21.5%."
+        "Buffalo is projected 25.7 PPG, 6th-highest scoring offense in the NFL.",
+        "Base case is a team-change soft cut off Chicago \u2014 Moore goes from a soft ~15.9% CHI year (mid-20s in 2023\u201324) \u2192 14.9% of targets in Buffalo\u2019s crowded room.",
+        "Upside is Moore climbing to about 21.5% of targets as the investment WR1 \u2014 plus Buffalo clearing that already-top-6 ~25.7 PPG line."
       ],
       "base": {
         "paras": [
-          "Last year: 146 half-PPR. We project 14.9% of targets on a new team (CHI \u2192 BUF).",
-          "Around Moore that leaves: Khalil Shakir (17.4% of targets), Dalton Kincaid (14.0% of targets), Keon Coleman (7.9% of targets), James Cook (7.5% of targets), plus Dawson Knox (6.5% of targets) \u2014 then remaining depth."
+          "2025 (CHI): ~15.9% of targets, 146 half-PPR \u2014 a clear soft share year after mid-20s seats in 2023\u201324 (~29% / 241 half-PPR in 2023; ~26% / 189 in 2024). He arrives in Buffalo; we project 14.9% of targets underneath Khalil Shakir\u2019s 17.4%, not a CHI-peak coronation.",
+          "Around Moore that leaves: Khalil Shakir (17.4% of targets), Dalton Kincaid (14.0%), Keon Coleman (7.9%), James Cook (7.5%), plus Dawson Knox (6.5%) \u2014 then Josh Palmer (5.5%), Skyler Bell (5.0%), WR depth (~13.5%), TE depth, and RB depth."
         ],
-        "verdict": "This is 125 half-PPR \u2192 WR48.",
+        "verdict": "This is 131 half-PPR \u2192 WR43. The investment seat is projected; the base volume is still mid-teens.",
         "pie": [
           {
             "name": "Khalil Shakir",
@@ -39109,15 +39110,15 @@
       },
       "upside": {
         "path": [
-          "BUF clears the ~25.7 PPG line",
-          "Targets 14.9% \u2192 21.5% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Targets go from 14.9% \u2192 21.5% from WR depth / Josh Palmer / Skyler Bell / Keon Coleman residual \u2014 joint with Shakir, nothing material from Kincaid",
+          "Buffalo clears the ~25.7 PPG line"
         ],
-        "verdict": "That lands about 221 half-PPR \u2192 WR3 / flex territory."
+        "verdict": "That lands about 241 half-PPR \u2192 high-WR2 / soft-WR1 territory \u2014 the leap is usage in a smash offense, not inventing a CHI mid-20s monopoly."
       },
       "limits": [
-        "The offense has to hit. A 6th-ranked ~25.7 PPG environment means a large share of the jump is BUF scoring more, not inventing a new usage tier.",
-        "Teammates stay paid on targets. We do not project a season-long wipe of the names above him in the pie.",
-        "Stacked asks: clearing a 6th-ranked offense plus the share bump to 21.5% lands about 221 half-PPR \u2014 WR3 / flex territory."
+        "Khalil Shakir stays paid on the same leftover. Shakir caps near 19.5% toward history; Moore caps at 21.5% as the investment destination. They cannot both max WR depth blindly \u2014 and we do not project a CHI mid-20s wipe while Shakir is healthy.",
+        "Dalton Kincaid owns the TE seat (~14%). The Allen pie stays crowded with Coleman, Palmer, and Bell underneath.",
+        "Offense headroom is thin on top of the share ask. Clearing an already-6th-ranked scoring offense plus targets to 21.5% gets him to about 241 \u2014 high-WR2 / soft-WR1, not a 26% CHI redux."
       ]
     },
     "depth_rank": 1,
