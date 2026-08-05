@@ -7876,7 +7876,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.028; eff_cv=0.115; regime=same_hc:Kyle Shanahan"
     },
-    "board_fp": 1210.1,
+    "board_fp": 1275.6,
     "board_rk": 8,
     "newcomers": [
       "Mike Evans (WR1, from TB)",
@@ -7901,7 +7901,7 @@
         "player_id": "00-0031408",
         "name": "Mike Evans",
         "position": "WR",
-        "share_dn": 12.7,
+        "share_dn": 10.6,
         "share": 17.0,
         "share_ceil": 17.0
       },
@@ -7916,30 +7916,30 @@
       },
       {
         "kind": "player",
-        "player_id": "00-0041035",
-        "name": "De'Zhaun Stribling",
+        "player_id": "00-0035719",
+        "name": "Deebo Samuel",
         "position": "WR",
-        "share_dn": 8.0,
-        "share": 11.0,
-        "share_ceil": 15.5
+        "share_dn": 9.0,
+        "share": 12.0,
+        "share_ceil": 15.0
       },
       {
         "kind": "player",
-        "player_id": "00-0041052",
-        "name": "Kaelon Black",
-        "position": "RB",
-        "share_dn": 8.8,
-        "share": 8.8,
-        "share_ceil": 8.8
+        "player_id": "00-0041035",
+        "name": "De'Zhaun Stribling",
+        "position": "WR",
+        "share_dn": 9.0,
+        "share": 9.0,
+        "share_ceil": 13.0
       },
       {
         "kind": "player",
         "player_id": "00-0034775",
         "name": "Christian Kirk",
         "position": "WR",
-        "share_dn": 6.5,
-        "share": 6.5,
-        "share_ceil": 6.5
+        "share_dn": 5.0,
+        "share": 5.0,
+        "share_ceil": 5.0
       },
       {
         "kind": "depth",
@@ -7948,7 +7948,7 @@
         "name": "Other",
         "position": "OTHER",
         "share_dn": null,
-        "share": 23.7,
+        "share": 24.0,
         "share_ceil": null
       }
     ],
@@ -7992,7 +7992,7 @@
       }
     ],
     "depth_shares": {
-      "target_share_other": 0.237,
+      "target_share_other": 0.24,
       "rush_share_other": 0.02
     },
     "hist": [
