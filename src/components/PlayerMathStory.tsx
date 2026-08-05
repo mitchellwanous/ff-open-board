@@ -1,6 +1,11 @@
 "use client";
 
 import type { ReactNode } from "react";
+import {
+  BRAND_RANK_EXPECTED,
+  BRAND_RANK_HIST_ACTUAL,
+  BRAND_RANK_HIST_HELPER,
+} from "@/lib/brand";
 import type { PlayerMathPayload } from "@/lib/types";
 
 /**
@@ -73,14 +78,14 @@ export function PlayerMathCases({
   return (
     <div className="pm2-cases">
       <p className="muted" style={{ fontSize: "0.85rem", margin: "0 0 0.75rem" }}>
-        Upside rank is where this player would finish if everyone else stayed at
-        Expected — not if the whole league hit upside together.
+        {BRAND_RANK_HIST_HELPER}
       </p>
       <article className="pm2-card" aria-label="Base case">
         <div className="pm2-card-top">
           <span className="pm2-eyebrow">Base case</span>
           <span className="badge">{baseRank}</span>
         </div>
+        <p className="pm2-rank-method faint">{BRAND_RANK_EXPECTED}</p>
         <p className="pm2-fp num">
           {wholeFp(outlook.expectedFp)}
           <span className="pm2-fp-unit"> half-PPR</span>
@@ -98,6 +103,7 @@ export function PlayerMathCases({
           <span className="pm2-eyebrow">Upside case</span>
           <span className="badge accent">{upsideRank}</span>
         </div>
+        <p className="pm2-rank-method faint">{BRAND_RANK_HIST_ACTUAL}</p>
         <p className="pm2-fp num accent">
           {wholeFp(outlook.upsideFp)}
           <span className="pm2-fp-unit"> half-PPR</span>

@@ -1696,6 +1696,13 @@ input.edit-hist-table__input:focus {
   gap: 0.5rem;
 }
 
+.pm2-rank-method {
+  margin: 0.35rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  max-width: 22rem;
+}
+
 .pm2-fp {
   margin: 0.45rem 0 0;
   font-size: 1.9rem;

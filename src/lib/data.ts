@@ -1,6 +1,7 @@
 import { existsSync, readFileSync } from "fs";
 import path from "path";
 import { pointsPerPlay } from "./format";
+import type { HistFpLadders } from "./histFpRanks";
 import type {
   BoardChangeLogEntry,
   ClaimableField,
@@ -18,6 +19,17 @@ function readJson<T>(name: string): T {
 
 export function getMeta(): Meta {
   return readJson("meta.json");
+}
+
+/** Last-3-season actual FP ladders for upside/downside hist ranks. */
+export function getHistFpLadders(): HistFpLadders | null {
+  const pathName = path.join(DATA_DIR, "hist_fp_ladders.json");
+  if (!existsSync(pathName)) return null;
+  try {
+    return JSON.parse(readFileSync(pathName, "utf8")) as HistFpLadders;
+  } catch {
+    return null;
+  }
 }
 
 export function getTeams(): Team[] {

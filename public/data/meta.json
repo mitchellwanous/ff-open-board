@@ -1,10 +1,19 @@
 {
   "season": 2026,
   "scoring": "ESPN half-PPR",
-  "exported_on": "2026-08-04",
+  "exported_on": "2026-08-05",
   "source": "Fantasy Football lab freeze",
   "n_teams": 32,
   "n_players": 312,
-  "edit_backend": "supabase",
-  "notes": "Frozen snapshot for Open Board. Open-source edits live in Supabase when configured; community outlook notes are distilled on republish."
+  "edit_backend": "local",
+  "notes": "Frozen snapshot for Open Board. Open-source edits live in Supabase when configured; community outlook notes are distilled on republish.",
+  "rank_method": {
+    "expected": "vs this year's Expected board",
+    "upside_downside": "vs last 3 years' actual scores (avg, rounded)",
+    "hist_years": [
+      2023,
+      2024,
+      2025
+    ]
+  }
 }

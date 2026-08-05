@@ -22,6 +22,9 @@ import {
   BRAND_FP_DUAL_NOTE,
   BRAND_FP_EXPECTED_LABEL,
   BRAND_FP_TREE_LABEL,
+  BRAND_RANK_EXPECTED,
+  BRAND_RANK_HIST_ACTUAL,
+  BRAND_RANK_HIST_HELPER,
 } from "@/lib/brand";
 
 const SHARE_FIELDS = new Set([
@@ -556,10 +559,8 @@ export default async function PlayerPage({
           <h2>Season outlook</h2>
           <p className="muted" style={{ fontSize: "0.9rem" }}>
             Half PPR fantasy points from team offense + player share + player
-            efficiency. Totals come from those pieces. Downside / Upside ranks are
-            where this player&apos;s band would finish if everyone else stayed at
-            Expected — not if the whole league hit the same band. To change the
-            pieces, contribute below.
+            efficiency. {BRAND_RANK_HIST_HELPER} To change the pieces, contribute
+            below.
           </p>
           <div className="stat-grid">
             <div className="stat">
@@ -569,6 +570,9 @@ export default async function PlayerPage({
                 <div className="sub">
                   {p.position}
                   {p.draft.pos_downside_rank}
+                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
+                    {BRAND_RANK_HIST_ACTUAL}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -579,6 +583,9 @@ export default async function PlayerPage({
                 <div className="sub">
                   {p.position}
                   {p.draft.pos_rank}
+                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
+                    {BRAND_RANK_EXPECTED}
+                  </div>
                 </div>
               ) : null}
             </div>
@@ -591,6 +598,9 @@ export default async function PlayerPage({
                 <div className="sub">
                   {p.position}
                   {p.draft.pos_upside_rank}
+                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
+                    {BRAND_RANK_HIST_ACTUAL}
+                  </div>
                 </div>
               ) : null}
             </div>

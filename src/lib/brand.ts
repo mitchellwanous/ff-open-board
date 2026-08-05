@@ -71,6 +71,17 @@ export const BRAND_FP_EXPECTED_LABEL = "Expected";
 export const BRAND_FP_TREE_LABEL = "From the pieces";
 export const BRAND_FP_DUAL_NOTE =
   "Expected is what team offense + share + efficiency add up to. Last year’s fantasy total is history only — it is not mixed into Expected.";
+
+/** Visible rank-ladder labels (player cards / math cases). */
+export const BRAND_RANK_EXPECTED =
+  "Rank vs this year’s Expected board";
+export const BRAND_RANK_HIST_ACTUAL =
+  "Finish vs last 3 years’ actual scores (avg)";
+export const BRAND_RANK_HIST_HELPER =
+  "Upside and downside ranks ask: if he scored this many points, where would that have finished among real seasons the last three years? Expected rank is different — it’s only vs this year’s board.";
+/** Compact labels for table cells. */
+export const BRAND_RANK_EXPECTED_SHORT = "vs Expected board";
+export const BRAND_RANK_HIST_SHORT = "vs 3yr actual (avg)";
 export const BRAND_CONTRIBUTE_PIECES: ReadonlyArray<{
   id: "offense" | "share" | "efficiency";
   title: string;

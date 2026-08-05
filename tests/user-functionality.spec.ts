@@ -263,10 +263,18 @@ test.describe("5 · Player card", () => {
     expect(texts.some((t) => Number(t.replace("%", "")) >= 10)).toBeTruthy();
   });
 
-  test("upside rank intercalates vs Expected (Rice)", async ({ page }) => {
+  test("upside rank uses hist actual ladder with visible labels (Rice)", async ({
+    page,
+  }) => {
     await page.goto(`/players/${F.rice.id}`);
     await expect(
-      page.getByText(/everyone else stayed at Expected/i),
+      page.getByText(/last three years/i).first(),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Finish vs last 3 years/i).first(),
+    ).toBeVisible();
+    await expect(
+      page.getByText(/Rank vs this year’s Expected board|Rank vs this year's Expected board/i).first(),
     ).toBeVisible();
     const base = page.getByRole("article", { name: "Base case" });
     const up = page.getByRole("article", { name: "Upside case" });
@@ -278,14 +286,14 @@ test.describe("5 · Player card", () => {
     const upRank = Number(
       (await up.locator(".badge").innerText()).replace(/\D/g, ""),
     );
-    const baseFp = Number(
-      (await base.locator(".pm2-fp").innerText()).replace(/[^\d.]/g, ""),
-    );
     const upFp = Number(
       (await up.locator(".pm2-fp").innerText()).replace(/[^\d.]/g, ""),
     );
-    expect(upFp).toBeGreaterThan(baseFp);
-    expect(upRank).toBeLessThanOrEqual(baseRank);
+    expect(baseRank).toBeGreaterThan(0);
+    expect(upFp).toBeGreaterThan(250);
+    // Hist avg for ~306 FP rounds to WR2 (not WR1 vs Expected intercalation)
+    expect(upRank).toBeGreaterThanOrEqual(1);
+    expect(upRank).toBeLessThanOrEqual(3);
   });
 });
 

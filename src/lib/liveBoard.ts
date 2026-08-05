@@ -13,8 +13,9 @@ import {
   type ConsensusPoint,
 } from "./consensus";
 import { CONSENSUS_MIN_N } from "./consensusConstants";
-import { getClaimableFields, getOfficialValue, getPlayers, getTeams } from "./data";
+import { getClaimableFields, getHistFpLadders, getOfficialValue, getPlayers, getTeams } from "./data";
 import { listEdits } from "./edits";
+import { histRanksByPlayer } from "./histFpRanks";
 import {
   scaleFpByIdentity,
   scaleTeamVolume,
@@ -148,6 +149,7 @@ function rankByPos(
 /**
  * Rank each player's scenario FP against the position's Expected ladder
  * (everyone else stays at Expected). Not "if everyone hits upside/downside."
+ * Kept for tests / diagnostics — live dn/up ranks use hist actual ladders.
  */
 export function intercalateRanksAgainstExpected(
   players: LivePlayer[],
@@ -167,7 +169,6 @@ export function intercalateRanksAgainstExpected(
     for (const p of list) {
       const v = scenarioOf(p);
       if (v == null || !Number.isFinite(v)) continue;
-      // How many Expected totals beat this player's scenario total?
       map.set(p.player_id, expectedFps.filter((fp) => fp > v).length + 1);
     }
   }
@@ -637,13 +638,9 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
   });
 
   const baseRanks = rankByPos(livePlayers, (p) => p.live.season_fp);
-  const dnRanks = intercalateRanksAgainstExpected(
+  const { dn: dnRanks, up: upRanks } = histRanksByPlayer(
     livePlayers,
-    (p) => p.live.downside_fp,
-  );
-  const upRanks = intercalateRanksAgainstExpected(
-    livePlayers,
-    (p) => p.live.scenario_fp,
+    getHistFpLadders(),
   );
 
   livePlayers = livePlayers.map((p) => ({

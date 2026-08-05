@@ -300,6 +300,11 @@ export type Meta = {
   n_players: number;
   edit_backend: string;
   notes: string;
+  rank_method?: {
+    expected?: string;
+    upside_downside?: string;
+    hist_years?: number[];
+  };
 };
 
 /** Published pin/review row from lab board_change_log.csv export. */
