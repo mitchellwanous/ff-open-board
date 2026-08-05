@@ -20,6 +20,8 @@ export const FIXTURES = {
   team: "BUF",
   softTeam: "ARI",
   wr: { id: "00-0037261", name: "Khalil Shakir", team: "BUF" },
+  /** Regression: hist shares as fractions must not render as 0.2%. */
+  rice: { id: "00-0039067", name: "Rashee Rice", team: "KC" },
   qb: { id: "00-0034857", name: "Josh Allen", team: "BUF" },
   rb: { id: "00-0037248", name: "James Cook", team: "BUF" },
   rankingTgt: "player-tgt-share",

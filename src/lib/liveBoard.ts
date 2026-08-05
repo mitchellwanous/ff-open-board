@@ -145,6 +145,35 @@ function rankByPos(
   return map;
 }
 
+/**
+ * Rank each player's scenario FP against the position's Expected ladder
+ * (everyone else stays at Expected). Not "if everyone hits upside/downside."
+ */
+export function intercalateRanksAgainstExpected(
+  players: LivePlayer[],
+  scenarioOf: (p: LivePlayer) => number | null,
+): Map<string, number> {
+  const map = new Map<string, number>();
+  const byPos = new Map<string, LivePlayer[]>();
+  for (const p of players) {
+    const list = byPos.get(p.position) ?? [];
+    list.push(p);
+    byPos.set(p.position, list);
+  }
+  for (const list of byPos.values()) {
+    const expectedFps = list
+      .map((p) => p.live.season_fp)
+      .filter((v): v is number => v != null && Number.isFinite(v));
+    for (const p of list) {
+      const v = scenarioOf(p);
+      if (v == null || !Number.isFinite(v)) continue;
+      // How many Expected totals beat this player's scenario total?
+      map.set(p.player_id, expectedFps.filter((fp) => fp > v).length + 1);
+    }
+  }
+  return map;
+}
+
 export type LiveBoard = {
   players: LivePlayer[];
   teams: Team[];
@@ -557,8 +586,17 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
       int_rate: intRate,
       usage: {
         ...p.usage,
+        // usage.* stays in percent points (24.5) for UI; live seeds are 0–1.
         target_share: tgt != null ? tgt * 100 : p.usage.target_share,
         rush_share: rush != null ? rush * 100 : p.usage.rush_share,
+        target_share_floor:
+          tgtDn != null ? tgtDn * 100 : p.usage.target_share_floor,
+        target_share_ceil:
+          tgtCeil != null ? tgtCeil * 100 : p.usage.target_share_ceil,
+        rush_share_floor:
+          rushDn != null ? rushDn * 100 : p.usage.rush_share_floor,
+        rush_share_ceil:
+          rushCeil != null ? rushCeil * 100 : p.usage.rush_share_ceil,
       },
       season_fp,
       downside_fp,
@@ -599,8 +637,14 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
   });
 
   const baseRanks = rankByPos(livePlayers, (p) => p.live.season_fp);
-  const dnRanks = rankByPos(livePlayers, (p) => p.live.downside_fp);
-  const upRanks = rankByPos(livePlayers, (p) => p.live.scenario_fp);
+  const dnRanks = intercalateRanksAgainstExpected(
+    livePlayers,
+    (p) => p.live.downside_fp,
+  );
+  const upRanks = intercalateRanksAgainstExpected(
+    livePlayers,
+    (p) => p.live.scenario_fp,
+  );
 
   livePlayers = livePlayers.map((p) => ({
     ...p,

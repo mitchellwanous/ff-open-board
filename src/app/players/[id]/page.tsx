@@ -16,7 +16,7 @@ import {
   getTeam,
 } from "@/lib/data";
 import { getLivePlayer, getLivePlayers } from "@/lib/liveBoard";
-import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
+import { fmt, fmtInt, fmtShare, pointsPerPlay } from "@/lib/format";
 import { buildShareHistForSeg } from "@/lib/sharePie";
 import {
   BRAND_FP_DUAL_NOTE,
@@ -191,9 +191,9 @@ export default async function PlayerPage({
       ? [
           {
             group: "Rush share",
-            downside: `${fmt(p.usage.rush_share_floor, 0)}%`,
-            expected: `${fmt(p.usage.rush_share, 0)}%`,
-            upside: `${fmt(p.usage.rush_share_ceil, 0)}%`,
+            downside: fmtShare(p.usage.rush_share_floor, 0),
+            expected: fmtShare(p.usage.rush_share, 0),
+            upside: fmtShare(p.usage.rush_share_ceil, 0),
           },
         ]
       : []),
@@ -201,9 +201,9 @@ export default async function PlayerPage({
       ? [
           {
             group: "Target share",
-            downside: `${fmt(p.usage.target_share_floor, 0)}%`,
-            expected: `${fmt(p.usage.target_share, 0)}%`,
-            upside: `${fmt(p.usage.target_share_ceil, 0)}%`,
+            downside: fmtShare(p.usage.target_share_floor, 0),
+            expected: fmtShare(p.usage.target_share, 0),
+            upside: fmtShare(p.usage.target_share_ceil, 0),
           },
         ]
       : []),
@@ -556,8 +556,10 @@ export default async function PlayerPage({
           <h2>Season outlook</h2>
           <p className="muted" style={{ fontSize: "0.9rem" }}>
             Half PPR fantasy points from team offense + player share + player
-            efficiency. Totals come from those pieces. To change them, contribute
-            below.
+            efficiency. Totals come from those pieces. Downside / Upside ranks are
+            where this player&apos;s band would finish if everyone else stayed at
+            Expected — not if the whole league hit the same band. To change the
+            pieces, contribute below.
           </p>
           <div className="stat-grid">
             <div className="stat">
@@ -680,8 +682,8 @@ export default async function PlayerPage({
                 </td>
                 <td>{h.team ?? "—"}</td>
                 <td className="right num">{fmt(h.games, 1)}</td>
-                <td className="right num">{fmt(h.target_share, 1)}%</td>
-                <td className="right num">{fmt(h.rush_share, 1)}%</td>
+                <td className="right num">{fmtShare(h.target_share, 1)}</td>
+                <td className="right num">{fmtShare(h.rush_share, 1)}</td>
                 <td className="right num">{fmt(h.season_fp, 1)}</td>
               </tr>
             ))}

@@ -72,6 +72,10 @@ export function PlayerMathCases({
 
   return (
     <div className="pm2-cases">
+      <p className="muted" style={{ fontSize: "0.85rem", margin: "0 0 0.75rem" }}>
+        Upside rank is where this player would finish if everyone else stayed at
+        Expected — not if the whole league hit upside together.
+      </p>
       <article className="pm2-card" aria-label="Base case">
         <div className="pm2-card-top">
           <span className="pm2-eyebrow">Base case</span>

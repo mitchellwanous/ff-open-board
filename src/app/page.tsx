@@ -8,7 +8,7 @@ import {
 } from "@/lib/brand";
 import { getMeta, getTeam } from "@/lib/data";
 import { buildLiveBoard } from "@/lib/liveBoard";
-import { fmt, fmtInt } from "@/lib/format";
+import { fmt, fmtInt, fmtShare } from "@/lib/format";
 
 const ACHANE_ID = "00-0039040";
 
@@ -126,8 +126,8 @@ export default async function HomePage() {
             </li>
             <li>
               <strong>Player share:</strong>{" "}
-              {fmt(achane?.usage.rush_share, 0)}% of the rushes and{" "}
-              {fmt(achane?.usage.target_share, 0)}% of the targets
+              {fmtShare(achane?.usage.rush_share, 0)} of the rushes and{" "}
+              {fmtShare(achane?.usage.target_share, 0)} of the targets
             </li>
             <li>
               <strong>Player efficiency:</strong> {fmt(achane?.rates.ypc, 1)}{" "}

@@ -3,7 +3,7 @@ import { ComparePicker } from "@/components/ComparePicker";
 import { BRAND_CONTRIBUTE_CALLOUT } from "@/lib/brand";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
 import { getLivePlayers, type LivePlayer } from "@/lib/liveBoard";
-import { fmt, fmtInt } from "@/lib/format";
+import { fmt, fmtInt, fmtShare } from "@/lib/format";
 import type { Player } from "@/lib/types";
 
 const SHORTCUTS = [
@@ -185,7 +185,7 @@ export default async function ComparePage({
                 players={players}
                 render={(p) =>
                   (p.usage.rush_share ?? 0) > 0
-                    ? `${fmt(p.usage.rush_share_floor, 0)}–${fmt(p.usage.rush_share, 0)}–${fmt(p.usage.rush_share_ceil, 0)}%`
+                    ? `${fmtShare(p.usage.rush_share_floor, 0).replace("%", "")}–${fmtShare(p.usage.rush_share, 0).replace("%", "")}–${fmtShare(p.usage.rush_share_ceil, 0)}`
                     : "—"
                 }
               />
@@ -194,7 +194,7 @@ export default async function ComparePage({
                 players={players}
                 render={(p) =>
                   (p.usage.target_share ?? 0) > 0
-                    ? `${fmt(p.usage.target_share_floor, 0)}–${fmt(p.usage.target_share, 0)}–${fmt(p.usage.target_share_ceil, 0)}%`
+                    ? `${fmtShare(p.usage.target_share_floor, 0).replace("%", "")}–${fmtShare(p.usage.target_share, 0).replace("%", "")}–${fmtShare(p.usage.target_share_ceil, 0)}`
                     : "—"
                 }
               />

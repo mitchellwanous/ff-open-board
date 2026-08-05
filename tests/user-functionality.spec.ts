@@ -244,6 +244,49 @@ test.describe("5 · Player card", () => {
     await expect(page).toHaveURL(new RegExp(`/teams/${F.wr.team}#share-pies`));
     await expect(page.getByRole("heading", { name: /Who gets the ball/ })).toBeVisible();
   });
+
+  test("hist target share shows real percents (not 0.2%)", async ({ page }) => {
+    await page.goto(`/players/${F.rice.id}`);
+    await expect(page.getByRole("heading", { name: F.rice.name })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Recent history" })).toBeVisible();
+    const histTable = page.locator("table.data").filter({ hasText: "Tgt%" }).first();
+    await expect(histTable).toBeVisible();
+    // Column 4 is Tgt% (Season, Tm, GP, Tgt%, Rush%, FP)
+    const tgtCells = histTable.locator("tbody tr td:nth-child(4)");
+    const texts = await tgtCells.allInnerTexts();
+    expect(texts.length).toBeGreaterThan(0);
+    for (const t of texts) {
+      expect(t).toMatch(/%$/);
+      expect(t).not.toMatch(/^0\.\d%$/);
+      expect(Number(t.replace("%", ""))).toBeGreaterThanOrEqual(1);
+    }
+    expect(texts.some((t) => Number(t.replace("%", "")) >= 10)).toBeTruthy();
+  });
+
+  test("upside rank intercalates vs Expected (Rice)", async ({ page }) => {
+    await page.goto(`/players/${F.rice.id}`);
+    await expect(
+      page.getByText(/everyone else stayed at Expected/i),
+    ).toBeVisible();
+    const base = page.getByRole("article", { name: "Base case" });
+    const up = page.getByRole("article", { name: "Upside case" });
+    await expect(base).toBeVisible();
+    await expect(up).toBeVisible();
+    const baseRank = Number(
+      (await base.locator(".badge").innerText()).replace(/\D/g, ""),
+    );
+    const upRank = Number(
+      (await up.locator(".badge").innerText()).replace(/\D/g, ""),
+    );
+    const baseFp = Number(
+      (await base.locator(".pm2-fp").innerText()).replace(/[^\d.]/g, ""),
+    );
+    const upFp = Number(
+      (await up.locator(".pm2-fp").innerText()).replace(/[^\d.]/g, ""),
+    );
+    expect(upFp).toBeGreaterThan(baseFp);
+    expect(upRank).toBeLessThanOrEqual(baseRank);
+  });
 });
 
 test.describe("6 · Explore / Rankings", () => {
