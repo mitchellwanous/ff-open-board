@@ -11518,19 +11518,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "CHI is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 D'Andre Swift at about 46.0% of rushes and ~8.9% of targets.",
-        "Upside is CHI clearing that 9th-ranked ~25.1 PPG line and rushes 46.0% \u2192 52.0%."
+        "Chicago is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
+        "Base case is that offense with Caleb and a real committee \u2014 Swift holds from about 45% \u2192 46% of rushes (Kyle Monangai still ~33.8%).",
+        "Upside is Chicago clearing ~25 PPG (beating that 9th-ranked line) and a modest rush bump: about 46% \u2192 52% of rushes with the offense running hot."
       ],
       "base": {
         "paras": [
-          "Last year: 215 half-PPR. We project about 46.0% of rushes and ~8.9% of targets.",
-          "Around Swift that leaves: Kyle Monangai (33.8% of rushes), Caleb Williams (13.3% of rushes), Brittain Brown (6.9% of rushes) \u2014 then remaining depth."
+          "Last year Swift had about 45% of rushes, about 9% of targets, and 215 half-PPR. Kyle Monangai took about 34.5% of rushes. We project basically that split again: Swift \u2192 46% of rushes and 8.7% of targets.",
+          "Around Swift that leaves: Kyle Monangai (33.8% of rushes), Caleb Williams (13.3%), Brittain Brown (6.9%) \u2014 then RB depth."
         ],
-        "verdict": "This is 205 half-PPR \u2192 RB17.",
+        "verdict": "This is 195 half-PPR \u2192 RB18. The lead role is real; it is still a committee.",
         "pie": [
           {
             "name": "D'Andre Swift",
@@ -11556,15 +11556,16 @@
       },
       "upside": {
         "path": [
-          "CHI clears the ~25.1 PPG line",
-          "Rushes 46.0% \u2192 52.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 46% \u2192 52% by collapsing Brown\u2019s crumbs \u2014 nothing material from Monangai",
+          "Receiving holds near 8.7% of targets",
+          "Chicago clears the ~25 PPG line"
         ],
-        "verdict": "That lands about 236 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 234 half-PPR \u2192 strong RB2 / soft RB1 territory \u2014 not a workhorse wipe while Monangai is healthy."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 9th-ranked ~25.1 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 236 half-PPR \u2014 RB2 territory."
+        "Kyle Monangai and Caleb Williams stay paid on rushes. Monangai already proved ~34.5% as a rookie; Caleb keeps ~13.3%. We do not project Swift leapfrogging into a 56%+ season-long seat.",
+        "The pass-game leap is not his. Rome Odunze, Luther Burden III, and Colston Loveland own the leftover WR/TE targets; Swift stays near 8.7%.",
+        "Offense and share are stacked asks. Clearing a 9th-ranked scoring offense plus 52% of rushes gets him to the low 230s. It does not recreate his old 60% of rushes year while Monangai is healthy."
       ]
     },
     "depth_rank": 1,
@@ -14520,19 +14521,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "DEN is projected 22.4 PPG, 21st-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 J.K. Dobbins at about 51.1% of rushes and ~2.8% of targets.",
-        "Upside is DEN clearing that 21st-ranked ~22.4 PPG line and rushes 51.1% \u2192 56.0%."
+        "Denver is projected 22.4 PPG, 21st-highest scoring offense in the NFL.",
+        "Base case is that soft offense after an injury-soft near-even split \u2014 Dobbins bumps from about 34.9% of rushes in 10 games to a 51.1% lead (RJ Harvey still ~22.3%).",
+        "Upside is Denver clearing that 21st-ranked ~22.4 PPG line and rushes about 51.1% \u2192 56% \u2014 still not wiping Harvey."
       ],
       "base": {
         "paras": [
-          "Last year: 110 half-PPR. We project about 51.1% of rushes and ~2.8% of targets.",
-          "Around Dobbins that leaves: RJ Harvey (22.3% of rushes), Bo Nix (15.4% of rushes), Jonah Coleman (11.2% of rushes) \u2014 then remaining depth."
+          "In 10 games last year, Dobbins had about 34.9% of rushes, about 2.4% of targets, and 110 half-PPR \u2014 basically even with RJ Harvey (~33.5% of rushes). We project Dobbins into a clearer lead: 51.1% of rushes and 2.5% of targets, with Harvey still a real change-of-pace.",
+          "Around Dobbins that leaves: RJ Harvey (22.3% of rushes), Bo Nix (15.4%), Jonah Coleman (11.2%) \u2014 then RB depth."
         ],
-        "verdict": "This is 193 half-PPR \u2192 RB19.",
+        "verdict": "This is 172 half-PPR \u2192 RB22. The lead seat is real; Harvey, Nix, and Coleman still eat rushes on a soft offense.",
         "pie": [
           {
             "name": "J.K. Dobbins",
@@ -14558,15 +14559,16 @@
       },
       "upside": {
         "path": [
-          "DEN clears the ~22.4 PPG line",
-          "Rushes 51.1% \u2192 56.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 51.1% \u2192 56% by collapsing Coleman crumbs \u2014 nothing material from Harvey",
+          "Receiving stays thin near 2.5% of targets (Harvey keeps the pass-down work)",
+          "Denver clears the ~22.4 PPG line"
         ],
-        "verdict": "That lands about 210 half-PPR \u2192 flex / RB3 territory."
+        "verdict": "That lands about 207 half-PPR \u2192 mid-RB2 territory \u2014 not a ~60% workhorse while Harvey is healthy."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 21st-ranked ~22.4 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 210 half-PPR \u2014 flex / RB3 territory."
+        "A 21st-ranked scoring environment is the primary ceiling. Clearing ~22.4 PPG is stacked with any share bump \u2014 the path to ~207 needs Denver to run hot.",
+        "RJ Harvey stays paid at about 22.3% of rushes, and Bo Nix keeps ~15.4%. We cap Dobbins at 56% of rushes, not a season-long ~60% wipe.",
+        "The receiving leap is not his. Targets stay near 2.5% \u2014 Harvey owns the complementary pass-down role."
       ]
     },
     "depth_rank": 1,
@@ -14859,19 +14861,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "NE is projected 23.6 PPG, 13th-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 TreVeyon Henderson at about 40.5% of rushes and ~5.7% of targets.",
-        "Upside is NE clearing that 13th-ranked ~23.6 PPG line and rushes 40.5% \u2192 48.0%."
+        "New England is projected 23.6 PPG, 13th-highest scoring offense in the NFL.",
+        "Base case is that offense in a Year-2 committee \u2014 Henderson bumps mildly from about 38.6% \u2192 40.5% of rushes, with targets cut from about 8.7% \u2192 5.7%.",
+        "Upside is New England clearing that 13th-ranked ~23.6 PPG line, rushes about 40.5% \u2192 48%, and targets reclaiming to about 8%."
       ],
       "base": {
         "paras": [
-          "Last year: 191 half-PPR. We project about 40.5% of rushes and ~5.7% of targets.",
-          "Around Henderson that leaves: Rhamondre Stevenson (32.6% of rushes), Drake Maye (16.9% of rushes), Terrell Jennings (10.0% of rushes) \u2014 then remaining depth."
+          "As a rookie, Henderson had about 38.6% of rushes, about 8.7% of targets, and 191 half-PPR. Rhamondre Stevenson took about 28.1% of rushes. We project a mild lead bump: Henderson \u2192 40.5% of rushes and 5.7% of targets, with Stevenson still a real partner.",
+          "Around Henderson that leaves: Rhamondre Stevenson (32.6% of rushes), Drake Maye (16.9%), Terrell Jennings (10.0%) \u2014 then RB depth."
         ],
-        "verdict": "This is 182 half-PPR \u2192 RB21.",
+        "verdict": "This is 175 half-PPR \u2192 RB21. The lead edge is real; it is still a committee with Maye\u2019s scramble tax.",
         "pie": [
           {
             "name": "TreVeyon Henderson",
@@ -14897,15 +14899,16 @@
       },
       "upside": {
         "path": [
-          "NE clears the ~23.6 PPG line",
-          "Rushes 40.5% \u2192 48.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 40.5% \u2192 48% by collapsing Jennings crumbs \u2014 nothing material from Stevenson",
+          "Targets reclaim from 5.7% \u2192 8%",
+          "New England clears the ~23.6 PPG line"
         ],
-        "verdict": "That lands about 245 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 245 half-PPR \u2192 soft-RB1 / high-RB2 territory \u2014 not a ~55% workhorse while Stevenson is healthy."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 13th-ranked ~23.6 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 245 half-PPR \u2014 RB2 territory."
+        "Rhamondre Stevenson stays paid at about 32.6% of rushes, and Drake Maye keeps ~16.9%. We cap Henderson at 48% of rushes, not a season-long ~55% wipe.",
+        "Receiving upside is a reclaim, not a new tier. Targets top out near 8% \u2014 Stevenson still eats complementary pass-down work.",
+        "Offense and share are stacked asks. Clearing a 13th-ranked scoring offense plus 48% of rushes and 8% of targets gets him to about 245 \u2014 high-RB2 / soft RB1, not a monopoly."
       ]
     },
     "depth_rank": 1,
@@ -15485,19 +15488,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "JAX is projected 23.2 PPG, 18th-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 Bhayshul Tuten at about 46.0% of rushes and ~6.5% of targets.",
-        "Upside is JAX clearing that 18th-ranked ~23.2 PPG line and rushes 46.0% \u2192 55.0%."
+        "Jacksonville is projected 23.2 PPG, 18th-highest scoring offense in the NFL.",
+        "Base case is that offense after Travis Etienne left \u2014 Tuten bumps from about 17.8% of rushes into a 46% lead, with targets about 2.6% \u2192 6.5%.",
+        "Upside is Jacksonville clearing that 18th-ranked ~23.2 PPG line and rushes about 46% \u2192 55% \u2014 still not wiping Chris Rodriguez Jr."
       ],
       "base": {
         "paras": [
-          "Last year: 86 half-PPR. We project about 46.0% of rushes and ~6.5% of targets.",
-          "Around Tuten that leaves: Chris Rodriguez Jr. (28.0% of rushes), Trevor Lawrence (18.7% of rushes), Ameer Abdullah (7.3% of rushes) \u2014 then remaining depth."
+          "As a rookie behind Etienne, Tuten had about 17.8% of rushes, about 2.6% of targets, and 86 half-PPR. Etienne\u2019s old ~55% rush seat is gone; we project Tuten into the lead at 46% of rushes and 6.5% of targets, with Chris Rodriguez Jr. still a real committee partner at 28%.",
+          "Around Tuten that leaves: Chris Rodriguez Jr. (28.0% of rushes), Trevor Lawrence (18.7%), Ameer Abdullah (7.3%) \u2014 then RB depth."
         ],
-        "verdict": "This is 153 half-PPR \u2192 RB30.",
+        "verdict": "This is 182 half-PPR \u2192 RB20. The lead seat is real; it is still a committee with Lawrence\u2019s scramble tax.",
         "pie": [
           {
             "name": "Bhayshul Tuten",
@@ -15523,15 +15526,16 @@
       },
       "upside": {
         "path": [
-          "JAX clears the ~23.2 PPG line",
-          "Rushes 46.0% \u2192 55.0% from committee crumbs \u2014 not a full partner wipe"
+          "Rushes go from 46% \u2192 55% by collapsing Abdullah crumbs \u2014 nothing material from Rodriguez",
+          "Receiving holds near 6.5% of targets",
+          "Jacksonville clears the ~23.2 PPG line"
         ],
-        "verdict": "That lands about 223 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 223 half-PPR \u2192 mid/high-RB2 territory \u2014 not a workhorse wipe while Rodriguez is healthy."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 18th-ranked ~23.2 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 223 half-PPR \u2014 RB2 territory."
+        "Chris Rodriguez Jr. stays paid at about 28% of rushes, and Trevor Lawrence keeps ~18.7%. We cap Tuten at 55% of rushes, not a season-long workhorse wipe.",
+        "Etienne\u2019s old role is real but contested \u2014 Rodriguez absorbed a large chunk of the leftover, not an empty lead vacuum.",
+        "Offense and share are stacked asks. Clearing an 18th-ranked scoring offense plus 55% of rushes gets him to the low 220s \u2014 useful RB2 ceiling, not a monopoly."
       ]
     },
     "depth_rank": 1,
@@ -17506,19 +17510,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "CLE is projected 18.7 PPG, 30th-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 Quinshon Judkins at about 61.1% of rushes and ~3.5% of targets.",
-        "Upside is CLE clearing that 30th-ranked ~18.7 PPG line and rushes 61.1% \u2192 68.0%."
+        "Cleveland is projected 18.7 PPG, 30th-highest scoring offense in the NFL.",
+        "Base case is that soft offense with a bigger lead \u2014 Judkins bumps from about 55.1% \u2192 61.1% of rushes, with targets cut from about 6.9% \u2192 3.5%.",
+        "Upside is Cleveland clearing that 30th-ranked ~18.7 PPG line, rushes about 61.1% \u2192 68%, and targets reclaiming to about 6.5%."
       ],
       "base": {
         "paras": [
-          "Last year: 155 half-PPR. We project about 61.1% of rushes and ~3.5% of targets.",
-          "Around Judkins that leaves: Dylan Sampson (17.2% of rushes), Raheim Sanders (13.7% of rushes), Deshaun Watson (8.0% of rushes) \u2014 then remaining depth."
+          "As a rookie, Judkins had about 55.1% of rushes, about 6.9% of targets, and 155 half-PPR in 14 games. Dylan Sampson took about 15.5% of rushes. We project a clearer lead: Judkins \u2192 61.1% of rushes and 3.5% of targets.",
+          "Around Judkins that leaves: Dylan Sampson (17.2% of rushes), Raheim Sanders (13.7%), Deshaun Watson (8.0%) \u2014 then RB depth."
         ],
-        "verdict": "This is 160 half-PPR \u2192 RB29.",
+        "verdict": "This is 164 half-PPR \u2192 RB23. The lead rush seat is real; the scoring environment is soft and the receiving role is thin.",
         "pie": [
           {
             "name": "Quinshon Judkins",
@@ -17544,15 +17548,16 @@
       },
       "upside": {
         "path": [
-          "CLE clears the ~18.7 PPG line",
-          "Rushes 61.1% \u2192 68.0% from committee crumbs \u2014 not a full partner wipe"
+          "Cleveland clears the ~18.7 PPG line (main lever)",
+          "Rushes go from 61.1% \u2192 68% from Sampson / Sanders crumbs \u2014 not a full wipe",
+          "Targets reclaim from 3.5% \u2192 6.5% (Jerome Ford\u2019s old receiving work)"
         ],
-        "verdict": "That lands about 228 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 228 half-PPR \u2192 mid/high-RB2 territory \u2014 still capped by a bottom-tier offense."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 30th-ranked ~18.7 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 228 half-PPR \u2014 RB2 territory."
+        "A 30th-ranked scoring environment is the primary ceiling. Clearing ~18.7 PPG is stacked with any share bump \u2014 the path to ~228 needs Cleveland to run hot.",
+        "Dylan Sampson (~17.2% of rushes) and Raheim Sanders (~13.7%) stay paid; we cap Judkins at 68% of rushes, not a ~72% wipe.",
+        "Receiving upside is a modest reclaim to 6.5% of targets \u2014 not a dual-threat leap on this offense."
       ]
     },
     "depth_rank": 1,
@@ -19628,19 +19633,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "ATL is projected 21.6 PPG, 24th-highest scoring offense in the NFL.",
-        "Base case is that offense with Drake London at 24.0% of targets.",
-        "Upside is ATL clearing that 24th-ranked ~21.6 PPG line plus targets 24.0% \u2192 28.5%."
+        "Atlanta is projected 21.6 PPG, 24th-highest scoring offense in the NFL.",
+        "London repairs from an injury-soft ~21.6% of targets last year (12 games) to 24.0% \u2014 clear WR1, still under his 2024 ~29.4% peak.",
+        "Upside is Atlanta clearing that soft 24th-ranked ~21.6 PPG line plus targets to about 28.5% from Jahan Dotson / WR depth \u2014 healthy WR1 share, not a 32% season."
       ],
       "base": {
         "paras": [
-          "Last year: 168 half-PPR. We project 24.0% of targets.",
-          "Around London that leaves: Kyle Pitts (17.8% of targets), Bijan Robinson (17.5% of targets), Austin Hooper (9.3% of targets), Jahan Dotson (9.0% of targets), plus Brian Robinson (6.1% of targets) \u2014 then remaining depth."
+          "2024: ~29.4% of targets, 231 half-PPR. 2025: ~21.6% of targets, 113 targets, 7 TDs, 168 half-PPR in 12 games \u2014 soft volume year, not a demotion of the role. Darnell Mooney (~14% of targets) is gone, but Kyle Pitts and Bijan Robinson soak most of that leftover. We project London at 24.0% of targets.",
+          "Around London that leaves: Kyle Pitts (17.8% of targets), Bijan Robinson (17.5%), Austin Hooper (9.3%), Jahan Dotson (9.0%), plus Brian Robinson (6.1%) \u2014 then WR depth (~6%), Olamide Zaccheaus (~5%), TE depth, and RB depth."
         ],
-        "verdict": "This is 204 half-PPR \u2192 WR11.",
+        "verdict": "This is 187 half-PPR \u2192 WR17. The WR1 seat is real; the projected offense is the soft part.",
         "pie": [
           {
             "name": "Drake London",
@@ -19686,15 +19691,17 @@
       },
       "upside": {
         "path": [
-          "ATL clears the ~21.6 PPG line",
-          "Targets 24.0% \u2192 28.5% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Atlanta clears the ~21.6 PPG line (main lever)",
+          "Targets 24.0% \u2192 28.5% from Jahan Dotson / WR depth / Mooney crumbs \u2014 not a Pitts or Bijan wipe",
+          "Catch rate, yards per target, and TD rate hold near healthy priors"
         ],
-        "verdict": "That lands about 264 half-PPR \u2192 high-WR2 / soft-WR2 territory."
+        "verdict": "That lands about 267 half-PPR \u2192 high-WR2 / soft WR1 territory."
       },
       "limits": [
-        "The offense has to hit. A 24th-ranked ~21.6 PPG environment means a large share of the jump is ATL scoring more, not inventing a new usage tier.",
-        "Teammates stay paid on targets. We do not project a season-long wipe of the names above him in the pie.",
-        "Stacked asks: clearing a 24th-ranked offense plus the share bump to 28.5% lands about 264 half-PPR \u2014 high-WR2 / soft-WR2 territory."
+        "Offense has to hit \u2014 hard. A 24th-ranked scoring environment means most of the path to ~267 is Atlanta scoring more, not inventing a new usage tier from a soft ~21.6 PPG line.",
+        "His healthy WR1 share caps at 28.5% of targets. That is a reclaim toward his 2024 peak, not a 32%+ season-long wipe.",
+        "Pitts and Bijan still own real slices (~18% / ~17.5%). Dotson competes for the same Mooney crumbs; they cannot all expand together.",
+        "Offense and share are stacked asks. Clearing a 24th-ranked scoring offense plus targets to 28.5% gets him to the mid-260s \u2014 high-WR2 / soft WR1, not locked elite in that environment."
       ]
     },
     "depth_rank": 1,
@@ -20337,19 +20344,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "NO is projected 21.6 PPG, 23rd-highest scoring offense in the NFL.",
-        "Base case is that offense with Chris Olave at 20.7% of targets.",
-        "Upside is NO clearing that 23rd-ranked ~21.6 PPG line plus targets 20.7% \u2192 24.0%."
+        "New Orleans is projected 21.6 PPG, 23rd-highest scoring offense in the NFL.",
+        "Olave is soft-cut from a smash ~27.6% of targets last year to 20.7% \u2014 still the projected WR1, with Jordyn Tyson paid underneath.",
+        "Upside is New Orleans clearing that soft 23rd-ranked ~21.6 PPG line plus a modest reclaim to about 24% of targets from WR depth \u2014 short of last year\u2019s 27% seat."
       ],
       "base": {
         "paras": [
-          "Last year: 218 half-PPR. We project 20.7% of targets.",
-          "Around Olave that leaves: Jordyn Tyson (19.0% of targets), Juwan Johnson (15.0% of targets), Devaughn Vele (8.9% of targets), Alvin Kamara (8.4% of targets), plus Devin Neal (5.4% of targets) \u2014 then remaining depth."
+          "2025: ~27.6% of targets, 156 targets, 9 TDs, 218 half-PPR \u2014 his best fantasy season. Rashid Shaheed (~12% of targets) is gone, but Jordyn Tyson projects near 19% and WR depth soaks the rest. We project Olave at 20.7% of targets \u2014 featured WR1 under that peak, not a demotion of the role.",
+          "Around Olave that leaves: Jordyn Tyson (19.0% of targets), Juwan Johnson (15.0%), Devaughn Vele (8.9%), Alvin Kamara (8.4%), plus Devin Neal (5.4%) \u2014 then WR depth (~13%), Noah Fant (~4%), TE depth, and RB depth."
         ],
-        "verdict": "This is 186 half-PPR \u2192 WR19.",
+        "verdict": "This is 173 half-PPR \u2192 WR22. The WR1 seat is real; the volume haircut and soft offense leave him mid-WR2.",
         "pie": [
           {
             "name": "Chris Olave",
@@ -20390,15 +20397,17 @@
       },
       "upside": {
         "path": [
-          "NO clears the ~21.6 PPG line",
-          "Targets 20.7% \u2192 24.0% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "New Orleans clears the ~21.6 PPG line (main lever)",
+          "Targets 20.7% \u2192 24% from WR depth \u2014 not a Vele wipe and nothing material from Tyson",
+          "Catch rate, yards per target, and TD rate hold near 2025"
         ],
-        "verdict": "That lands about 251 half-PPR \u2192 high-WR2 / soft-WR2 territory."
+        "verdict": "That lands about 251 half-PPR \u2192 high-WR2 / soft WR1 territory."
       },
       "limits": [
-        "The offense has to hit. A 23rd-ranked ~21.6 PPG environment means a large share of the jump is NO scoring more, not inventing a new usage tier.",
-        "Share upside is thin (20.7% \u2192 24.0% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 23rd-ranked offense plus the share bump to 24.0% lands about 251 half-PPR \u2014 high-WR2 / soft-WR2 territory."
+        "Offense has to hit. A 23rd-ranked scoring environment means most of the path to ~251 is New Orleans scoring more \u2014 share reclaim alone on a soft line does not get there.",
+        "His share upside caps at 24% of targets. Tyson (~19%) and Johnson (~15%) stay paid; we do not project a full reclaim of last year\u2019s ~27.6% seat.",
+        "The Shaheed leftover is contested Depth / Vele work \u2014 not an empty WR1 vacuum for Olave alone.",
+        "Offense and share are stacked asks. Clearing a 23rd-ranked scoring offense plus targets to 24% gets him to the low 250s \u2014 high-WR2 / soft WR1, not a repeat of the 2025 smash while Tyson is healthy."
       ]
     },
     "depth_rank": 1,
@@ -20691,19 +20700,19 @@
     "position": "RB",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "NYJ is projected 18.3 PPG, 32nd-highest scoring offense in the NFL.",
-        "Base case is that offense with a real backfield \u2014 Breece Hall at about 56.4% of rushes and ~2.7% of targets.",
-        "Upside is NYJ clearing that 32nd-ranked ~18.3 PPG line and rushes 56.4% \u2192 60.0%."
+        "The Jets are projected 18.3 PPG, 32nd-highest scoring offense in the NFL.",
+        "Base case is that soft offense with a mild rush bump \u2014 Hall goes from about 53.6% \u2192 56.4% of rushes, but targets collapse from about 10.1% \u2192 2.7%.",
+        "Upside is a receiving reclaim to about 9% of targets, rushes about 56.4% \u2192 60%, and New York clearing that dead-last ~18.3 PPG line."
       ],
       "base": {
         "paras": [
-          "Last year: 194 half-PPR. We project about 56.4% of rushes and ~2.7% of targets.",
-          "Around Hall that leaves: Geno Smith (16.9% of rushes), Isaiah Davis (12.3% of rushes) \u2014 then remaining depth."
+          "Last year Hall had about 53.6% of rushes, about 10.1% of targets, and 194 half-PPR. We hold the rush lead and nudge it to 56.4%, but the projection cuts his targets hard to 2.7% \u2014 the pass-game role is the soft part of the seat.",
+          "Around Hall that leaves: Geno Smith (16.9% of rushes), Isaiah Davis (12.3%) \u2014 then RB depth (~14.4%)."
         ],
-        "verdict": "This is 173 half-PPR \u2192 RB24.",
+        "verdict": "This is 151 half-PPR \u2192 RB29. The rush lead is real; the offense and receiving role are the drag.",
         "pie": [
           {
             "name": "Breece Hall",
@@ -20724,15 +20733,16 @@
       },
       "upside": {
         "path": [
-          "NYJ clears the ~18.3 PPG line",
-          "Rushes 56.4% \u2192 60.0% from committee crumbs \u2014 not a full partner wipe"
+          "Targets reclaim from 2.7% \u2192 9% (getting back toward his recent pass-game history)",
+          "Rushes go from 56.4% \u2192 60% from Davis / RB-depth crumbs \u2014 not a full wipe",
+          "New York clears the ~18.3 PPG line"
         ],
-        "verdict": "That lands about 235 half-PPR \u2192 RB2 territory."
+        "verdict": "That lands about 231 half-PPR \u2192 mid/high-RB2 territory \u2014 a big leap that still needs the worst projected offense to wake up."
       },
       "limits": [
-        "The committee stays real. We do not project a workhorse wipe while the other named rush shares hold.",
-        "A 32nd-ranked ~18.3 PPG environment means offense clear is stacked with any share bump.",
-        "That path lands about 235 half-PPR \u2014 RB2 territory."
+        "A 32nd-ranked scoring environment is the primary ceiling. Clearing ~18.3 PPG is stacked with receiving reclaim and any rush bump \u2014 the path to ~231 needs New York to run hot.",
+        "Geno Smith (~16.9% of rushes) and Isaiah Davis (~12.3%) stay paid, and RB depth still eats ~14%; we cap Hall at 60% of rushes, not a Davis wipe.",
+        "The receiving reclaim to 9% of targets is contingent \u2014 base already haircuts him to 2.7%, so upside is repairing that role, not inventing a new one."
       ]
     },
     "depth_rank": 1,
@@ -21025,19 +21035,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "CHI is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
-        "Base case is that offense with Luther Burden III at 16.0% of targets.",
-        "Upside is CHI clearing that 9th-ranked ~25.1 PPG line plus targets 16.0% \u2192 24.0%."
+        "Chicago is projected 25.1 PPG, 9th-highest scoring offense in the NFL.",
+        "Burden bumps from a rookie ~11.2% of targets to 18.5% after DJ Moore and Olamide Zaccheaus leave \u2014 real WR2 seat under Rome Odunze.",
+        "Upside is Chicago clearing that top-10 ~25.1 PPG line plus a Year-2 leap to about 26% of targets with rates that actually finish \u2014 still short of owning the room alone."
       ],
       "base": {
         "paras": [
-          "Last year: 104 half-PPR. We project 16.0% of targets.",
-          "Around III that leaves: Rome Odunze (22.0% of targets), Colston Loveland (17.0% of targets), D'Andre Swift (8.9% of targets), Cole Kmet (7.0% of targets), plus Kyle Monangai (6.0% of targets) \u2014 then remaining depth."
+          "2025: ~11.2% of targets, 60 targets, 2 TDs, 104 half-PPR in 15 games \u2014 productive on a thin seat. DJ Moore (~16% of targets) and Olamide Zaccheaus (~12%) are gone; that leftover splits across Rome Odunze, Burden, and Colston Loveland. We project Burden at 18.5% of targets.",
+          "Around Burden that leaves: Rome Odunze (21.0% of targets), Colston Loveland (17.0%), D'Andre Swift (8.7%), Cole Kmet (6.0%), plus Kalif Raymond (5.5%) \u2014 then WR depth (~13%), Kyle Monangai / RB depth, and TE depth."
         ],
-        "verdict": "This is 144 half-PPR \u2192 WR37.",
+        "verdict": "This is 173 half-PPR \u2192 WR21. The Year-2 role is real; Odunze and Loveland still own real target paths.",
         "pie": [
           {
             "name": "Rome Odunze",
@@ -21078,15 +21088,17 @@
       },
       "upside": {
         "path": [
-          "CHI clears the ~25.1 PPG line",
-          "Targets 16.0% \u2192 24.0% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Chicago clears the ~25.1 PPG line",
+          "Targets 18.5% \u2192 26% from Kalif Raymond / WR depth \u2014 not an Odunze wipe",
+          "Year-2 catch rate, yards per target, and TD rate step forward off a soft 2-TD finish"
         ],
-        "verdict": "That lands about 299 half-PPR \u2192 WR1 / soft-WR1 territory."
+        "verdict": "That lands about 321 half-PPR \u2192 true WR1 smash territory."
       },
       "limits": [
-        "The offense has to hit. A 9th-ranked ~25.1 PPG environment means a large share of the jump is CHI scoring more, not inventing a new usage tier.",
-        "Teammates stay paid on targets. We do not project a season-long wipe of the names above him in the pie.",
-        "Stacked asks: clearing a 9th-ranked offense plus the share bump to 24.0% lands about 299 half-PPR \u2014 WR1 / soft-WR1 territory."
+        "Odunze (up to ~24.5% of targets) and Loveland (up to ~21.5%) pull from the same Moore/Zaccheaus leftover. They cannot all hit those highs together. Burden caps at 26% of targets, not a 28%+ season-long wipe.",
+        "That leftover is real but contested \u2014 not an empty WR1 vacuum under Odunze.",
+        "Scoring has to show up. Last year: 60 targets, two TDs, 104 fantasy points. More targets without better catch rate, yards per target, and TD rate still leave him short of the smash.",
+        "Offense, share, and Year-2 rates are stacked asks. Clearing a 9th-ranked scoring offense plus targets to 26% gets him to about 321 half-PPR \u2014 true WR1 ceiling only if the leap lands while Odunze and Loveland stay healthy underneath."
       ]
     },
     "depth_rank": 2,
@@ -22013,19 +22025,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "SF is projected 25.3 PPG, 7th-highest scoring offense in the NFL.",
-        "Base case is that offense on a new team (TB \u2192 SF) with Mike Evans at 17.0% of targets.",
-        "Upside is SF clearing that 7th-ranked ~25.3 PPG line with the offense running hotter."
+        "San Francisco is projected 25.3 PPG, 7th-highest scoring offense in the NFL.",
+        "Evans lands in a crowded Shanahan pass game at 17.0% of targets \u2014 co-featured with Christian McCaffrey and George Kittle, well under his old Tampa mid-20s seats.",
+        "Upside is almost entirely San Francisco clearing that already-7th ~25.3 PPG line; share stays near 17%."
       ],
       "base": {
         "paras": [
-          "Last year: 70 half-PPR. We project 17.0% of targets on a new team (TB \u2192 SF).",
-          "Around Evans that leaves: Christian McCaffrey (17.0% of targets), George Kittle (16.0% of targets), De'Zhaun Stribling (11.0% of targets), Christian Kirk (6.5% of targets), plus Ricky Pearsall (5.0% of targets) \u2014 then remaining depth."
+          "2024 (TB): ~19.5% of targets, 203 half-PPR. 2025 (TB): ~11.4% of targets, 62 targets, 3 TDs, 70 half-PPR in 8 games \u2014 injury-soft, not the career shape. Jauan Jennings (~17% of targets in 2025) is gone from San Francisco; Evans steps into that band, not a Tampa-style alpha. We project 17.0% of targets \u2014 and that is also the ceiling.",
+          "Around Evans that leaves: Christian McCaffrey (17.0% of targets), George Kittle (16.0%), Deebo Samuel (12.0%), De'Zhaun Stribling (9.0%), plus Christian Kirk (5.0%) \u2014 then WR depth (~12%), Jake Tonges / TE depth, and RB depth."
         ],
-        "verdict": "This is 202 half-PPR \u2192 WR12.",
+        "verdict": "This is 163 half-PPR \u2192 WR25. The featured seat is real; McCaffrey and Kittle still sit at ~17% / ~16% of targets beside him.",
         "pie": [
           {
             "name": "Christian McCaffrey",
@@ -22071,15 +22083,16 @@
       },
       "upside": {
         "path": [
-          "SF clears the ~25.3 PPG line",
-          "Finishing holds while the offense runs hot \u2014 share stays near the base seat"
+          "San Francisco clears the ~25.3 PPG line (main \u2014 and nearly only \u2014 lever)",
+          "Catch rate, yards per target, and TD rate hold in the new offense",
+          "Share stays near 17% of targets \u2014 pennies from Kirk fade at most"
         ],
-        "verdict": "That lands about 192 half-PPR \u2192 depth / dart-throw territory."
+        "verdict": "That lands about 191 half-PPR \u2192 soft WR3 / flex territory. The leap is environment only, not a new usage tier."
       },
       "limits": [
-        "The offense has to hit. A 7th-ranked ~25.3 PPG environment means a large share of the jump is SF scoring more, not inventing a new usage tier.",
-        "Share upside is thin (17.0% \u2192 17.0% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 7th-ranked offense lands about 192 half-PPR \u2014 depth / dart-throw territory."
+        "His share is already maxed for this room. Base and ceiling are both 17% of targets \u2014 there is no season-long steal path above that.",
+        "McCaffrey (~17%), Kittle (~16%), and Deebo (~12%) stay paid. Stribling and Kirk compete for the same crumbs; San Francisco\u2019s pass pie is condensed on purpose.",
+        "Offense has to beat an already-7th-ranked line. Getting to ~191 means San Francisco running hotter than a top-7 projection with Evans finishing \u2014 and even that only buys a soft flex bump, not a WR1 smash."
       ]
     },
     "depth_rank": 1,
@@ -23143,19 +23156,19 @@
     "position": "WR",
     "community_note": null,
     "player_math": {
-      "status": "draft",
-      "updated_on": "2026-08-03",
+      "status": "reviewed",
+      "updated_on": "2026-08-04",
       "summary": [
-        "PIT is projected 21.6 PPG, 25th-highest scoring offense in the NFL.",
-        "Base case is that offense with DK Metcalf at 21.0% of targets.",
-        "Upside is PIT clearing that 25th-ranked ~21.6 PPG line plus targets 21.0% \u2192 24.5%."
+        "Pittsburgh is projected 21.6 PPG, 25th-highest scoring offense in the NFL.",
+        "Metcalf holds / bumps from about 18.9% \u2192 21.0% of targets \u2014 clear WR1 with Michael Pittman paid underneath.",
+        "Upside is Pittsburgh clearing that soft 25th-ranked ~21.6 PPG line plus targets to about 24.5% from Roman Wilson / Darnell Washington leftover \u2014 short of a 27% monopoly."
       ],
       "base": {
         "paras": [
-          "Last year: 158 half-PPR. We project 21.0% of targets.",
-          "Around Metcalf that leaves: Michael Pittman (19.0% of targets), Pat Freiermuth (11.1% of targets), Roman Wilson (8.7% of targets), Jaylen Warren (8.3% of targets), plus Rico Dowdle (6.6% of targets) \u2014 then remaining depth."
+          "2025 (first year in Pittsburgh): ~18.9% of targets, 99 targets, 6 TDs, 158 half-PPR. Calvin Austin III (~10.5% of targets) and the old Jonnu Smith / Austin band leave leftover work; Michael Pittman arrives as the volume WR2. We project Metcalf at 21.0% of targets \u2014 clear WR1, intentionally soft of a full consolidation.",
+          "Around Metcalf that leaves: Michael Pittman (19.0% of targets), Pat Freiermuth (11.1%), Roman Wilson (8.7%), Jaylen Warren (8.3%), plus Rico Dowdle (6.6%) \u2014 then WR depth (~12%), Darnell Washington (~6%), TE depth, and RB depth."
         ],
-        "verdict": "This is 164 half-PPR \u2192 WR23.",
+        "verdict": "This is 166 half-PPR \u2192 WR23. The WR1 seat is real; the projected offense is the soft part.",
         "pie": [
           {
             "name": "DK Metcalf",
@@ -23196,15 +23209,17 @@
       },
       "upside": {
         "path": [
-          "PIT clears the ~21.6 PPG line",
-          "Targets 21.0% \u2192 24.5% from leftover / depth work \u2014 not wiping paid teammates above him"
+          "Pittsburgh clears the ~21.6 PPG line (main lever)",
+          "Targets 21.0% \u2192 24.5% from Roman Wilson / Darnell Washington leftover \u2014 not a Pittman wipe",
+          "Catch rate, yards per target, and TD rate hold near 2025"
         ],
-        "verdict": "That lands about 255 half-PPR \u2192 high-WR2 / soft-WR2 territory."
+        "verdict": "That lands about 255 half-PPR \u2192 high-WR2 / soft WR1 territory."
       },
       "limits": [
-        "The offense has to hit. A 25th-ranked ~21.6 PPG environment means a large share of the jump is PIT scoring more, not inventing a new usage tier.",
-        "Share upside is thin (21.0% \u2192 24.5% of targets). Paid teammates still own real slices of the pie.",
-        "Stacked asks: clearing a 25th-ranked offense plus the share bump to 24.5% lands about 255 half-PPR \u2014 high-WR2 / soft-WR2 territory."
+        "Offense has to hit \u2014 hard. A 25th-ranked scoring environment means most of the path to ~255 is Pittsburgh scoring more, not inventing a new usage tier from a soft ~21.6 PPG line.",
+        "His share upside caps at 24.5% of targets. Pittman already sits near 19%; we do not project a 27% season-long wipe of that leftover.",
+        "Roman Wilson and Darnell Washington compete for the same Austin / Jonnu Smith crumbs. The leftover above 21% is real but thin.",
+        "Offense and share are stacked asks. Clearing a 25th-ranked scoring offense plus targets to 24.5% gets him to the mid-250s \u2014 high-WR2 / soft WR1, not locked elite in that environment."
       ]
     },
     "depth_rank": 1,
