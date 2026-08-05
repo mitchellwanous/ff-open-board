@@ -270,30 +270,45 @@ test.describe("5 · Player card", () => {
     await expect(
       page.getByText(/last three years/i).first(),
     ).toBeVisible();
-    await expect(
-      page.getByText(/Finish vs last 3 years/i).first(),
-    ).toBeVisible();
-    await expect(
-      page.getByText(/Rank vs this year’s Expected board|Rank vs this year's Expected board/i).first(),
-    ).toBeVisible();
+    // Method keys once above the cards — not repeated inside each card
+    await expect(page.getByText(/Base.*vs Expected board/i).first()).toBeVisible();
+    await expect(page.getByText(/Upside.*vs 3yr actual/i).first()).toBeVisible();
     const base = page.getByRole("article", { name: "Base case" });
     const up = page.getByRole("article", { name: "Upside case" });
     await expect(base).toBeVisible();
     await expect(up).toBeVisible();
-    const baseRank = Number(
-      (await base.locator(".badge").innerText()).replace(/\D/g, ""),
-    );
+    // Cards sit side-by-side in the cases grid (legend is outside)
+    await expect(page.locator(".pm2-cases")).toBeVisible();
+    await expect(base.locator(".pm2-rank-method")).toHaveCount(0);
+    await expect(up.locator(".pm2-rank-method")).toHaveCount(0);
     const upRank = Number(
       (await up.locator(".badge").innerText()).replace(/\D/g, ""),
     );
     const upFp = Number(
       (await up.locator(".pm2-fp").innerText()).replace(/[^\d.]/g, ""),
     );
-    expect(baseRank).toBeGreaterThan(0);
     expect(upFp).toBeGreaterThan(250);
-    // Hist avg for ~306 FP rounds to WR2 (not WR1 vs Expected intercalation)
     expect(upRank).toBeGreaterThanOrEqual(1);
     expect(upRank).toBeLessThanOrEqual(3);
+  });
+
+  test("players table shows rank method once in column headers", async ({
+    page,
+  }) => {
+    await page.goto("/players");
+    const table = page.locator("table.players-board");
+    await expect(table).toBeVisible();
+    const headers = table.locator("thead .col-method");
+    await expect(headers).toHaveCount(3);
+    await expect(headers.nth(0)).toHaveText(/3yr actual/i);
+    await expect(headers.nth(1)).toHaveText(/Expected board/i);
+    await expect(headers.nth(2)).toHaveText(/3yr actual/i);
+    // Not repeated in body cells
+    const bodyText = await table.locator("tbody").innerText();
+    expect(bodyText).not.toMatch(/vs 3yr actual/);
+    expect(bodyText).not.toMatch(/vs Expected board/);
+    // Rank still shows as a badge
+    await expect(table.locator("tbody .badge").first()).toBeVisible();
   });
 });
 

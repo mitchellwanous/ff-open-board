@@ -2,9 +2,9 @@
 
 import type { ReactNode } from "react";
 import {
-  BRAND_RANK_EXPECTED,
-  BRAND_RANK_HIST_ACTUAL,
+  BRAND_RANK_EXPECTED_SHORT,
   BRAND_RANK_HIST_HELPER,
+  BRAND_RANK_HIST_SHORT,
 } from "@/lib/brand";
 import type { PlayerMathPayload } from "@/lib/types";
 
@@ -76,60 +76,66 @@ export function PlayerMathCases({
   const path = content.upside.path ?? [];
 
   return (
-    <div className="pm2-cases">
-      <p className="muted" style={{ fontSize: "0.85rem", margin: "0 0 0.75rem" }}>
-        {BRAND_RANK_HIST_HELPER}
-      </p>
-      <article className="pm2-card" aria-label="Base case">
-        <div className="pm2-card-top">
-          <span className="pm2-eyebrow">Base case</span>
-          <span className="badge">{baseRank}</span>
-        </div>
-        <p className="pm2-rank-method faint">{BRAND_RANK_EXPECTED}</p>
-        <p className="pm2-fp num">
-          {wholeFp(outlook.expectedFp)}
-          <span className="pm2-fp-unit"> half-PPR</span>
-        </p>
-        {baseVerdict ? <p className="pm2-verdict">{baseVerdict}</p> : null}
-        <ul className="pm2-points">
-          {(content.base.paras ?? []).map((para) => (
-            <li key={para}>{boldNumbers(para)}</li>
-          ))}
-        </ul>
-      </article>
-
-      <article className="pm2-card pm2-card--up" aria-label="Upside case">
-        <div className="pm2-card-top">
-          <span className="pm2-eyebrow">Upside case</span>
-          <span className="badge accent">{upsideRank}</span>
-        </div>
-        <p className="pm2-rank-method faint">{BRAND_RANK_HIST_ACTUAL}</p>
-        <p className="pm2-fp num accent">
-          {wholeFp(outlook.upsideFp)}
-          <span className="pm2-fp-unit"> half-PPR</span>
-        </p>
-        {path.length > 0 ? (
-          <>
-            <p className="pm2-path-lead">The path is:</p>
-            <ol className="pm2-path">
-              {path.map((step) => (
-                <li key={step}>{boldNumbers(step)}</li>
-              ))}
-            </ol>
-          </>
-        ) : null}
-        {upsideVerdict ? (
-          <p
-            className={
-              path.length > 0
-                ? "pm2-verdict pm2-verdict--after"
-                : "pm2-verdict"
-            }
-          >
-            {upsideVerdict}
+    <div className="pm2-cases-wrap">
+      <p className="pm2-rank-legend muted">{BRAND_RANK_HIST_HELPER}</p>
+      <div className="pm2-rank-keys" aria-hidden={false}>
+        <span>
+          <strong>Base</strong> · {BRAND_RANK_EXPECTED_SHORT}
+        </span>
+        <span>
+          <strong>Upside</strong> · {BRAND_RANK_HIST_SHORT}
+        </span>
+      </div>
+      <div className="pm2-cases">
+        <article className="pm2-card" aria-label="Base case">
+          <div className="pm2-card-top">
+            <span className="pm2-eyebrow">Base case</span>
+            <span className="badge">{baseRank}</span>
+          </div>
+          <p className="pm2-fp num">
+            {wholeFp(outlook.expectedFp)}
+            <span className="pm2-fp-unit"> half-PPR</span>
           </p>
-        ) : null}
-      </article>
+          {baseVerdict ? <p className="pm2-verdict">{baseVerdict}</p> : null}
+          <ul className="pm2-points">
+            {(content.base.paras ?? []).map((para) => (
+              <li key={para}>{boldNumbers(para)}</li>
+            ))}
+          </ul>
+        </article>
+
+        <article className="pm2-card pm2-card--up" aria-label="Upside case">
+          <div className="pm2-card-top">
+            <span className="pm2-eyebrow">Upside case</span>
+            <span className="badge accent">{upsideRank}</span>
+          </div>
+          <p className="pm2-fp num accent">
+            {wholeFp(outlook.upsideFp)}
+            <span className="pm2-fp-unit"> half-PPR</span>
+          </p>
+          {path.length > 0 ? (
+            <>
+              <p className="pm2-path-lead">The path is:</p>
+              <ol className="pm2-path">
+                {path.map((step) => (
+                  <li key={step}>{boldNumbers(step)}</li>
+                ))}
+              </ol>
+            </>
+          ) : null}
+          {upsideVerdict ? (
+            <p
+              className={
+                path.length > 0
+                  ? "pm2-verdict pm2-verdict--after"
+                  : "pm2-verdict"
+              }
+            >
+              {upsideVerdict}
+            </p>
+          ) : null}
+        </article>
+      </div>
     </div>
   );
 }

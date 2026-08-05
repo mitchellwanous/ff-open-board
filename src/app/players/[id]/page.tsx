@@ -22,9 +22,9 @@ import {
   BRAND_FP_DUAL_NOTE,
   BRAND_FP_EXPECTED_LABEL,
   BRAND_FP_TREE_LABEL,
-  BRAND_RANK_EXPECTED,
-  BRAND_RANK_HIST_ACTUAL,
+  BRAND_RANK_EXPECTED_SHORT,
   BRAND_RANK_HIST_HELPER,
+  BRAND_RANK_HIST_SHORT,
 } from "@/lib/brand";
 
 const SHARE_FIELDS = new Set([
@@ -562,17 +562,24 @@ export default async function PlayerPage({
             efficiency. {BRAND_RANK_HIST_HELPER} To change the pieces, contribute
             below.
           </p>
+          <div className="pm2-rank-keys" style={{ marginBottom: "0.75rem" }}>
+            <span>
+              <strong>Expected</strong> · {BRAND_RANK_EXPECTED_SHORT}
+            </span>
+            <span>
+              <strong>Downside / Upside</strong> · {BRAND_RANK_HIST_SHORT}
+            </span>
+          </div>
           <div className="stat-grid">
             <div className="stat">
               <div className="label">Downside</div>
               <div className="value num warn">{fmt(p.draft.downside_fp, 1)}</div>
               {p.draft.pos_downside_rank != null ? (
                 <div className="sub">
-                  {p.position}
-                  {p.draft.pos_downside_rank}
-                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
-                    {BRAND_RANK_HIST_ACTUAL}
-                  </div>
+                  <span className="badge" style={{ fontSize: "0.72rem" }}>
+                    {p.position}
+                    {p.draft.pos_downside_rank}
+                  </span>
                 </div>
               ) : null}
             </div>
@@ -581,11 +588,10 @@ export default async function PlayerPage({
               <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
               {p.draft.pos_rank != null ? (
                 <div className="sub">
-                  {p.position}
-                  {p.draft.pos_rank}
-                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
-                    {BRAND_RANK_EXPECTED}
-                  </div>
+                  <span className="badge" style={{ fontSize: "0.72rem" }}>
+                    {p.position}
+                    {p.draft.pos_rank}
+                  </span>
                 </div>
               ) : null}
             </div>
@@ -596,11 +602,10 @@ export default async function PlayerPage({
               </div>
               {p.draft.pos_upside_rank != null ? (
                 <div className="sub">
-                  {p.position}
-                  {p.draft.pos_upside_rank}
-                  <div className="faint" style={{ fontSize: "0.7rem", marginTop: 2 }}>
-                    {BRAND_RANK_HIST_ACTUAL}
-                  </div>
+                  <span className="badge accent" style={{ fontSize: "0.72rem" }}>
+                    {p.position}
+                    {p.draft.pos_upside_rank}
+                  </span>
                 </div>
               ) : null}
             </div>

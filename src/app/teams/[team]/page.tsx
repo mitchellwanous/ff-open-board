@@ -11,7 +11,7 @@ import {
   getClaimableFields,
   getTeams,
 } from "@/lib/data";
-import { BRAND_TEAM_PIE_INTRO } from "@/lib/brand";
+import { BRAND_RANK_EXPECTED_SHORT, BRAND_RANK_HIST_SHORT, BRAND_TEAM_PIE_INTRO } from "@/lib/brand";
 import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 import {
   compareNullable,
@@ -157,7 +157,12 @@ export default async function TeamPage({
     return compareNullable(mapA, mapB, rosterDir);
   });
 
-  function rosterHeader(key: RosterSort, label: string, right?: boolean) {
+  function rosterHeader(
+    key: RosterSort,
+    label: string,
+    right?: boolean,
+    method?: string,
+  ) {
     const defaultDir: SortDir = key === "name" ? "asc" : "desc";
     const active = rosterSort === key;
     const next = nextSortDir(rosterSort, key, rosterDir, defaultDir);
@@ -175,6 +180,7 @@ export default async function TeamPage({
           {label}
           {active ? (rosterDir === "asc" ? " ↑" : " ↓") : ""}
         </Link>
+        {method ? <div className="col-method faint">{method}</div> : null}
       </th>
     );
   }
@@ -303,9 +309,9 @@ export default async function TeamPage({
             <tr>
               {rosterHeader("name", "Player")}
               <th>Pos</th>
-              {rosterHeader("downside", "Downside", true)}
-              {rosterHeader("base", "Expected", true)}
-              {rosterHeader("upside", "Upside", true)}
+              {rosterHeader("downside", "Downside", true, BRAND_RANK_HIST_SHORT)}
+              {rosterHeader("base", "Expected", true, BRAND_RANK_EXPECTED_SHORT)}
+              {rosterHeader("upside", "Upside", true, BRAND_RANK_HIST_SHORT)}
               <th />
             </tr>
           </thead>

@@ -539,9 +539,26 @@ table.data.players-board .col-team {
 }
 
 table.data.players-board .col-fp {
-  width: 5.75rem;
+  width: 6.5rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
+  vertical-align: top;
+}
+
+table.data.players-board th.col-fp {
+  white-space: normal;
+  line-height: 1.25;
+}
+
+table.data .col-method,
+table.data.players-board .col-method {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.65rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.25;
 }
 
 table.data.players-board .col-actions {
@@ -1660,6 +1677,33 @@ input.edit-hist-table__input:focus {
   height: 0.28rem;
 }
 
+/* Rank legend sits above the 2-col card grid (not inside it). */
+.pm2-cases-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pm2-rank-legend {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  max-width: 42rem;
+}
+
+.pm2-rank-keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.25rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.pm2-rank-keys strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 /* Base / Upside cards — equal height when side by side */
 .pm2-cases {
   display: grid;
@@ -1694,13 +1738,6 @@ input.edit-hist-table__input:focus {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-}
-
-.pm2-rank-method {
-  margin: 0.35rem 0 0;
-  font-size: 0.78rem;
-  line-height: 1.35;
-  max-width: 22rem;
 }
 
 .pm2-fp {

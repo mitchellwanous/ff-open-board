@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
-import { BRAND_CONTRIBUTE_CALLOUT } from "@/lib/brand";
+import {
+  BRAND_CONTRIBUTE_CALLOUT,
+  BRAND_RANK_EXPECTED_SHORT,
+  BRAND_RANK_HIST_SHORT,
+} from "@/lib/brand";
 import { getLivePlayers } from "@/lib/liveBoard";
 import {
   compareNullable,
@@ -45,7 +49,7 @@ export default async function PlayersIndexPage({
     return compareNullable(av, bv, dir);
   });
 
-  function header(key: ListSort, label: string) {
+  function header(key: ListSort, label: string, method: string) {
     const defaultDir: SortDir = "desc";
     const active = sort === key;
     const next = nextSortDir(sort, key, dir, defaultDir);
@@ -63,6 +67,7 @@ export default async function PlayersIndexPage({
           {label}
           {active ? (dir === "asc" ? " ↑" : " ↓") : ""}
         </Link>
+        <div className="col-method faint">{method}</div>
       </th>
     );
   }
@@ -113,9 +118,9 @@ export default async function PlayersIndexPage({
               <th className="col-player">Player</th>
               <th className="col-pos">Pos</th>
               <th className="col-team">Team</th>
-              {header("downside", "Downside")}
-              {header("base", "Expected")}
-              {header("upside", "Upside")}
+              {header("downside", "Downside", BRAND_RANK_HIST_SHORT)}
+              {header("base", "Expected", BRAND_RANK_EXPECTED_SHORT)}
+              {header("upside", "Upside", BRAND_RANK_HIST_SHORT)}
               <th className="col-actions" />
             </tr>
           </thead>

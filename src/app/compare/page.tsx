@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ComparePicker } from "@/components/ComparePicker";
-import { BRAND_CONTRIBUTE_CALLOUT } from "@/lib/brand";
+import { BRAND_CONTRIBUTE_CALLOUT, BRAND_RANK_EXPECTED_SHORT, BRAND_RANK_HIST_SHORT } from "@/lib/brand";
 import { ScenarioFpCell } from "@/components/ScenarioFpCell";
 import { getLivePlayers, type LivePlayer } from "@/lib/liveBoard";
 import { fmt, fmtInt, fmtShare } from "@/lib/format";
@@ -137,7 +137,7 @@ export default async function ComparePage({
             </thead>
             <tbody>
               <MetricRow
-                label="Downside FP"
+                label={`Downside FP · ${BRAND_RANK_HIST_SHORT}`}
                 players={players}
                 numeric={false}
                 render={(p) => (
@@ -150,7 +150,7 @@ export default async function ComparePage({
                 )}
               />
               <MetricRow
-                label="Expected FP"
+                label={`Expected FP · ${BRAND_RANK_EXPECTED_SHORT}`}
                 players={players}
                 numeric={false}
                 render={(p) => (
@@ -163,7 +163,7 @@ export default async function ComparePage({
                 )}
               />
               <MetricRow
-                label="Upside FP"
+                label={`Upside FP · ${BRAND_RANK_HIST_SHORT}`}
                 players={players}
                 numeric={false}
                 render={(p) => (
