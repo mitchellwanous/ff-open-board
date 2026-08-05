@@ -520,6 +520,11 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
       ((seedEffUp ?? 1) > 0 ? (liveEffUp ?? 1) / (seedEffUp ?? 1) : 1);
 
     const season_fp = scaleFpByIdentity(p.fp.season_fp, seedId, liveId);
+    const season_fp_tree = scaleFpByIdentity(
+      p.fp.season_fp_tree ?? null,
+      seedId,
+      liveId,
+    );
     const downside_fp = scaleFpByIdentity(p.draft.downside_fp, seedDnId, dnId);
     const scenario_fp = scaleFpByIdentity(
       p.draft.scenario_fp,
@@ -561,6 +566,7 @@ export async function buildLiveBoard(): Promise<LiveBoard> {
       fp: {
         ...p.fp,
         season_fp,
+        season_fp_tree,
         fp_per_game:
           season_fp != null && p.fp.games_played_proj
             ? Math.round((season_fp / p.fp.games_played_proj) * 100) / 100

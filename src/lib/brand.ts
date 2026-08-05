@@ -65,6 +65,12 @@ export const BRAND_CONTRIBUTE_CHOOSER_TITLE =
   "Which piece do you want to contribute to?";
 export const BRAND_CONTRIBUTE_CHOOSER_SUB =
   "Fantasy points come from team offense, player share, and player efficiency. Open any piece — you can come back and contribute to more than one.";
+
+/** Dual FP honesty — ranking total may blend last year; counting stats stay on the formula tree. */
+export const BRAND_FP_EXPECTED_LABEL = "Expected";
+export const BRAND_FP_TREE_LABEL = "From the pieces";
+export const BRAND_FP_DUAL_NOTE =
+  "Expected is what team offense + share + efficiency add up to. Last year’s fantasy total is history only — it is not mixed into Expected.";
 export const BRAND_CONTRIBUTE_PIECES: ReadonlyArray<{
   id: "offense" | "share" | "efficiency";
   title: string;

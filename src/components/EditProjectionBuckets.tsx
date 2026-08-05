@@ -198,14 +198,12 @@ function valuesDiffer(
 }
 
 /**
- * Hist shares/rates from the freeze are usually already percent (`_pct` in export).
- * Only scale true fractions (< 1). Do NOT use ≤1.5 — elite INT rates like 1.2%
- * were shown as 120%.
+ * Hist shares/rates from the freeze are fractions (0–1). Always ×100 for display.
+ * Do not guess from magnitude — low INT rates like 0.009 (0.9%) must not become 90%.
  */
 function histPct(v: number | null | undefined, digits = 0): string {
   if (v == null || Number.isNaN(v)) return "—";
-  const pct = Math.abs(v) < 1 ? v * 100 : v;
-  return `${pct.toFixed(digits)}%`;
+  return `${(v * 100).toFixed(digits)}%`;
 }
 
 function YearHeaders({

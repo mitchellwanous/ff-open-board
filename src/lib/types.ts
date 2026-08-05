@@ -159,6 +159,8 @@ export type Player = {
   rates: Record<string, number | null>;
   fp: {
     season_fp: number | null;
+    /** Pure hub×share×rates fantasy total before last-year ranking blend. */
+    season_fp_tree: number | null;
     fp_per_game: number | null;
     games_played_proj: number | null;
     ly_fp: number | null;

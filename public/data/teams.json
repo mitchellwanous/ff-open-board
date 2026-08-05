@@ -18,7 +18,7 @@
       "pass_rate_prior": 0.616,
       "rush_rate_prior": 0.384,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 31
     },
     "hub": {
@@ -50,7 +50,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1306.2,
+    "board_fp": 1259.7,
     "board_rk": 18,
     "newcomers": [
       "Jeremiyah Love (RB1, Rookie)",
@@ -294,7 +294,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 24
     },
     "hub": {
@@ -326,7 +326,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1142.6,
+    "board_fp": 1178.7,
     "board_rk": 27,
     "newcomers": [
       "Tua Tagovailoa (QB1, new)",
@@ -579,7 +579,7 @@
       "pass_rate_prior": 0.525,
       "rush_rate_prior": 0.475,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 3
     },
     "hub": {
@@ -611,7 +611,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1193.0,
+    "board_fp": 1171.4,
     "board_rk": 6,
     "newcomers": [
       "Durham Smythe (TE2, from CHI)",
@@ -865,7 +865,7 @@
       "pass_rate_prior": 0.51,
       "rush_rate_prior": 0.49,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 6
     },
     "hub": {
@@ -897,7 +897,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.039; eff_cv=0.116; regime=franchise_hist"
     },
-    "board_fp": 1364.3,
+    "board_fp": 1345.2,
     "board_rk": 5,
     "newcomers": [
       "DJ Moore (WR1, from CHI)",
@@ -1159,7 +1159,7 @@
       "pass_rate_prior": 0.554,
       "rush_rate_prior": 0.446,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 27
     },
     "hub": {
@@ -1191,7 +1191,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.027; pass_std=0.032; eff_cv=0.109; regime=same_hc:Dave Canales"
     },
-    "board_fp": 1027.4,
+    "board_fp": 1059.7,
     "board_rk": 25,
     "newcomers": [
       "Kenny Pickett (QB2, new)",
@@ -1454,7 +1454,7 @@
       "pass_rate_prior": 0.548,
       "rush_rate_prior": 0.452,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 10
     },
     "hub": {
@@ -1486,7 +1486,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.040; pass_std=0.048; eff_cv=0.138; regime=franchise_hist"
     },
-    "board_fp": 1248.1,
+    "board_fp": 1229.7,
     "board_rk": 17,
     "newcomers": [
       "Case Keenum (QB3, new)",
@@ -1739,7 +1739,7 @@
       "pass_rate_prior": 0.646,
       "rush_rate_prior": 0.354,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 2
     },
     "hub": {
@@ -1771,7 +1771,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.035; pass_std=0.031; eff_cv=0.115; regime=same_hc:Zac Taylor"
     },
-    "board_fp": 1330.7,
+    "board_fp": 1329.1,
     "board_rk": 2,
     "newcomers": [
       "Josh Johnson (QB3, new)",
@@ -2024,7 +2024,7 @@
       "pass_rate_prior": 0.593,
       "rush_rate_prior": 0.407,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 30
     },
     "hub": {
@@ -2056,7 +2056,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.049; pass_std=0.043; eff_cv=0.146; regime=franchise_hist"
     },
-    "board_fp": 1002.0,
+    "board_fp": 1001.0,
     "board_rk": 32,
     "newcomers": [
       "Deshaun Watson (QB1, new)",
@@ -2282,7 +2282,7 @@
       "pass_rate_prior": 0.594,
       "rush_rate_prior": 0.406,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 5
     },
     "hub": {
@@ -2314,7 +2314,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.029; pass_std=0.035; eff_cv=0.138; regime=franchise_hist"
     },
-    "board_fp": 1331.7,
+    "board_fp": 1333.9,
     "board_rk": 4,
     "newcomers": [
       "Sam Howell (QB3, new)",
@@ -2558,7 +2558,7 @@
       "pass_rate_prior": 0.594,
       "rush_rate_prior": 0.406,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 21
     },
     "hub": {
@@ -2590,7 +2590,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.034; pass_std=0.025; eff_cv=0.144; regime=franchise_hist"
     },
-    "board_fp": 1327.1,
+    "board_fp": 1229.2,
     "board_rk": 14,
     "newcomers": [
       "Jarrett Stidham (QB2, new)",
@@ -2834,7 +2834,7 @@
       "pass_rate_prior": 0.633,
       "rush_rate_prior": 0.367,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 1
     },
     "hub": {
@@ -2866,7 +2866,7 @@
       "source": "override",
       "notes": "Cap upside ~29.5 PPG (26.35\u00d71.03\u00d71.10) \u2014 31+ PPG is ~1\u20132 team-seasons in 2021\u201325 (DET 2024 unicorn); don't price that as standard upside"
     },
-    "board_fp": 1397.3,
+    "board_fp": 1361.9,
     "board_rk": 1,
     "newcomers": [
       "Teddy Bridgewater (QB2, new)",
@@ -3110,7 +3110,7 @@
       "pass_rate_prior": 0.523,
       "rush_rate_prior": 0.477,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 8
     },
     "hub": {
@@ -3142,7 +3142,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.031; pass_std=0.040; eff_cv=0.119; regime=same_hc:Matt LaFleur"
     },
-    "board_fp": 1150.9,
+    "board_fp": 1179.2,
     "board_rk": 21,
     "newcomers": [
       "Tyrod Taylor (QB2, new)",
@@ -3377,7 +3377,7 @@
       "pass_rate_prior": 0.572,
       "rush_rate_prior": 0.428,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 19
     },
     "hub": {
@@ -3409,7 +3409,7 @@
       "source": "formula_regime_cv",
       "notes": "n=3; vol_cv=0.028; pass_std=0.025; eff_cv=0.086; regime=same_hc:DeMeco Ryans"
     },
-    "board_fp": 1263.9,
+    "board_fp": 1331.8,
     "board_rk": 24,
     "newcomers": [
       "David Montgomery (RB1, from DET)",
@@ -3662,7 +3662,7 @@
       "pass_rate_prior": 0.575,
       "rush_rate_prior": 0.425,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 16
     },
     "hub": {
@@ -3694,7 +3694,7 @@
       "source": "formula_regime_cv",
       "notes": "n=3; vol_cv=0.038; pass_std=0.031; eff_cv=0.139; regime=same_hc:Shane Steichen"
     },
-    "board_fp": 1229.7,
+    "board_fp": 1247.3,
     "board_rk": 15,
     "newcomers": [
       "Seth McGowan (RB3, Rookie)",
@@ -3930,7 +3930,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 18
     },
     "hub": {
@@ -3962,7 +3962,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.020; pass_std=0.019; eff_cv=0.089; regime=staff_donors:TB2024,JAX2025"
     },
-    "board_fp": 1195.4,
+    "board_fp": 1206.5,
     "board_rk": 11,
     "newcomers": [
       "Nick Mullens (QB2, new)",
@@ -4206,7 +4206,7 @@
       "pass_rate_prior": 0.603,
       "rush_rate_prior": 0.397,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 11
     },
     "hub": {
@@ -4238,7 +4238,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.026; eff_cv=0.137; regime=franchise_hist"
     },
-    "board_fp": 1132.1,
+    "board_fp": 1189.7,
     "board_rk": 12,
     "newcomers": [
       "Kenneth Walker III (RB1, from SEA)",
@@ -4491,7 +4491,7 @@
       "pass_rate_prior": 0.586,
       "rush_rate_prior": 0.414,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 4
     },
     "hub": {
@@ -4523,7 +4523,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.038; pass_std=0.027; eff_cv=0.157; regime=franchise_hist"
     },
-    "board_fp": 1342.0,
+    "board_fp": 1291.4,
     "board_rk": 3,
     "newcomers": [
       "Stetson Bennett (QB2, new)",
@@ -4759,7 +4759,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 14
     },
     "hub": {
@@ -4791,7 +4791,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.043; pass_std=0.039; eff_cv=0.130; regime=franchise_hist"
     },
-    "board_fp": 1236.6,
+    "board_fp": 1217.5,
     "board_rk": 9,
     "newcomers": [
       "David Njoku (TE2, from CLE)",
@@ -5054,7 +5054,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 28
     },
     "hub": {
@@ -5086,7 +5086,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1022.6,
+    "board_fp": 1124.0,
     "board_rk": 30,
     "newcomers": [
       "Kirk Cousins (QB1, new)",
@@ -5330,7 +5330,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 29
     },
     "hub": {
@@ -5362,7 +5362,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.049; pass_std=0.032; eff_cv=0.157; regime=franchise_hist"
     },
-    "board_fp": 980.5,
+    "board_fp": 1017.3,
     "board_rk": 29,
     "newcomers": [
       "Malik Willis (QB1, new)",
@@ -5606,7 +5606,7 @@
       "pass_rate_prior": 0.581,
       "rush_rate_prior": 0.419,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 20
     },
     "hub": {
@@ -5638,7 +5638,7 @@
       "source": "formula_regime_cv",
       "notes": "n=4; vol_cv=0.053; pass_std=0.036; eff_cv=0.120; regime=same_hc:Kevin O'Connell"
     },
-    "board_fp": 1244.8,
+    "board_fp": 1282.6,
     "board_rk": 19,
     "newcomers": [
       "Kyler Murray (QB1, new)",
@@ -5873,7 +5873,7 @@
       "pass_rate_prior": 0.542,
       "rush_rate_prior": 0.458,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 13
     },
     "hub": {
@@ -5905,7 +5905,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.029; pass_std=0.031; eff_cv=0.211; regime=franchise_hist"
     },
-    "board_fp": 1310.7,
+    "board_fp": 1250.3,
     "board_rk": 7,
     "newcomers": [
       "A.J. Brown (WR1, from PHI)",
@@ -6167,7 +6167,7 @@
       "pass_rate_prior": 0.599,
       "rush_rate_prior": 0.401,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 23
     },
     "hub": {
@@ -6199,7 +6199,7 @@
       "source": "formula_regime_cv",
       "notes": "n=2; vol_cv=0.033; pass_std=0.070; eff_cv=0.201; regime=staff_donors:PHI2024,NO2025"
     },
-    "board_fp": 1109.4,
+    "board_fp": 1093.8,
     "board_rk": 26,
     "newcomers": [
       "Noah Fant (TE2, from CIN)",
@@ -6453,7 +6453,7 @@
       "pass_rate_prior": 0.576,
       "rush_rate_prior": 0.424,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 22
     },
     "hub": {
@@ -6485,7 +6485,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1366.3,
+    "board_fp": 1280.9,
     "board_rk": 23,
     "newcomers": [
       "Isaiah Likely (TE1, from BAL)",
@@ -6738,7 +6738,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 32
     },
     "hub": {
@@ -6770,7 +6770,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.037; eff_cv=0.119; regime=franchise_hist"
     },
-    "board_fp": 836.8,
+    "board_fp": 865.3,
     "board_rk": 31,
     "newcomers": [
       "Geno Smith (QB1, new)",
@@ -7006,7 +7006,7 @@
       "pass_rate_prior": 0.536,
       "rush_rate_prior": 0.464,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 12
     },
     "hub": {
@@ -7038,7 +7038,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.042; pass_std=0.037; eff_cv=0.094; regime=franchise_hist"
     },
-    "board_fp": 1111.4,
+    "board_fp": 1114.9,
     "board_rk": 20,
     "newcomers": [
       "Andy Dalton (QB2, new)",
@@ -7283,7 +7283,7 @@
       "pass_rate_prior": 0.596,
       "rush_rate_prior": 0.404,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 24
     },
     "hub": {
@@ -7315,7 +7315,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.046; pass_std=0.043; eff_cv=0.146; regime=franchise_hist"
     },
-    "board_fp": 1117.4,
+    "board_fp": 1088.1,
     "board_rk": 22,
     "newcomers": [
       "Rico Dowdle (RB2, from CAR)",
@@ -7568,7 +7568,7 @@
       "pass_rate_prior": 0.544,
       "rush_rate_prior": 0.456,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 9
     },
     "hub": {
@@ -7600,7 +7600,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.037; pass_std=0.044; eff_cv=0.127; regime=franchise_hist"
     },
-    "board_fp": 1243.5,
+    "board_fp": 1217.9,
     "board_rk": 10,
     "newcomers": [
       "Jadarian Price (RB2, Rookie)",
@@ -7844,7 +7844,7 @@
       "pass_rate_prior": 0.567,
       "rush_rate_prior": 0.433,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 7
     },
     "hub": {
@@ -7876,7 +7876,7 @@
       "source": "formula_regime_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.028; eff_cv=0.115; regime=same_hc:Kyle Shanahan"
     },
-    "board_fp": 1355.7,
+    "board_fp": 1256.0,
     "board_rk": 8,
     "newcomers": [
       "Mike Evans (WR1, from TB)",
@@ -8121,7 +8121,7 @@
       "pass_rate_prior": 0.557,
       "rush_rate_prior": 0.443,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 15
     },
     "hub": {
@@ -8153,7 +8153,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.041; pass_std=0.046; eff_cv=0.177; regime=franchise_hist"
     },
-    "board_fp": 1259.8,
+    "board_fp": 1232.6,
     "board_rk": 16,
     "newcomers": [
       "Jake Browning (QB2, new)",
@@ -8406,7 +8406,7 @@
       "pass_rate_prior": 0.572,
       "rush_rate_prior": 0.428,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 26
     },
     "hub": {
@@ -8438,7 +8438,7 @@
       "source": "formula_league_median",
       "notes": "n=0; vol_cv=0.040; pass_std=0.036; eff_cv=0.139; regime=league_median; staff_prior_untrusted"
     },
-    "board_fp": 1100.5,
+    "board_fp": 1057.3,
     "board_rk": 28,
     "newcomers": [
       "Carnell Tate (WR1, Rookie)",
@@ -8673,7 +8673,7 @@
       "pass_rate_prior": 0.518,
       "rush_rate_prior": 0.482,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-04",
+      "as_of": "2026-08-05",
       "ppg_rk": 17
     },
     "hub": {
@@ -8705,7 +8705,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.046; pass_std=0.048; eff_cv=0.163; regime=franchise_hist"
     },
-    "board_fp": 1201.9,
+    "board_fp": 1144.3,
     "board_rk": 13,
     "newcomers": [
       "Chig Okonkwo (TE1, from TEN)",

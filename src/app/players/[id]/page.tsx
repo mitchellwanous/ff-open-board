@@ -18,6 +18,11 @@ import {
 import { getLivePlayer, getLivePlayers } from "@/lib/liveBoard";
 import { fmt, fmtInt, pointsPerPlay } from "@/lib/format";
 import { buildShareHistForSeg } from "@/lib/sharePie";
+import {
+  BRAND_FP_DUAL_NOTE,
+  BRAND_FP_EXPECTED_LABEL,
+  BRAND_FP_TREE_LABEL,
+} from "@/lib/brand";
 
 const SHARE_FIELDS = new Set([
   "target_share_dn",
@@ -566,7 +571,7 @@ export default async function PlayerPage({
               ) : null}
             </div>
             <div className="stat">
-              <div className="label">Expected</div>
+              <div className="label">{BRAND_FP_EXPECTED_LABEL}</div>
               <div className="value num">{fmt(p.fp.season_fp, 1)}</div>
               {p.draft.pos_rank != null ? (
                 <div className="sub">
@@ -594,6 +599,14 @@ export default async function PlayerPage({
               </div>
             </div>
           </div>
+          {p.fp.season_fp_tree != null &&
+          p.fp.season_fp != null &&
+          Math.abs(p.fp.season_fp_tree - p.fp.season_fp) >= 0.5 ? (
+            <p className="muted" style={{ fontSize: "0.85rem", marginTop: 8 }}>
+              <strong>{BRAND_FP_TREE_LABEL}:</strong>{" "}
+              {fmt(p.fp.season_fp_tree, 1)}. {BRAND_FP_DUAL_NOTE}
+            </p>
+          ) : null}
           {(p.draft.downside_blurb ||
             p.draft.base_blurb ||
             p.draft.upside_blurb) && (
