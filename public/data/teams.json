@@ -18,7 +18,7 @@
       "pass_rate_prior": 0.616,
       "rush_rate_prior": 0.384,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 31
     },
     "hub": {
@@ -294,7 +294,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 24
     },
     "hub": {
@@ -579,7 +579,7 @@
       "pass_rate_prior": 0.525,
       "rush_rate_prior": 0.475,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 3
     },
     "hub": {
@@ -865,7 +865,7 @@
       "pass_rate_prior": 0.51,
       "rush_rate_prior": 0.49,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 6
     },
     "hub": {
@@ -1159,7 +1159,7 @@
       "pass_rate_prior": 0.554,
       "rush_rate_prior": 0.446,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 27
     },
     "hub": {
@@ -1454,7 +1454,7 @@
       "pass_rate_prior": 0.548,
       "rush_rate_prior": 0.452,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 10
     },
     "hub": {
@@ -1739,7 +1739,7 @@
       "pass_rate_prior": 0.646,
       "rush_rate_prior": 0.354,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 2
     },
     "hub": {
@@ -2024,7 +2024,7 @@
       "pass_rate_prior": 0.593,
       "rush_rate_prior": 0.407,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 30
     },
     "hub": {
@@ -2282,7 +2282,7 @@
       "pass_rate_prior": 0.594,
       "rush_rate_prior": 0.406,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 5
     },
     "hub": {
@@ -2558,7 +2558,7 @@
       "pass_rate_prior": 0.594,
       "rush_rate_prior": 0.406,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 21
     },
     "hub": {
@@ -2834,7 +2834,7 @@
       "pass_rate_prior": 0.633,
       "rush_rate_prior": 0.367,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 1
     },
     "hub": {
@@ -3110,7 +3110,7 @@
       "pass_rate_prior": 0.523,
       "rush_rate_prior": 0.477,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 8
     },
     "hub": {
@@ -3377,7 +3377,7 @@
       "pass_rate_prior": 0.572,
       "rush_rate_prior": 0.428,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 19
     },
     "hub": {
@@ -3662,7 +3662,7 @@
       "pass_rate_prior": 0.575,
       "rush_rate_prior": 0.425,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 16
     },
     "hub": {
@@ -3930,7 +3930,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 18
     },
     "hub": {
@@ -4206,7 +4206,7 @@
       "pass_rate_prior": 0.603,
       "rush_rate_prior": 0.397,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 11
     },
     "hub": {
@@ -4238,7 +4238,7 @@
       "source": "formula_hist_cv",
       "notes": "n=5; vol_cv=0.032; pass_std=0.026; eff_cv=0.137; regime=franchise_hist"
     },
-    "board_fp": 1189.7,
+    "board_fp": 1195.2,
     "board_rk": 12,
     "newcomers": [
       "Kenneth Walker III (RB1, from SEA)",
@@ -4254,7 +4254,7 @@
         "player_id": "00-0039067",
         "name": "Rashee Rice",
         "position": "WR",
-        "share_dn": 21.7,
+        "share_dn": 18.0,
         "share": 24.5,
         "share_ceil": 28.5
       },
@@ -4491,7 +4491,7 @@
       "pass_rate_prior": 0.586,
       "rush_rate_prior": 0.414,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 4
     },
     "hub": {
@@ -4759,7 +4759,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 14
     },
     "hub": {
@@ -5054,7 +5054,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 28
     },
     "hub": {
@@ -5330,7 +5330,7 @@
       "pass_rate_prior": 0.563,
       "rush_rate_prior": 0.437,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 29
     },
     "hub": {
@@ -5606,20 +5606,20 @@
       "pass_rate_prior": 0.581,
       "rush_rate_prior": 0.419,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 20
     },
     "hub": {
       "plays_pg": 57.5,
       "pass_rate": 61.0,
       "rush_rate": 39.0,
-      "pass_yards": 3781.0,
+      "pass_yards": 3810.0,
       "rush_yards": 1770.0,
       "team_targets": 586.0,
       "designed_rush_attempts": 351.0,
       "sack_rate": 6.1,
       "pressure_proxy": 29.9,
-      "pass_ypa_used": 6.45,
+      "pass_ypa_used": 6.5,
       "rz_plays": 153.0,
       "rz_pass_attempts": 94.0,
       "gl_rush_attempts": 15.0,
@@ -5638,7 +5638,7 @@
       "source": "formula_regime_cv",
       "notes": "n=4; vol_cv=0.053; pass_std=0.036; eff_cv=0.120; regime=same_hc:Kevin O'Connell"
     },
-    "board_fp": 1282.6,
+    "board_fp": 1148.2,
     "board_rk": 19,
     "newcomers": [
       "Kyler Murray (QB1, new)",
@@ -5711,36 +5711,36 @@
         "player_id": "00-0033293",
         "name": "Aaron Jones",
         "position": "RB",
-        "share_dn": 24.0,
-        "share": 40.1,
-        "share_ceil": 40.1
+        "share_dn": 24.6,
+        "share": 41.2,
+        "share_ceil": 41.2
       },
       {
         "kind": "player",
         "player_id": "00-0037525",
         "name": "Jordan Mason",
         "position": "RB",
-        "share_dn": 34.7,
-        "share": 34.7,
-        "share_ceil": 34.7
-      },
-      {
-        "kind": "player",
-        "player_id": "00-0035228",
-        "name": "Kyler Murray",
-        "position": "QB",
-        "share_dn": 13.8,
-        "share": 13.8,
-        "share_ceil": 13.8
+        "share_dn": 35.6,
+        "share": 35.6,
+        "share_ceil": 35.6
       },
       {
         "kind": "player",
         "player_id": "00-0038440",
         "name": "Zavier Scott",
         "position": "RB",
-        "share_dn": 11.4,
-        "share": 11.4,
-        "share_ceil": 11.4
+        "share_dn": 11.7,
+        "share": 11.7,
+        "share_ceil": 11.7
+      },
+      {
+        "kind": "player",
+        "player_id": "00-0035228",
+        "name": "Kyler Murray",
+        "position": "QB",
+        "share_dn": 8.5,
+        "share": 11.5,
+        "share_ceil": 14.0
       }
     ],
     "depth_shares": {
@@ -5834,13 +5834,13 @@
         "ppg": 22.5,
         "plays_pg": 57.5,
         "pass_rate": 61.0,
-        "pass_yards": 3781.0,
+        "pass_yards": 3810.0,
         "rush_yards": 1770.0,
         "team_targets": 586.0,
         "designed_rush_attempts": 351.0,
         "sack_rate": 6.1,
         "pressure_proxy": 29.9,
-        "pass_ypa": 6.45,
+        "pass_ypa": 6.5,
         "rz_plays": 153.0,
         "gl_rush_attempts": 15.0
       }
@@ -5848,7 +5848,7 @@
     "implied_ppg": 22.5,
     "plays_pg": 57.5,
     "pass_rate": 61.0,
-    "pass_yards": 3781.0,
+    "pass_yards": 3810.0,
     "rush_yards": 1770.0,
     "volume_scale": 0.979,
     "vol_up": 1.053,
@@ -5873,7 +5873,7 @@
       "pass_rate_prior": 0.542,
       "rush_rate_prior": 0.458,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 13
     },
     "hub": {
@@ -6167,7 +6167,7 @@
       "pass_rate_prior": 0.599,
       "rush_rate_prior": 0.401,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 23
     },
     "hub": {
@@ -6453,7 +6453,7 @@
       "pass_rate_prior": 0.576,
       "rush_rate_prior": 0.424,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 22
     },
     "hub": {
@@ -6738,7 +6738,7 @@
       "pass_rate_prior": 0.552,
       "rush_rate_prior": 0.448,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 32
     },
     "hub": {
@@ -7006,7 +7006,7 @@
       "pass_rate_prior": 0.536,
       "rush_rate_prior": 0.464,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 12
     },
     "hub": {
@@ -7283,7 +7283,7 @@
       "pass_rate_prior": 0.596,
       "rush_rate_prior": 0.404,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 24
     },
     "hub": {
@@ -7568,7 +7568,7 @@
       "pass_rate_prior": 0.544,
       "rush_rate_prior": 0.456,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 9
     },
     "hub": {
@@ -7844,7 +7844,7 @@
       "pass_rate_prior": 0.567,
       "rush_rate_prior": 0.433,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 7
     },
     "hub": {
@@ -8121,7 +8121,7 @@
       "pass_rate_prior": 0.557,
       "rush_rate_prior": 0.443,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 15
     },
     "hub": {
@@ -8406,7 +8406,7 @@
       "pass_rate_prior": 0.572,
       "rush_rate_prior": 0.428,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 26
     },
     "hub": {
@@ -8673,7 +8673,7 @@
       "pass_rate_prior": 0.518,
       "rush_rate_prior": 0.482,
       "source": "rotowire_vegas_yahoo_dk_openers_2026-06-24",
-      "as_of": "2026-08-05",
+      "as_of": "2026-08-06",
       "ppg_rk": 17
     },
     "hub": {
